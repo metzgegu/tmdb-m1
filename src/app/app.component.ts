@@ -26,7 +26,7 @@ export class AppComponent {
       this.dbData = lists.valueChanges();
     });
     setTimeout( () =>
-      tmdb.init('XXX') // Clef de TMDB
+      tmdb.init('80d6fe65cffe579d433c3da0f5d11307') // Clef de TMDB
           .getMovie(13)
           .then( (m: MovieResponse) => console.log('Movie 13:', this._movie = m) )
           .catch( err => console.error('Error getting movie:', err) ),
