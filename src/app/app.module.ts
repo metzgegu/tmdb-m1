@@ -8,10 +8,12 @@ import {AngularFireModule} from '@angular/fire';
 import {environment} from '../environments/environment';
 import {AngularFireAuthModule} from '@angular/fire/auth';
 import {AngularFireDatabaseModule} from '@angular/fire/database';
+import { FilmComponent } from './film/film.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    FilmComponent
   ],
   imports: [
     BrowserModule,
