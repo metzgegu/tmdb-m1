@@ -16,8 +16,7 @@
 
 <hr/>
 <section *ngIf="movie">
-  <img [src]="getPath(movie.poster_path)" />
-  <pre>{{movie | json}}</pre>
+  <app-film [movie]="movie"></app-film>
 </section>
 <section *ngIf="!movie">
   Pas encore de films à afficher...
