@@ -15,11 +15,21 @@
 </pre>
 
 <hr/>
-<section *ngIf="movie">
+<section *ngIf="acteurs.length>0">
+  <!--<app-acteur
+    [actor] = "_acteur">
+  </app-acteur>-->
+  <app-acteur-grid
+    [acteurs] = "acteurs">
+  </app-acteur-grid>
+</section>
+<!--<section *ngIf="movie">
   <img [src]="getPath(movie.poster_path)" />
   <pre>{{movie | json}}</pre>
 </section>
 <section *ngIf="!movie">
   Pas encore de films à afficher...
-</section>
+</section>-->
+
+
 

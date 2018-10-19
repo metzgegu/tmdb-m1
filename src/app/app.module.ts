@@ -8,14 +8,28 @@ import {AngularFireModule} from '@angular/fire';
 import {environment} from '../environments/environment';
 import {AngularFireAuthModule} from '@angular/fire/auth';
 import {AngularFireDatabaseModule} from '@angular/fire/database';
+import { ActeurComponent } from './acteur/acteur.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatCardModule} from '@angular/material/card';
+import {MatButtonModule} from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon';
+import {MatGridListModule} from '@angular/material/grid-list';
+import { ActeurGridComponent } from './acteur-grid/acteur-grid.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ActeurComponent,
+    ActeurGridComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
+    BrowserAnimationsModule,
+    MatCardModule,
+    MatGridListModule,
+    MatIconModule,
+    MatButtonModule,
     AngularFireModule.initializeApp( environment.firebase ),
     AngularFireAuthModule,
     AngularFireDatabaseModule
