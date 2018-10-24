@@ -1,0 +1,19 @@
+
+
+<mat-card class="acteur-card"  >
+  <img mat-card-image src={{getPath(actor.profile_path)}} alt={{actor.name}} id="acteurImg" routerLink="/acteur-info" (click)="functionClickSurActeur()">
+  <mat-card-actions id="acteurAction">
+    <p class="acteurName" id="acteurNameText" *ngIf="favori" >
+    {{actor.name}}
+      <button mat-icon-button  color="warn" (click)="switchFavori()">
+        <mat-icon aria-label="favorite">favorite</mat-icon>
+      </button>
+    </p>
+    <p class="acteurName" id="acteurNameText2"  *ngIf="!favori">
+    {{actor.name}}
+      <button mat-icon-button  color="white" (click)="switchFavori()">
+        <mat-icon aria-label="favorite">favorite</mat-icon>
+      </button>
+    </p>
+  </mat-card-actions>
+</mat-card>

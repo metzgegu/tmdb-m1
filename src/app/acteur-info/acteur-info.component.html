@@ -1,0 +1,60 @@
+<div class="acteurInfo"   >
+  <div>
+    <h2 class="mat-h2">{{actor.name}}  <button mat-icon-button>
+      <mat-icon aria-label="exit" routerLink="/acteurs" (click)="exit()">clear</mat-icon>
+    </button> </h2>
+
+  </div>
+  <!--<table>
+    <tr>
+      <td>
+        <mat-card class="acteurInfoCard">
+          <img src={{getPath(actor.profile_path)}} alt={{actor.name}} id="acteurImg">
+        </mat-card>
+      </td>
+      <td>
+        <mat-card class="acteurInfoCard">
+          <h3>Description :</h3>
+          <p>{{actor.biography}}</p>
+        </mat-card>
+      </td>
+      <td>
+        <mat-card class= "acteurInfoCard">
+          <h3>Fiche technique :</h3>
+          <p>Genre : {{actor.gender}}</p><br/>
+          <p>Aussi connu : {{actor.also_known_as}}</p>
+          <p>Date de naissance : {{actor.birthday}}</p>
+        </mat-card>
+      </td>
+    </tr>
+  </table>-->
+
+
+  <div class="container"
+       fxLayout="row wrap"
+
+       fxLayoutGap="16px"
+
+       fxLayoutAlign="flex-start">
+    <div class="item item-1" fxFlex="0 1 calc(25% - 16px)">
+      <mat-card class="acteurInfoCard" id="imagActeurInfo">
+        <img src={{getPath(actor.profile_path)}} alt={{actor.name}} id="acteurImg">
+      </mat-card>
+    </div>
+    <div class="item item-2" fxFlex="0 1 calc(50% - 16px)">
+      <mat-card class="acteurInfoCard">
+        <h3>Description :</h3>
+        <p *ngIf="this.actor.biography!=''">{{actor.biography}}</p>
+        <p *ngIf="this.actor.biography==''">Pas de description disponible ...</p>
+      </mat-card>
+    </div>
+    <div class="item item-3" fxFlex="0 1 calc(20% - 16px)">
+      <mat-card class="acteurInfoCard">
+        <h3>Fiche technique :</h3>
+        <p>Genre : {{actor.gender}}</p><br/>
+        <p>Aussi connu : {{actor.also_known_as}}</p>
+        <p>Date de naissance : {{actor.birthday}}</p>
+      </mat-card>
+    </div>
+  </div>
+</div>

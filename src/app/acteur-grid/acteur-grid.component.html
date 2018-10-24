@@ -1,0 +1,68 @@
+<div>
+  <div id="acteurGrid" *ngIf="!clickActeur">
+    <mat-form-field id="searchActor">
+      <input matInput placeholder="Recherche" (input)="onSearchChange($event.target.value)">
+    </mat-form-field>
+
+    <div class="container"
+         fxLayout="row wrap"
+
+         fxLayoutGap="16px"
+
+         fxLayoutAlign="flex-start">
+      <div class="item item-1" fxFlex="0 1 calc(16.66% - 16px)"
+           fxFlex.lt-md="0 1 calc(20% - 16px)"
+           fxFlex.lt-sm="0 1 calc(25% - 16px)"
+           *ngFor="let acteur of filterActeur">
+        <app-acteur [actor]="acteur" (clickSurActeur)="clickSurActeurCard($event)"></app-acteur>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="clickActeur">
+    <app-acteur-info [actor]="acteurSelectionner" (exitEmitter)="exitInfoActeur($event)"></app-acteur-info>
+  </div>
+</div>
+<!--
+<style>
+  .container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+  /* Column Gap */
+  .container > * {
+    box-sizing: border-box;
+  }
+  .container > *:not(:last-child) {
+    margin-right: 32px;
+  }
+  /* Item sizing */
+  .item {
+    flex: 0 1 calc(33.3% - 32px);
+  }
+  /* medium size viewport */
+  @media screen and (max-width: 959px) {
+    /* Column Gap */
+    .container > *:not(:last-child) {
+      margin-right: 32px;
+    }
+    /* Item sizing */
+    .item {
+      flex: 0 1 calc(20% - 32px);
+    }
+  }
+  /* small size viewport */
+  @media screen and (max-width: 599px) {
+    .container {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+    .container > *:not(:last-child) {
+      margin-right: unset;
+      margin-bottom: 32px;
+    }
+  }
+</style>-->

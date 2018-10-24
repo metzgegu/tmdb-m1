@@ -1,0 +1,15 @@
+.acteurInfoCard {
+  background-color: #1F1F1F;
+  color: white;
+  border: 3px solid black;
+  text-align: justify;
+}
+
+.acteurInfo {
+  background-color: #1F1F1F;
+  color: white;
+}
+
+#acteurImg {
+  width: 100%;
+}
