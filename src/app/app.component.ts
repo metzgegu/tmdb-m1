@@ -36,7 +36,7 @@ export class AppComponent {
       1000 ); */
     setTimeout( () =>
         tmdb.init('80d6fe65cffe579d433c3da0f5d11307') // Clef de TMDB
-          .getPerson(1)
+          .getPerson(9)
           .then( (a: PersonResponse) => console.log('Movie 14:', this.acteurs.push(a)) )
           .catch( err => console.error('Error getting actor:', err) ),
       1000 );
@@ -68,6 +68,24 @@ export class AppComponent {
     setTimeout( () =>
         tmdb.init('80d6fe65cffe579d433c3da0f5d11307') // Clef de TMDB
           .getPerson(7)
+          .then( (a: PersonResponse) => console.log('Movie 14:', this.acteurs.push(a)) )
+          .catch( err => console.error('Error getting actor:', err) ),
+      1000 );
+    setTimeout( () =>
+        tmdb.init('80d6fe65cffe579d433c3da0f5d11307') // Clef de TMDB
+          .getPerson(9)
+          .then( (a: PersonResponse) => console.log('Movie 14:', this.acteurs.push(a)) )
+          .catch( err => console.error('Error getting actor:', err) ),
+      1000 );
+    setTimeout( () =>
+        tmdb.init('80d6fe65cffe579d433c3da0f5d11307') // Clef de TMDB
+          .getPerson(10)
+          .then( (a: PersonResponse) => console.log('Movie 14:', this.acteurs.push(a)) )
+          .catch( err => console.error('Error getting actor:', err) ),
+      1000 );
+    setTimeout( () =>
+        tmdb.init('80d6fe65cffe579d433c3da0f5d11307') // Clef de TMDB
+          .getPerson(19)
           .then( (a: PersonResponse) => console.log('Movie 14:', this.acteurs.push(a)) )
           .catch( err => console.error('Error getting actor:', err) ),
       1000 );

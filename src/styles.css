@@ -1,7 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 .acteur-card {
-
+  height: 85%;
+}
+.container{
+  margin-bottom: 3%;
 }
 .acteurName {
   padding: 0px;

@@ -1,4 +1,4 @@
-import {MovieResult} from './searchMovie';
+  import {MovieResult} from './searchMovie';
 import {TVResult} from './SearchTV';
 
 export interface SearchPeopleQuery {
