@@ -1,7 +1,11 @@
-<mat-card class="example-card">
+<mat-card class="film-card">
   <img mat-card-image [src]="getImgSource()" alt="getTitle()">
   <mat-card-header>
     <div mat-card-avatar class="example-header-image"></div>
     <mat-card-title>{{getTitle()}}</mat-card-title>
   </mat-card-header>
+  <div class="film-buttons">
+    <i class="material-icons">star</i>
+    <i class="material-icons">add_circle</i>
+  </div>
 </mat-card>

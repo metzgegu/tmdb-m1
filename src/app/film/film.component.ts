@@ -1,4 +1,5 @@
 import { Component, Input,  } from '@angular/core';
+import {MovieResult} from '../tmdb-data/searchMovie';
 
 @Component({
   selector: 'app-film',
@@ -9,13 +10,13 @@ export class FilmComponent {
 
   constructor() { }
 
-  @Input() movie: Object;
+  @Input() movie: MovieResult;
 
-  getTitle(): string{
+  getTitle(): string {
     return this.movie.original_title;
   }
 
-  getImgSource(): string{
+  getImgSource(): string {
     return this.getPath(this.movie.poster_path);
   }
 

@@ -15,10 +15,10 @@
 </pre>
 
 <hr/>
-<section *ngIf="movie">
-  <app-film [movie]="movie"></app-film>
-</section>
-<section *ngIf="!movie">
-  Pas encore de films à afficher...
-</section>
+
+<pre *ngIf="movies">
+  <section *ngFor="let movie of movies">
+    <app-film [movie]="movie"></app-film>
+  </section>
+</pre>
 
