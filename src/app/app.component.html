@@ -17,8 +17,6 @@
 <hr/>
 
 <pre *ngIf="movies">
-  <section *ngFor="let movie of movies">
-    <app-film [movie]="movie"></app-film>
-  </section>
+  <app-film-list [movies]="movies"></app-film-list>
 </pre>
 

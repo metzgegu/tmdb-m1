@@ -12,11 +12,13 @@ import { FilmComponent } from './film/film.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatCardModule} from '@angular/material/card';
 import {MatIconModule} from '@angular/material/icon';
+import { FilmListComponent } from './film-list/film-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    FilmComponent
+    FilmComponent,
+    FilmListComponent
   ],
   imports: [
     BrowserModule,
