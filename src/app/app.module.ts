@@ -9,12 +9,18 @@ import {environment} from '../environments/environment';
 import {AngularFireAuthModule} from '@angular/fire/auth';
 import {AngularFireDatabaseModule} from '@angular/fire/database';
 import { ProfilComponent } from './profil/profil.component';
+import { FilmComponent } from './film/film.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatCardModule} from '@angular/material/card';
+import {MatIconModule} from '@angular/material/icon';
+import { FilmListComponent } from './film-list/film-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ProfilComponent
+    ProfilComponent,
+    FilmComponent,
+    FilmListComponent
   ],
   imports: [
     BrowserModule,
@@ -22,7 +28,9 @@ import {MatCardModule} from '@angular/material/card';
     AngularFireModule.initializeApp( environment.firebase ),
     AngularFireAuthModule,
     AngularFireDatabaseModule,
-    MatCardModule
+    BrowserAnimationsModule,
+    MatCardModule,
+    MatIconModule
   ],
   providers: [TmdbService],
   bootstrap: [AppComponent]

@@ -8,5 +8,7 @@
   <button (click)="login()">Connection via Google</button>
 </nav>
 
-
+<pre *ngIf="movies">
+  <app-film-list [movies]="movies"></app-film-list>
+</pre>
 

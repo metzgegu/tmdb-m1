@@ -13,7 +13,7 @@ import {filter} from 'rxjs/operators';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  private _movie: MovieResponse;
+  private _movies: MovieResponse[] = [];
   private _user: User;
   private dbData: Observable<any>;
 
@@ -22,20 +22,31 @@ export class AppComponent {
       this._user = u;
       const listsPath = `lists/${u.uid}`;
       const lists = db.list(listsPath);
-      lists.push('coucou');
       this.dbData = lists.valueChanges();
     });
     setTimeout( () =>
       tmdb.init('80d6fe65cffe579d433c3da0f5d11307') // Clef de TMDB
           .getMovie(13)
-          .then( (m: MovieResponse) => console.log('Movie 13:', this._movie = m) )
+          .then( (m: MovieResponse) => console.log('Movie 13:', this._movies.push(m)))
+          .catch( err => console.error('Error getting movie:', err) ),
+      1000 );
+    setTimeout( () =>
+        tmdb.init('80d6fe65cffe579d433c3da0f5d11307')
+          .getMovie(272)
+          .then( (m: MovieResponse) => console.log('Movie 13:', this._movies.push(m)))
+          .catch( err => console.error('Error getting movie:', err) ),
+      1000 );
+    setTimeout( () =>
+        tmdb.init('80d6fe65cffe579d433c3da0f5d11307')
+          .getMovie(260513)
+          .then( (m: MovieResponse) => console.log('Movie 13:', this._movies.push(m)))
           .catch( err => console.error('Error getting movie:', err) ),
       1000 );
 
   }
 
-  get movie(): MovieResponse {
-    return this._movie;
+  get movies(): MovieResponse[] {
+    return this._movies;
   }
 
   getPath(path: string): string {

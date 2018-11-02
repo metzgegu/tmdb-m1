@@ -1,0 +1,16 @@
+.film-card {
+  max-width: 400px;
+  background-color: #1F1F1F;
+  color: #ffffff;
+  border: 3px solid black;
+  width: 10%;
+  float: left;
+}
+
+.liked {
+  color: gold;
+}
+
+.film-buttons i{
+  cursor: pointer;
+}
