@@ -1,25 +1,12 @@
-<h1>TMDB + Firebase</h1>
 <nav *ngIf="user">
-  <label>{{user.displayName}}</label>
-  <img [src]="user.photoURL" />
+  <label>
+    <app-profil [user]="user"> </app-profil>
+  </label>
   <button (click)="logout()">Déconnection</button>
-  {{user.uid}}
 </nav>
 <nav *ngIf="!user">
   <button (click)="login()">Connection via Google</button>
 </nav>
 
-<hr/>
-<pre *ngIf="lists">
-  {{lists | async | json}}
-</pre>
 
-<hr/>
-<section *ngIf="movie">
-  <img [src]="getPath(movie.poster_path)" />
-  <pre>{{movie | json}}</pre>
-</section>
-<section *ngIf="!movie">
-  Pas encore de films à afficher...
-</section>
 

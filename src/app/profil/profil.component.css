@@ -1,0 +1,16 @@
+#profilNameText {
+  font-size: 100%;
+}
+.profil-card {
+  background-color: #3E3C3C;
+  color: #ffffff;
+  border: 3px solid black;
+}
+
+#profilImage
+{
+  width: 10%;
+  height: 10%;
+  margin: 3px;
+  border: 1px solid black;
+}
