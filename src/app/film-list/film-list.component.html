@@ -1,5 +1,5 @@
-<pre *ngIf="movies">
-  <section *ngFor="let movie of movies">
+<ng-container *ngIf="movies">
+  <ng-container *ngFor="let movie of movies">
     <app-film [movie]="movie"></app-film>
-  </section>
-</pre>
+  </ng-container>
+</ng-container>

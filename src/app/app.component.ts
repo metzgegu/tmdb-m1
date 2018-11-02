@@ -31,10 +31,16 @@ export class AppComponent {
           .catch( err => console.error('Error getting movie:', err) ),
       1000 );
     setTimeout( () =>
-      tmdb.init('80d6fe65cffe579d433c3da0f5d11307')
-        .getMovie(272)
-        .then( (m: MovieResponse) => console.log('Movie 13:', this._movies.push(m)))
-        .catch( err => console.error('Error getting movie:', err) ),
+        tmdb.init('80d6fe65cffe579d433c3da0f5d11307')
+          .getMovie(272)
+          .then( (m: MovieResponse) => console.log('Movie 13:', this._movies.push(m)))
+          .catch( err => console.error('Error getting movie:', err) ),
+      1000 );
+    setTimeout( () =>
+        tmdb.init('80d6fe65cffe579d433c3da0f5d11307')
+          .getMovie(260513)
+          .then( (m: MovieResponse) => console.log('Movie 13:', this._movies.push(m)))
+          .catch( err => console.error('Error getting movie:', err) ),
       1000 );
 
   }
