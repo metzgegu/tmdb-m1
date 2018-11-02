@@ -6,3 +6,11 @@
   width: 10%;
   float: left;
 }
+
+.liked {
+  color: gold;
+}
+
+.film-buttons i{
+  cursor: pointer;
+}

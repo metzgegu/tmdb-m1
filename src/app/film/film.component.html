@@ -5,7 +5,7 @@
     <mat-card-title>{{getTitle()}}</mat-card-title>
   </mat-card-header>
   <div class="film-buttons">
-    <i class="material-icons">star</i>
-    <i class="material-icons">add_circle</i>
+    <i class="material-icons like" [class.liked]="isLiked" (click)="like()">star</i>
+    <i class="material-icons add">add_circle</i>
   </div>
 </mat-card>

@@ -11,6 +11,11 @@ export class FilmComponent {
   constructor() { }
 
   @Input() movie: MovieResult;
+  isLiked = false;
+
+  like() {
+    this.isLiked = !this.isLiked;
+  }
 
   getTitle(): string {
     return this.movie.original_title;
