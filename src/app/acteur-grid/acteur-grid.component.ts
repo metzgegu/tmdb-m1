@@ -25,7 +25,7 @@ export class ActeurGridComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.fs);
+    console.log('Acteur' + this.fs);
     this.col = 1;
     this.row = 1;
     this.filterActeur = this.acteurs;
