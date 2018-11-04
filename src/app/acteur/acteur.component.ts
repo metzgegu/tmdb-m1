@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {PersonResponse} from '../../../../../../WebstormProjects/tmdb-m1/src/app/tmdb-data/Person';
 import {FirebaseService} from '../firebase.service';
 import {TmdbService} from '../tmdb.service';
+import {PersonResponse} from '../tmdb-data/Person';
 
 @Component({
   selector: 'app-acteur',
