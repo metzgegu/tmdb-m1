@@ -1,4 +1,4 @@
-<nav *ngIf="user">
+<!--<nav *ngIf="user">
   <label>
     <app-profil [user]="user"> </app-profil>
   </label>
@@ -6,9 +6,24 @@
 </nav>
 <nav *ngIf="!user">
   <button (click)="login()">Connection via Google</button>
-</nav>
-
+</nav>-->
+<!--
 <pre *ngIf="movies">
   <app-film-list [movies]="movies"></app-film-list>
-</pre>
-
+</pre>-->
+<app-menu (changeMenu)="changeDisplay($event)" (userLogin)="changeUser($event)"></app-menu>
+<div *ngIf="cursor === 'home'">
+  <app-home-page></app-home-page>
+</div>
+<div *ngIf="cursor === 'films'">
+  <app-film-list></app-film-list>
+</div>
+<div *ngIf="cursor === 'actor'">
+  <app-acteur-grid [acteurs]="acteurs"></app-acteur-grid>
+</div>
+<div *ngIf="cursor === 'playlist'">
+  PlayList
+</div>
+<div *ngIf="cursor === 'account'">
+  <app-profil [user]="_user"></app-profil>
+</div>

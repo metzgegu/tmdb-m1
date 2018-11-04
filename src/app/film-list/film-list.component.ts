@@ -10,7 +10,9 @@ import {MovieResponse} from '../tmdb-data/Movie';
 })
 export class FilmListComponent {
 
-  constructor() { }
+  constructor() {
+    console.log(this.movies);
+  }
 
   @Input() movies: MovieResult[];
 

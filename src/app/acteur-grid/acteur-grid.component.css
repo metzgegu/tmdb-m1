@@ -1,0 +1,17 @@
+.mat-grid-tile {
+  height: 100%;
+
+}
+
+#acteurGrid{
+  background-color: #1F1F1F;
+
+}
+
+#searchActor {
+  position: relative;
+  left: 80%;
+  color: white;
+}
+
+

@@ -1,5 +1,6 @@
 import { Component, Input,  } from '@angular/core';
 import {MovieResult} from '../tmdb-data/searchMovie';
+import {MovieResponse} from '../tmdb-data/Movie';
 
 @Component({
   selector: 'app-film',
@@ -8,7 +9,9 @@ import {MovieResult} from '../tmdb-data/searchMovie';
 })
 export class FilmComponent {
 
-  constructor() { }
+  constructor() {
+    // console.log(this.movie);
+  }
 
   @Input() movie: MovieResult;
   isLiked = false;
@@ -18,7 +21,7 @@ export class FilmComponent {
   }
 
   getTitle(): string {
-    return this.movie.original_title;
+    return this.movie.title;
   }
 
   getImgSource(): string {

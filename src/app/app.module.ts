@@ -14,13 +14,36 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatCardModule} from '@angular/material/card';
 import {MatIconModule} from '@angular/material/icon';
 import { FilmListComponent } from './film-list/film-list.component';
+import { ActeurComponent } from './acteur/acteur.component';
+import { ActeurGridComponent } from './acteur-grid/acteur-grid.component';
+import { ActeurInfoComponent } from './acteur-info/acteur-info.component';
+import { MenuComponent } from './menu/menu.component';
+
+import {MatButtonModule} from '@angular/material/button';
+import {MatGridListModule} from '@angular/material/grid-list';
+import {FlexLayoutModule} from '@angular/flex-layout';
+import {MatInputModule} from '@angular/material/input';
+import {RouterModule, Routes} from '@angular/router';
+import { HomePageComponent } from './home-page/home-page.component';
+import {MatMenuModule} from '@angular/material/menu';
+
+const appRoutes: Routes = [
+  { path: 'acteur-info', component: ActeurInfoComponent },
+  { path: 'acteurs', component: ActeurGridComponent },
+  { path: '',  redirectTo: '/', pathMatch: 'full' },
+];
 
 @NgModule({
   declarations: [
     AppComponent,
     ProfilComponent,
     FilmComponent,
-    FilmListComponent
+    FilmListComponent,
+    ActeurComponent,
+    ActeurInfoComponent,
+    ActeurGridComponent,
+    MenuComponent,
+    HomePageComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +53,12 @@ import { FilmListComponent } from './film-list/film-list.component';
     AngularFireDatabaseModule,
     BrowserAnimationsModule,
     MatCardModule,
-    MatIconModule
+    MatIconModule,
+    MatButtonModule,
+    MatGridListModule,
+    FlexLayoutModule,
+    MatInputModule,
+    MatMenuModule
   ],
   providers: [TmdbService],
   bootstrap: [AppComponent]

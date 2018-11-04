@@ -48,6 +48,13 @@ export class TmdbService {
     return res.body;
   }
 
+
+  async getTrendingMovie(options?: MovieQuery): Promise<SearchMovieResponse> {
+    const url = `${tmdbApi}/trending/movie/week`;
+    const res = await this.get<SearchMovieResponse>(url, options);
+    return res.body;
+  }
+
   async searchMovie(query: SearchMovieQuery): Promise<SearchMovieResponse> {
     const url = `${tmdbApi}/search/movie`;
     const res = await this.get<SearchMovieResponse>(url, query);
@@ -60,6 +67,12 @@ export class TmdbService {
   async getPerson(id: number, options?: PersonQuery): Promise<PersonResponse> {
     const url = `${tmdbApi}/person/${id}`;
     const res = await this.get<PersonResponse>(url, options);
+    return res.body;
+  }
+
+  async getTrendingPerson(options?: MovieQuery): Promise<SearchPeopleResponse> {
+    const url = `${tmdbApi}/trending/person/week`;
+    const res = await this.get<SearchPeopleResponse>(url, options);
     return res.body;
   }
 
