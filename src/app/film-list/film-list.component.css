@@ -3,3 +3,7 @@
   flex-wrap: wrap;
   align-content: space-around;
 }
+
+#filmGrid{
+  background-color: #1F1F1F;
+}

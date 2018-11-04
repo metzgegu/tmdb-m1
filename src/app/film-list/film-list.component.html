@@ -1,5 +1,17 @@
-<ng-container *ngIf="movies">
-  <ng-container *ngFor="let movie of movies">
-    <app-film [movie]="movie" [fs]= "fs"></app-film>
-  </ng-container>
-</ng-container>
+<div>
+  <div id="filmGrid" >
+    <div class="container"
+       fxLayout="row wrap"
+
+       fxLayoutGap="16px"
+
+       fxLayoutAlign="flex-start">
+        <div class="item item-1" fxFlex="0 1 calc(16.66% - 16px)"
+             fxFlex.lt-md="0 1 calc(20% - 16px)"
+             fxFlex.lt-sm="0 1 calc(25% - 16px)"
+             *ngFor="let movie of movies">
+              <app-film [movie]="movie" [fs]= "fs"></app-film>
+        </div>
+    </div>
+  </div>
+</div>
