@@ -17,35 +17,36 @@ export class FirebaseService {
   }
 
   public createPlaylist(listName: string, listDesc: string) {
-    firebase.database().ref(`users/${this.user.uid}/playlists/${listName}`).push({
-      description : listDesc
-    });
+    firebase.database().ref(`users/${this.user.uid}/playlists/${listName}/description`).set(listDesc);
   }
 
   // Peut être appellée avec ou sans paramètre
   // Sans paramètre = récupération de toutes les playlists, et il faut mettre undefined quand on l'appelle (voir l'appel à getMovie dans addFilmToPlaylist
   // Avec paramètre = récupération de la playlist qui porte le nom fourni en paramètre
-  public getPlaylist(listName?: string) {
-    switch (listName) {
-      case undefined:
-        firebase.database().ref(`users/${this.user.uid}/playlists`)
-          .on('value', (data: DataSnapshot) => data.val() );
-        break;
-      default:
-        firebase.database().ref(`users/${this.user.uid}/playlists`)
-          .on('value', (data: DataSnapshot) => data.child(`/${listName}`).exists() ? data.val() : [] );
-    }
+  async getPlaylist(listName?: string) {
+      let playLists = await firebase.database().ref(`users/${this.user.uid}/playlists`).once('value', snapshot => {
+        if (snapshot.child(`/${listName}`).exists()) {
+          playLists = snapshot.val();
+        } else {
+          playLists = [];
+        }
+        return playLists;
+      })
+    return playLists;
+  }
+
+  async getAllPlaylist()  {
+    return await firebase.database().ref(`users/${this.user.uid}/playlists`).once('value', snapshot => {snapshot.val(); });
   }
 
   public removePlaylist(listName: string) {
     firebase.database().ref(`users/${this.user.uid}/playlists/${listName}`).remove();
   }
 
-  public addFilmToPlaylist(id: number, listName: string) {
-    const filmInfos = this.tmdb.getMovie(id, undefined);
-    firebase.database().ref(`users/${this.user.uid}/playlists/${listName}`).push({
-      films : filmInfos
-    });
+  public addFilmToPlaylist(movie: MovieResponse, listName: string) {
+    firebase.database().ref(`users/${this.user.uid}/playlists/${listName}/films`).push(
+      movie
+    );
   }
 
   public deleteFilmFromPlaylist(id: number, listName: string) {
