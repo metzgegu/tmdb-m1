@@ -1,3 +1,14 @@
 <p>
-  playlist works!
+  <mat-form-field>
+    <input #title matInput placeholder="Titre">
+  </mat-form-field>
+  <mat-form-field>
+    <textarea #desc matInput placeholder="Description"></textarea>
+  </mat-form-field>
+  <button (click)="createPlaylist(title.value, desc.value)">Créer playlist</button>
+  <ng-container *ngIf="playlists">
+    <ng-container *ngFor="let playlist of playlists">
+      <app-film-list [movies]="playlist.movies" [fs]="fs"></app-film-list>
+    </ng-container>
+  </ng-container>
 </p>
