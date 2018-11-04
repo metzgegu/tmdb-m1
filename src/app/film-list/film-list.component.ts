@@ -1,6 +1,7 @@
-import { Component, Input,  } from '@angular/core';
+import {Component, Input, OnInit,} from '@angular/core';
 import {MovieResult} from '../tmdb-data/searchMovie';
 import {MovieResponse} from '../tmdb-data/Movie';
+import {FirebaseService} from '../firebase.service';
 
 
 @Component({
@@ -8,12 +9,17 @@ import {MovieResponse} from '../tmdb-data/Movie';
   templateUrl: './film-list.component.html',
   styleUrls: ['./film-list.component.css']
 })
-export class FilmListComponent {
+export class FilmListComponent implements OnInit {
+
+  @Input() fs: FirebaseService;
+  @Input() movies: MovieResult[];
 
   constructor() {
     console.log(this.movies);
   }
 
-  @Input() movies: MovieResult[];
+  ngOnInit() {
+    console.log('Film-list ' + this.fs);
+  }
 
 }

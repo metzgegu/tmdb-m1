@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import {TmdbService} from '../tmdb.service';
 import {MovieResponse} from '../tmdb-data/Movie';
+import {FirebaseService} from '../firebase.service';
 
 @Component({
   selector: 'app-home-page',
@@ -10,6 +11,7 @@ import {MovieResponse} from '../tmdb-data/Movie';
 export class HomePageComponent implements OnInit {
 
   trendingMovies: MovieResponse[] = [];
+  @Input() fs: FirebaseService;
 
   constructor(private tmdb: TmdbService) {
 
@@ -23,6 +25,7 @@ export class HomePageComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log('HomePage ' + this.fs);
   }
 
 }

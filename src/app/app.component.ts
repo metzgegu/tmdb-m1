@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {TmdbService} from './tmdb.service';
 import {MovieResponse} from './tmdb-data/Movie';
 import {AngularFireAuth} from '@angular/fire/auth';
@@ -15,7 +15,7 @@ import {FirebaseService} from './firebase.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
   private _movies: MovieResponse[] = [];
    _user: User;
   private dbData: Observable<any>;
@@ -26,11 +26,9 @@ export class AppComponent {
   constructor(private tmdb: TmdbService, public anAuth: AngularFireAuth, private db: AngularFireDatabase) {
     this.anAuth.user.pipe(filter( u => !!u )).subscribe( u => {
       this._user = u;
-      const listsPath = `lists/${u.uid}`;
-      const lists = db.list(listsPath);
-      this.dbData = lists.valueChanges();
+      console.log('Firebase uid ' + u.uid);
       this.fs = new FirebaseService(this._user, this.tmdb);
-      console.log(this.fs);
+      console.log('app ' + this.fs);
     });
     setTimeout( () =>
       tmdb.init('80d6fe65cffe579d433c3da0f5d11307') // Clef de TMDB
@@ -89,6 +87,12 @@ export class AppComponent {
     // this._user = e;
 
   }
+
+  ngOnInit() {
+    this.fs = new FirebaseService(this._user, this.tmdb);
+  }
+
+
 
 
 }
