@@ -13,7 +13,10 @@ import {TmdbService} from './tmdb.service';
 
 export class FirebaseService {
 
-  constructor(private user: User, private tmdb: TmdbService) {
+  private user: User;
+  private tmdb: TmdbService;
+
+  constructor() {
   }
 
   public createPlaylist(listName: string, listDesc: string) {
