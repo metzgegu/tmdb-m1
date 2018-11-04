@@ -1,5 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {PersonResponse} from '../../../../../../WebstormProjects/tmdb-m1/src/app/tmdb-data/Person';
+import {FirebaseService} from '../firebase.service';
+import {TmdbService} from '../tmdb.service';
 
 @Component({
   selector: 'app-acteur',
@@ -8,9 +10,11 @@ import {PersonResponse} from '../../../../../../WebstormProjects/tmdb-m1/src/app
 })
 export class ActeurComponent implements OnInit {
   @Input() actor: PersonResponse ;
-
   @Output() clickSurActeur = new EventEmitter<PersonResponse>();
+  @Input() fs: FirebaseService;
   public favori: boolean ;
+
+
 
   constructor() {
 
@@ -22,6 +26,12 @@ export class ActeurComponent implements OnInit {
 
   ngOnInit() {
     this.favori = false;
+    const result = this.fs.isFavorite(this.actor.id));
+    if (result !== undefined) {
+      this.favori = true;
+    } else {
+      this.favori = false;
+    }
   }
 
   getPath(path: string): string {
@@ -29,7 +39,13 @@ export class ActeurComponent implements OnInit {
   }
 
   switchFavori() {
-    // TODO informer le model
     this.favori = !this.favori;
+    if (this.favori) {
+      this.fs.addActorToFavourite(this.actor.id);
+      console.log('add');
+    } else {
+      this.fs.deleteActorFromFavourite(this.actor.id);
+      console.log('remove');
+    }
   }
 }

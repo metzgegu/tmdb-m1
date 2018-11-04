@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {PersonResponse} from '../tmdb-data/Person';
 import {TmdbService} from '../tmdb.service';
+import {FirebaseService} from '../firebase.service';
 
 @Component({
   selector: 'app-acteur-grid',
@@ -13,14 +14,18 @@ export class ActeurGridComponent implements OnInit {
   private clickActeur: boolean;
   private col;
   private row;
+  @Input() fs: FirebaseService;
   @Input() acteurs;
+
   private filterActeur;
 
 
   constructor() {
+
   }
 
   ngOnInit() {
+    console.log(this.fs);
     this.col = 1;
     this.row = 1;
     this.filterActeur = this.acteurs;

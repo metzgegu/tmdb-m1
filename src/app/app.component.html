@@ -18,11 +18,12 @@
 <div *ngIf="cursor === 'films'">
   <app-film-list></app-film-list>
 </div>
-<div *ngIf="cursor === 'actor'">
-  <app-acteur-grid [acteurs]="acteurs"></app-acteur-grid>
+<div *ngIf="cursor === 'actor'" >
+  <app-acteur-grid [fs]= "fs" [acteurs]="acteurs" ></app-acteur-grid>
+
 </div>
 <div *ngIf="cursor === 'playlist'">
-  PlayList
+  <app-playlist [fs]="fs"></app-playlist>
 </div>
 <div *ngIf="cursor === 'account'">
   <app-profil [user]="_user"></app-profil>

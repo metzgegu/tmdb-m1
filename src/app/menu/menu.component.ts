@@ -4,6 +4,7 @@ import {filter} from 'rxjs/operators';
 import {AngularFireDatabase} from '@angular/fire/database';
 import {auth, User} from 'firebase';
 import {Observable} from 'rxjs';
+import {FirebaseService} from '../firebase.service';
 
 @Component({
   selector: 'app-menu',
@@ -18,13 +19,10 @@ export class MenuComponent implements OnInit {
   @Output() userLogin = new EventEmitter<User>();
 
   constructor(public anAuth: AngularFireAuth, private db: AngularFireDatabase) {
+    this.cursor = 'home';
     this.anAuth.user.pipe(filter( u => !!u )).subscribe( u => {
       this._user = u;
-      const listsPath = `lists/${u.uid}`;
-      const lists = db.list(listsPath);
-      this.dbData = lists.valueChanges();
     });
-    this.cursor = 'home';
   }
 
   ngOnInit() {
@@ -58,7 +56,6 @@ export class MenuComponent implements OnInit {
 
   login() {
     this.anAuth.auth.signInWithPopup(new auth.GoogleAuthProvider());
-    this.userLogin.emit(this._user);
   }
 
   logout() {

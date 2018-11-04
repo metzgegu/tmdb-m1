@@ -8,6 +8,7 @@ import {AngularFireDatabase} from '@angular/fire/database';
 import {filter} from 'rxjs/operators';
 import {PersonResponse} from './tmdb-data/Person';
 import {SearchPeopleResponse} from './tmdb-data/SearchPeople';
+import {FirebaseService} from './firebase.service';
 
 @Component({
   selector: 'app-root',
@@ -16,18 +17,20 @@ import {SearchPeopleResponse} from './tmdb-data/SearchPeople';
 })
 export class AppComponent {
   private _movies: MovieResponse[] = [];
-  private _user: User;
+   _user: User;
   private dbData: Observable<any>;
-  private cursor: String;
+   cursor: String;
   private acteurs;
+  fs: FirebaseService;
 
   constructor(private tmdb: TmdbService, public anAuth: AngularFireAuth, private db: AngularFireDatabase) {
     this.anAuth.user.pipe(filter( u => !!u )).subscribe( u => {
       this._user = u;
       const listsPath = `lists/${u.uid}`;
       const lists = db.list(listsPath);
-      lists.push('coucou');
       this.dbData = lists.valueChanges();
+      this.fs = new FirebaseService(this._user, this.tmdb);
+      console.log(this.fs);
     });
     setTimeout( () =>
       tmdb.init('80d6fe65cffe579d433c3da0f5d11307') // Clef de TMDB
@@ -83,7 +86,8 @@ export class AppComponent {
   }
 
   changeUser(e) {
-    this._user = e;
+    // this._user = e;
+
   }
 
 

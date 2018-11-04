@@ -26,6 +26,7 @@ import {MatInputModule} from '@angular/material/input';
 import {RouterModule, Routes} from '@angular/router';
 import { HomePageComponent } from './home-page/home-page.component';
 import {MatMenuModule} from '@angular/material/menu';
+import { PlaylistComponent } from './playlist/playlist.component';
 
 const appRoutes: Routes = [
   { path: 'acteur-info', component: ActeurInfoComponent },
@@ -43,7 +44,8 @@ const appRoutes: Routes = [
     ActeurInfoComponent,
     ActeurGridComponent,
     MenuComponent,
-    HomePageComponent
+    HomePageComponent,
+    PlaylistComponent
   ],
   imports: [
     BrowserModule,
