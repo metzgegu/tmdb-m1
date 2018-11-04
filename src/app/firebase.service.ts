@@ -59,6 +59,10 @@ export class FirebaseService {
     });
   }
 
+  public getFavouriteActors() {
+    firebase.database().ref(`users/${this.user.uid}/favoriteActors`).on('value', (data: DataSnapshot) => data.val());
+  }
+
   public deleteActorFromFavourite(id) {
     firebase.database().ref(`users/${this.user.uid}/favouriteActors/${id}`).remove();
   }
@@ -68,6 +72,10 @@ export class FirebaseService {
     firebase.database().ref(`users/${this.user.uid}/playlists`).push({
       favouriteFilms : filmInfos
     });
+  }
+
+  public getFavouriteFilms() {
+    firebase.database().ref(`users/${this.user.uid}/favoriteFilms`).on('value', (data: DataSnapshot) => data.val());
   }
 
   public deleteFilmFromFavourite(id) {
