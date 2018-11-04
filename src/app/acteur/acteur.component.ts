@@ -26,7 +26,7 @@ export class ActeurComponent implements OnInit {
 
   ngOnInit() {
     this.favori = false;
-    const result = this.fs.isFavorite(this.actor.id));
+    const result = this.fs.isFavorite(this.actor.id);
     if (result !== undefined) {
       this.favori = true;
     } else {
