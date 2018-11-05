@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {PersonResponse} from '../tmdb-data/Person';
 import {TmdbService} from '../tmdb.service';
 import {FirebaseService} from '../firebase.service';
+import {SearchPeopleResponse} from '../tmdb-data/SearchPeople';
 
 @Component({
   selector: 'app-acteur-grid',
@@ -16,11 +17,12 @@ export class ActeurGridComponent implements OnInit {
   private row;
   @Input() fs: FirebaseService;
   @Input() acteurs;
+  searchValue;
 
   private filterActeur;
 
 
-  constructor() {
+  constructor(private tmdb: TmdbService) {
 
   }
 
@@ -29,6 +31,7 @@ export class ActeurGridComponent implements OnInit {
     this.col = 1;
     this.row = 1;
     this.filterActeur = this.acteurs;
+    this.searchValue = '';
     this.clickActeur = false;
   }
 
@@ -48,10 +51,16 @@ export class ActeurGridComponent implements OnInit {
   }
 
   onSearchChange(searchValue: string ) {
+    const querySearch = {
+      query: this.searchValue
+    };
     this.filterActeur = [];
-    this.acteurs.forEach((a) => {if (a.name.toUpperCase().includes(searchValue.toUpperCase())) {
-      this.filterActeur.push(a);
-    }});
+    setTimeout( () =>
+        this.tmdb.init('80d6fe65cffe579d433c3da0f5d11307') // Clef de TMDB
+          .searchPerson( querySearch )
+          .then( (p: SearchPeopleResponse) => p.results.forEach((personResponse) => this.tmdb.getPerson(personResponse.id).then((person) => this.filterActeur.push(person))))
+          .catch( err => console.error('Error getting movie:', err) ),
+      1000 );
   }
 
   clickSurActeurCard(e) {
