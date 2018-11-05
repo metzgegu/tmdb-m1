@@ -16,7 +16,7 @@
   <app-home-page [fs]= "fs"></app-home-page>
 </div>
 <div *ngIf="cursor === 'films'">
-  <app-film-list [fs]= "fs"></app-film-list>
+  <app-films-page></app-films-page>
 </div>
 <div *ngIf="cursor === 'actor'" >
   <app-acteur-grid [fs]= "fs" [acteurs]="acteurs" ></app-acteur-grid>
