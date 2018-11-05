@@ -5,5 +5,7 @@
   </button>
 </div>
 <div>
-  <app-film-list [fs]="fs" [movies]="films"></app-film-list>
+  <ng-container *ngIf="films">
+    <app-film-list [fs]="fs" [movies]="films"></app-film-list>
+  </ng-container>
 </div>

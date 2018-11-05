@@ -12,7 +12,7 @@ import {SearchPeopleResponse} from '../tmdb-data/SearchPeople';
 export class ActeurGridComponent implements OnInit {
 
   acteurSelectionner;
-  private clickActeur: boolean;
+  public clickActeur: boolean;
   private col;
   private row;
   @Input() fs: FirebaseService;

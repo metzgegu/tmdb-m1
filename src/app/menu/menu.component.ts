@@ -13,7 +13,7 @@ import {FirebaseService} from '../firebase.service';
 })
 export class MenuComponent implements OnInit {
   cursor: string;
-  private _user: User;
+  public _user: User;
   private dbData: Observable<any>;
   @Output() changeMenu = new EventEmitter<String>();
   @Output() userLogin = new EventEmitter<User>();
