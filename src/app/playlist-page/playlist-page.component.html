@@ -1,3 +1,4 @@
+<form id="playlist-form">
   <mat-form-field>
     <input matInput placeholder="Titre" [value]="title">
   </mat-form-field>
@@ -5,6 +6,7 @@
     <input matInput placeholder="Description" [value]="desc">
   </mat-form-field>
   <button (click)="createPlaylist()">Créer playlist</button>
+</form>
 <div id="filmGrid" >
   <div class="container"
        fxLayout="row wrap"
@@ -33,5 +35,5 @@
   <button mat-icon-button (click)="exitInfo()">
     <mat-icon aria-label="exit">clear</mat-icon>
   </button>
-  <app-film-list [fs]="fs" [movies]="playlistClicked"></app-film-list>
+  <app-playlist [fs]="fs" [playlist]="playlistClicked"></app-playlist>
 </div>

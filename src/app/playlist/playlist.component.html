@@ -1,15 +1,5 @@
 <p>
-  <mat-form-field>
-    <input #title matInput placeholder="Titre">
-  </mat-form-field>
-  <mat-form-field>
-    <textarea #desc matInput placeholder="Description"></textarea>
-  </mat-form-field>
-  <button (click)="createPlaylist(title.value, desc.value)">Créer playlist</button>
-  <ng-container *ngIf="playlists">
-    <ng-container *ngFor="let playlist of playlists">
-      <h1>{{playlist.name}}</h1>
-      <app-film-list [movies]="playlist.movies" [fs]="fs"></app-film-list>
-    </ng-container>
+  <ng-container *ngIf="playlist">
+      <app-film-list [movies]="playlist" [fs]="fs"></app-film-list>
   </ng-container>
 </p>
