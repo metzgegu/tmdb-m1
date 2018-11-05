@@ -24,3 +24,7 @@ ul li:before {
 li .expanseBtn {
   font-size: 3em;
 }
+
+.inputPlaylist {
+  color: #1F1F1F;
+}

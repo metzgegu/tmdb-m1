@@ -1,12 +1,10 @@
 <div *ngIf="!playlistIsClicked">
   <form id="playlist-form">
-    <mat-form-field>
-      <input matInput placeholder="Titre" [value]="title">
-    </mat-form-field>
-    <mat-form-field>
-      <input matInput placeholder="Description" [value]="desc">
-    </mat-form-field>
-    <button (click)="createPlaylist()">Créer playlist</button>
+    <input class="inputPlaylist" placeholder="Titre" [value]="title" (input)="title = $event.target.value">
+    <input class="inputPlaylist" placeholder="Description" [value]="desc" (input)="desc = $event.target.value">
+    <button mat-icon-button>
+      <mat-icon  aria-label="searchActor" (click)="createPlaylist()" >add</mat-icon>
+    </button>
   </form>
   <div id="filmGrid" >
     <div class="container"
