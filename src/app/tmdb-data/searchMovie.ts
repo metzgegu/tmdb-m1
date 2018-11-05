@@ -3,7 +3,7 @@ export interface SearchMovieQuery {
   query: string;
   page?: number; // Specify which page to query. minimum: 1, maximum: 1000, default: 1
   include_adult?: boolean;
-  region: string; // Specify a ISO 3166-1 code to filter release dates. Must be uppercase. pattern: ^[A-Z]{2}$
+  region?: string; // Specify a ISO 3166-1 code to filter release dates. Must be uppercase. pattern: ^[A-Z]{2}$
   year?: number;
   primary_release_year?: number;
 }

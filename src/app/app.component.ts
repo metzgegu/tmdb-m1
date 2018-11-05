@@ -29,6 +29,7 @@ export class AppComponent implements OnInit{
       console.log('Firebase uid ' + u.uid);
       this.fs = new FirebaseService(this._user, this.tmdb);
       console.log('app ' + this.fs);
+
     });
     setTimeout( () =>
       tmdb.init('80d6fe65cffe579d433c3da0f5d11307') // Clef de TMDB
@@ -85,7 +86,9 @@ export class AppComponent implements OnInit{
 
   changeUser(e) {
     // this._user = e;
-
+    this._user = undefined;
+    this.fs = new FirebaseService(this._user, this.tmdb);
+    location.reload();
   }
 
   ngOnInit() {

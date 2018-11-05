@@ -1,4 +1,9 @@
-<div></div>
+<div class="searchFilm">
+  <input placeholder="Recherche" [value]="searchValue" (input)="searchValue = $event.target.value">
+  <button mat-icon-button>
+    <mat-icon  id="search" aria-label="searchActor" (click)="onSearchChange()" >search</mat-icon>
+  </button>
+</div>
 <div>
   <app-film-list [fs]="fs" [movies]="films"></app-film-list>
 </div>
