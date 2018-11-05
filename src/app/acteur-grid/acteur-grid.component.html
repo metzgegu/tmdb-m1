@@ -1,8 +1,13 @@
 <div>
   <div id="acteurGrid" *ngIf="!clickActeur">
-    <mat-form-field id="searchActor">
-      <input matInput placeholder="Recherche" (input)="onSearchChange($event.target.value)">
-    </mat-form-field>
+
+      <div class="searchActor">
+        <input placeholder="Recherche" [value]="searchValue" (input)="searchValue = $event.target.value">
+        <button mat-icon-button>
+          <mat-icon  id="search" aria-label="searchActor" (click)="onSearchChange()" >search</mat-icon>
+        </button>
+      </div>
+
 
     <div class="container"
          fxLayout="row wrap"
