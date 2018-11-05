@@ -1,9 +1,9 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {MovieResult} from '../tmdb-data/searchMovie';
 import {MovieResponse} from '../tmdb-data/Movie';
 import {FirebaseService} from '../firebase.service';
 import {TmdbService} from '../tmdb.service';
-import {MoviesList} from "../playlist/MoviesList";
+import {MoviesList} from '../playlist/MoviesList';
 
 @Component({
   selector: 'app-film',
@@ -14,6 +14,7 @@ export class FilmComponent implements OnInit{
 
   @Input() movie: MovieResult;
   @Input() fs: FirebaseService;
+  @Output() clickFilm = new EventEmitter<MovieResult>();
   isLiked = false;
   allPlaylist;
   private rawPlaylists: JSON;
@@ -74,5 +75,10 @@ export class FilmComponent implements OnInit{
 
   getPath(path: string): string {
     return `https://image.tmdb.org/t/p/w500${path}`;
+  }
+
+  clickOnFilm() {
+    console.log('guillaume');
+    this.clickFilm.emit(this.movie);
   }
 }

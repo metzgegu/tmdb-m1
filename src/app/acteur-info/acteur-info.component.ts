@@ -22,6 +22,7 @@ export class ActeurInfoComponent implements OnInit {
           .then( (a) => this.actor1 = a)
           .catch( err => console.error('Error getting movie:', err) ),
       1000 );
+    
     location.onPopState(() => {
       this.exitEmitter.emit();
     });

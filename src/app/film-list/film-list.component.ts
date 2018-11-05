@@ -19,6 +19,8 @@ export class FilmListComponent implements OnInit {
   slicedMovies: MovieResult[];
   private rawPlaylists: JSON;
   public playlists: MoviesList[] = [];
+  filmClicked ;
+  filmIsCLicked = false;
   canBeMore;
 
   constructor() {
@@ -36,4 +38,13 @@ export class FilmListComponent implements OnInit {
     console.log(this.numberOfFilmTOShow);
   }
 
+  clickOnFilm(e) {
+    console.log('guillaume');
+    this.filmClicked = e;
+    this.filmIsCLicked = true;
+  }
+
+  exitInfo() {
+    this.filmIsCLicked = false;
+  }
 }

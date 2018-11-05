@@ -28,6 +28,7 @@ import { HomePageComponent } from './home-page/home-page.component';
 import {MatMenuModule} from '@angular/material/menu';
 import { PlaylistComponent } from './playlist/playlist.component';
 import {MatDialogModule} from '@angular/material/dialog';
+import { FilmInfoComponent } from './film-info/film-info.component';
 
 const appRoutes: Routes = [
   { path: 'acteur-info', component: ActeurInfoComponent },
@@ -46,7 +47,8 @@ const appRoutes: Routes = [
     ActeurGridComponent,
     MenuComponent,
     HomePageComponent,
-    PlaylistComponent
+    PlaylistComponent,
+    FilmInfoComponent
   ],
   imports: [
     BrowserModule,
