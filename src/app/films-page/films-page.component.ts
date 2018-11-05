@@ -16,7 +16,7 @@ export class FilmsPageComponent implements OnInit {
   }
 
   constructor(private tmdb: TmdbService) {
-    
+
   }
 
   ngOnInit() {

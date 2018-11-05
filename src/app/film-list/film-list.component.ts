@@ -23,6 +23,7 @@ export class FilmListComponent implements OnInit {
   filmIsCLicked = false;
   canBeMore;
   expansed = false;
+  cursor;
 
   constructor() {
     //console.log(this.movies);
@@ -34,6 +35,7 @@ export class FilmListComponent implements OnInit {
     // console.log('Film-list ' + this.fs);
     if (this.numberOfFilmTOShow !== undefined) {
       this.slicedMovies = this.movies.slice(0, this.numberOfFilmTOShow);
+      this.cursor = 0;
       this.canBeMore = true;
     }
     console.log(this.numberOfFilmTOShow);
@@ -50,12 +52,20 @@ export class FilmListComponent implements OnInit {
   }
 
   expanse() {
-    this.expansed = ! this.expansed;
+
+    this.slicedMovies = this.movies.slice(this.cursor, this.cursor + this.numberOfFilmTOShow);
+    if (this.cursor + this.numberOfFilmTOShow > this.movies.length - 1) {
+      this.cursor = 0;
+    } else {
+      this.cursor += this.cursor + this.numberOfFilmTOShow;
+    }
+    /*this.expansed = ! this.expansed;
     if (this.expansed) {
       this.slicedMovies = this.movies;
     } else {
+
       this.slicedMovies = this.movies.slice(0, this.numberOfFilmTOShow);
-    }
+    }*/
 
   }
 }
