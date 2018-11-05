@@ -13,6 +13,7 @@ export class FilmInfoComponent implements OnInit {
   @Input() film: MovieResponse;
   @Input() fs;
   @Output() exitEmitter = new EventEmitter<any>();
+  public loading = true;
 
   constructor(private tmdb: TmdbService) { }
 
@@ -20,10 +21,12 @@ export class FilmInfoComponent implements OnInit {
     setTimeout( () =>
         this.tmdb.init('80d6fe65cffe579d433c3da0f5d11307') // Clef de TMDB
           .getMovie(this.film.id)
-          .then( (m: MovieResponse) => this.film.genres = m.genres)
+          .then( (m: MovieResponse) => {
+            this.film.genres = m.genres;
+            this.loading = false;
+          })
           .catch( err => console.error('Error getting movie:', err) ),
       1000 );
-    console.log(this.film.genres);
   }
 
   getPath(path: string): string {
