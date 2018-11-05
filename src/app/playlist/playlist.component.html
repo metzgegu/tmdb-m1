@@ -8,6 +8,7 @@
   <button (click)="createPlaylist(title.value, desc.value)">Créer playlist</button>
   <ng-container *ngIf="playlists">
     <ng-container *ngFor="let playlist of playlists">
+      <h1>{{playlist.name}}</h1>
       <app-film-list [movies]="playlist.movies" [fs]="fs"></app-film-list>
     </ng-container>
   </ng-container>

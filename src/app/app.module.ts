@@ -27,6 +27,7 @@ import {RouterModule, Routes} from '@angular/router';
 import { HomePageComponent } from './home-page/home-page.component';
 import {MatMenuModule} from '@angular/material/menu';
 import { PlaylistComponent } from './playlist/playlist.component';
+import {MatDialogModule} from '@angular/material/dialog';
 
 const appRoutes: Routes = [
   { path: 'acteur-info', component: ActeurInfoComponent },
@@ -60,7 +61,8 @@ const appRoutes: Routes = [
     MatGridListModule,
     FlexLayoutModule,
     MatInputModule,
-    MatMenuModule
+    MatMenuModule,
+    MatDialogModule
   ],
   providers: [TmdbService],
   bootstrap: [AppComponent]

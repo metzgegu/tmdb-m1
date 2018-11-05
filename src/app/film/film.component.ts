@@ -3,6 +3,7 @@ import {MovieResult} from '../tmdb-data/searchMovie';
 import {MovieResponse} from '../tmdb-data/Movie';
 import {FirebaseService} from '../firebase.service';
 import {TmdbService} from '../tmdb.service';
+import {MoviesList} from "../playlist/MoviesList";
 
 @Component({
   selector: 'app-film',
@@ -14,21 +15,53 @@ export class FilmComponent implements OnInit{
   @Input() movie: MovieResult;
   @Input() fs: FirebaseService;
   isLiked = false;
+  allPlaylist;
+  private rawPlaylists: JSON;
+  public playlists: MoviesList[] = [];
 
   constructor() {
   }
 
   ngOnInit() {
-    console.log('Film ' + this.fs);
+    // console.log('Film ' + this.fs);
+    this.fs.getAllPlaylist().then(val => {
+      this.rawPlaylists = val.val();
+      const lists = Object.keys( this.rawPlaylists);
+      for (const l of lists) {
+        const playlist: MoviesList = {
+          name : l,
+          description : this.rawPlaylists[l]['description'],
+          movies: []
+        };
+        console.log(playlist);
+        console.log(this.rawPlaylists[l].films);
+        for (const f in this.rawPlaylists[l].films) {
+          const m: MovieResponse = <MovieResponse> this.rawPlaylists[l].films[f];
+          playlist.movies.push(m);
+        }
+
+        this.playlists.push(playlist);
+      }
+    });
+     console.log(this.playlists);
   }
 
   like() {
     this.isLiked = !this.isLiked;
+    if (this.isLiked) {
+      this.fs.addFilmToFavourite(this.movie.id);
+    } else {
+      this.fs.deleteFilmFromFavourite(this.movie.id);
+    }
   }
 
-  addToPlaylist() {
-    console.log('haha');
-    this.fs.addFilmToPlaylist(this.movie, 'adqd');
+  addToPlaylist(playListName) {
+    console.log(playListName);
+    let alreadyIn = false;
+    this.playlists.forEach((p) => p.movies.forEach((m) => {if (m.id === this.movie.id) { alreadyIn = true; }}));
+    if (!alreadyIn) {
+      this.fs.addFilmToPlaylist(this.movie, playListName);
+    }
   }
 
   getTitle(): string {

@@ -2,6 +2,8 @@ import {Component, Input, OnInit,} from '@angular/core';
 import {MovieResult} from '../tmdb-data/searchMovie';
 import {MovieResponse} from '../tmdb-data/Movie';
 import {FirebaseService} from '../firebase.service';
+import {MoviesList} from "../playlist/MoviesList";
+import {isUndefined} from "util";
 
 
 @Component({
@@ -13,13 +15,25 @@ export class FilmListComponent implements OnInit {
 
   @Input() fs: FirebaseService;
   @Input() movies: MovieResult[];
+  @Input() numberOfFilmTOShow;
+  slicedMovies: MovieResult[];
+  private rawPlaylists: JSON;
+  public playlists: MoviesList[] = [];
+  canBeMore;
 
   constructor() {
-    console.log(this.movies);
+    //console.log(this.movies);
+
   }
 
   ngOnInit() {
-    console.log('Film-list ' + this.fs);
+    this.canBeMore = false;
+    // console.log('Film-list ' + this.fs);
+    if (this.numberOfFilmTOShow !== undefined) {
+      this.slicedMovies = this.movies.slice(0, this.numberOfFilmTOShow);
+      this.canBeMore = true;
+    }
+    console.log(this.numberOfFilmTOShow);
   }
 
 }

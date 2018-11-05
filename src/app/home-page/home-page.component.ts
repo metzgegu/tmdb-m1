@@ -11,6 +11,7 @@ import {FirebaseService} from '../firebase.service';
 export class HomePageComponent implements OnInit {
 
   trendingMovies: MovieResponse[] = [];
+  numberOftrendingMovieToShow = 5;
   @Input() fs: FirebaseService;
 
   constructor(private tmdb: TmdbService) {
@@ -18,7 +19,9 @@ export class HomePageComponent implements OnInit {
     setTimeout( () =>
         tmdb.init('80d6fe65cffe579d433c3da0f5d11307') // Clef de TMDB
           .getTrendingMovie()
-          .then( (m) => this.trendingMovies = m.results)
+          .then( (m) => {
+            this.trendingMovies = m.results;
+          } )
           .catch( err => console.error('Error getting movie:', err) ),
       1000 );
 
