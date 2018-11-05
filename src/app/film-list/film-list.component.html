@@ -28,9 +28,10 @@
            *ngFor="let movie of slicedMovies">
         <app-film [movie]="movie" [fs]= "fs" (clickFilm)="clickOnFilm($event)"></app-film>
       </div>
+      <div><button id="expanseBtn" (click)="expanse()">...</button></div>
     </div>
   </div>
 </div>
 <div *ngIf="filmIsCLicked">
-  <app-film-info [film]="filmClicked" (exitEmitter)="exitInfo()"></app-film-info>
+  <app-film-info [fs]="fs" [film]="filmClicked" (exitEmitter)="exitInfo()"></app-film-info>
 </div>

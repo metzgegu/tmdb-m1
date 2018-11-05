@@ -4,6 +4,7 @@ import {MovieResponse} from '../tmdb-data/Movie';
 import {FirebaseService} from '../firebase.service';
 import {TmdbService} from '../tmdb.service';
 import {MoviesList} from '../playlist/MoviesList';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-film',
@@ -20,7 +21,7 @@ export class FilmComponent implements OnInit{
   private rawPlaylists: JSON;
   public playlists: MoviesList[] = [];
 
-  constructor() {
+  constructor(public snackBar: MatSnackBar) {
   }
 
   ngOnInit() {
@@ -63,6 +64,7 @@ export class FilmComponent implements OnInit{
     if (!alreadyIn) {
       this.fs.addFilmToPlaylist(this.movie, playListName);
     }
+    this.openSnackBar('Film ajouté !','');
   }
 
   getTitle(): string {
@@ -75,6 +77,12 @@ export class FilmComponent implements OnInit{
 
   getPath(path: string): string {
     return `https://image.tmdb.org/t/p/w500${path}`;
+  }
+
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 2000,
+    });
   }
 
   clickOnFilm() {

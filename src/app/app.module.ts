@@ -29,6 +29,7 @@ import {MatMenuModule} from '@angular/material/menu';
 import { PlaylistComponent } from './playlist/playlist.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import { FilmInfoComponent } from './film-info/film-info.component';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 const appRoutes: Routes = [
   { path: 'acteur-info', component: ActeurInfoComponent },
@@ -59,6 +60,7 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     MatCardModule,
     MatIconModule,
+    MatSnackBarModule,
     MatButtonModule,
     MatGridListModule,
     FlexLayoutModule,

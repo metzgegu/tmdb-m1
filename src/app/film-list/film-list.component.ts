@@ -22,6 +22,7 @@ export class FilmListComponent implements OnInit {
   filmClicked ;
   filmIsCLicked = false;
   canBeMore;
+  expansed = false;
 
   constructor() {
     //console.log(this.movies);
@@ -46,5 +47,15 @@ export class FilmListComponent implements OnInit {
 
   exitInfo() {
     this.filmIsCLicked = false;
+  }
+
+  expanse() {
+    this.expansed = ! this.expansed;
+    if (this.expansed) {
+      this.slicedMovies = this.movies;
+    } else {
+      this.slicedMovies = this.movies.slice(0, this.numberOfFilmTOShow);
+    }
+
   }
 }

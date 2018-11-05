@@ -23,3 +23,9 @@ export interface SearchPeopleResponse {
   total_results?: number;
   total_pages?: number;
 }
+
+export interface SearchMovieCastResponse {
+  cast?: {
+    id?: number;
+  }[];
+}

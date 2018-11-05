@@ -33,4 +33,8 @@
       </mat-card>
     </div>
   </div>
+  <div><h2 class="mat-h2">Videographie</h2></div>
+  <div *ngIf="movies.length>0">
+    <app-film-list [fs]="fs" [numberOfFilmTOShow]="5" [movies]="movies"></app-film-list>
+  </div>
 </div>

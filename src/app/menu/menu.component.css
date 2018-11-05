@@ -2,7 +2,7 @@
   color: rgba(255, 255, 255, 1);
 }
 *{
-  background-color: #1F1F1F;
+  background-color: black;
   color: white;
 }
 p {
@@ -11,4 +11,8 @@ p {
   margin-bottom: 0px;
   margin-top: 0px;
   Font-Weight: Bold;
+}
+
+#btnHome {
+
 }

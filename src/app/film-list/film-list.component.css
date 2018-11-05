@@ -7,3 +7,11 @@
 #filmGrid{
   background-color: #1F1F1F;
 }
+
+#expanseBtn {
+  font-size: 8em;
+  bottom: 40%;
+  border: none;
+  color: white;
+  background-color: transparent;
+}

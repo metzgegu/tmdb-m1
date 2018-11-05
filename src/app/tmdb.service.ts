@@ -3,7 +3,7 @@ import {MovieQuery, MovieResponse} from './tmdb-data/Movie';
 import {HttpClient, HttpResponse} from '@angular/common/http';
 import {PersonQuery, PersonResponse} from './tmdb-data/Person';
 import {SearchMovieQuery, SearchMovieResponse} from './tmdb-data/searchMovie';
-import {SearchPeopleQuery, SearchPeopleResponse} from './tmdb-data/SearchPeople';
+import {SearchMovieCastResponse, SearchPeopleQuery, SearchPeopleResponse} from './tmdb-data/SearchPeople';
 import {TVQuery, TVResponse} from './tmdb-data/TV';
 import {SearchTVQuery, SearchTVResponse} from './tmdb-data/SearchTV';
 
@@ -73,6 +73,12 @@ export class TmdbService {
   async getTrendingPerson(options?: MovieQuery): Promise<SearchPeopleResponse> {
     const url = `${tmdbApi}/trending/person/week`;
     const res = await this.get<SearchPeopleResponse>(url, options);
+    return res.body;
+  }
+
+  async getCastPerson(id: number, options?: PersonQuery): Promise<SearchMovieCastResponse> {
+    const url = `${tmdbApi}/person/${id}/movie_credits`;
+    const res = await this.get<SearchMovieCastResponse>(url, options);
     return res.body;
   }
 
