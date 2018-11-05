@@ -1,34 +1,36 @@
-<form id="playlist-form">
-  <mat-form-field>
-    <input matInput placeholder="Titre" [value]="title">
-  </mat-form-field>
-  <mat-form-field>
-    <input matInput placeholder="Description" [value]="desc">
-  </mat-form-field>
-  <button (click)="createPlaylist()">Créer playlist</button>
-</form>
-<div id="filmGrid" >
-  <div class="container"
-       fxLayout="row wrap"
+<div *ngIf="!playlistIsClicked">
+  <form id="playlist-form">
+    <mat-form-field>
+      <input matInput placeholder="Titre" [value]="title">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Description" [value]="desc">
+    </mat-form-field>
+    <button (click)="createPlaylist()">Créer playlist</button>
+  </form>
+  <div id="filmGrid" >
+    <div class="container"
+         fxLayout="row wrap"
 
-       fxLayoutGap="16px"
+         fxLayoutGap="16px"
 
-       fxLayoutAlign="flex-start" *ngIf="!canBeMore">
+         fxLayoutAlign="flex-start" *ngIf="!canBeMore">
 
-    <div class="item item-1" fxFlex="0 1 calc(16.66% - 16px)"
-         fxFlex.lt-md="0 1 calc(20% - 16px)"
-         fxFlex.lt-sm="0 1 calc(25% - 16px)"
-         *ngFor="let playlist of slicedPlaylists">
-      <h2>
-        <i class="material-icons md-36" style="font-size: 36px">arrow_right</i>
-        {{playlist.name}}
-      </h2>
-        <ul>
-          <li *ngFor="let movie of playlist.movies"><i class="material-icons md-36" style="font-size: 26px">arrow_right</i> {{movie.title}}</li>
-          <li><div><button class="expanseBtn" (click)="clickOnPlaylist(playlist.movies)">...</button></div></li>
-        </ul>
+      <div class="item item-1" fxFlex="0 1 calc(16.66% - 16px)"
+           fxFlex.lt-md="0 1 calc(20% - 16px)"
+           fxFlex.lt-sm="0 1 calc(25% - 16px)"
+           *ngFor="let playlist of slicedPlaylists">
+        <h2>
+          <i class="material-icons md-36" style="font-size: 36px">arrow_right</i>
+          {{playlist.name}}
+        </h2>
+          <ul>
+            <li *ngFor="let movie of playlist.movies"><i class="material-icons md-36" style="font-size: 26px">arrow_right</i> {{movie.title}}</li>
+            <li><div><button class="expanseBtn" (click)="clickOnPlaylist(playlist.movies)">...</button></div></li>
+          </ul>
+      </div>
+      <div><button class="expanseBtn" (click)="roll()">...</button></div>
     </div>
-    <div><button class="expanseBtn" (click)="roll()">...</button></div>
   </div>
 </div>
 <div *ngIf="playlistIsClicked">
