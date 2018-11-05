@@ -12,6 +12,7 @@ export class PlaylistComponent implements OnInit {
 
   @Input() fs: FirebaseService;
   @Input() playlist: MoviesList;
+  @Input() title: String;
   constructor() {
   }
 

@@ -26,7 +26,7 @@
         </h2>
           <ul>
             <li *ngFor="let movie of playlist.movies"><i class="material-icons md-36" style="font-size: 26px">arrow_right</i> {{movie.title}}</li>
-            <li><div><button class="expanseBtn" (click)="clickOnPlaylist(playlist.movies)">...</button></div></li>
+            <li><div><button class="expanseBtn" (click)="clickOnPlaylist(playlist)">...</button></div></li>
           </ul>
       </div>
       <div><button class="expanseBtn" (click)="roll()">...</button></div>
@@ -37,5 +37,5 @@
   <button mat-icon-button (click)="exitInfo()">
     <mat-icon aria-label="exit">clear</mat-icon>
   </button>
-  <app-playlist [fs]="fs" [playlist]="playlistClicked"></app-playlist>
+  <app-playlist [fs]="fs" [title]="playlistClicked.name" [playlist]="playlistClicked.movies"></app-playlist>
 </div>
