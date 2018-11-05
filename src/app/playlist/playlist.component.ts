@@ -1,8 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import {User} from 'firebase';
 import {FirebaseService} from '../firebase.service';
-import {FirebaseListObservable} from '@angular/fire/database-deprecated';
-import {AngularFireDatabase} from '@angular/fire/database';
 import {MoviesList} from './MoviesList';
 import {MovieResponse} from '../tmdb-data/Movie';
 

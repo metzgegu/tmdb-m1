@@ -1,0 +1,26 @@
+* {
+  color: white;
+}
+ul {
+  position: relative;
+  list-style: none;
+  margin-left: 0;
+}
+ul li:before {
+  content: "";
+  position: absolute;
+  left: 0;
+}
+
+.expanseBtn {
+  font-size: 8em;
+  bottom: 40%;
+  border: none;
+  color: white;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+li .expanseBtn {
+  font-size: 3em;
+}

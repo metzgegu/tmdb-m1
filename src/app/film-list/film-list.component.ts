@@ -2,8 +2,8 @@ import {Component, Input, OnInit,} from '@angular/core';
 import {MovieResult} from '../tmdb-data/searchMovie';
 import {MovieResponse} from '../tmdb-data/Movie';
 import {FirebaseService} from '../firebase.service';
-import {MoviesList} from "../playlist/MoviesList";
-import {isUndefined} from "util";
+import {MoviesList} from '../playlist/MoviesList';
+import {isUndefined} from 'util';
 
 
 @Component({
@@ -42,7 +42,6 @@ export class FilmListComponent implements OnInit {
   }
 
   clickOnFilm(e) {
-    console.log('guillaume');
     this.filmClicked = e;
     this.filmIsCLicked = true;
   }
