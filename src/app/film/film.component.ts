@@ -11,11 +11,11 @@ import {MatSnackBar} from '@angular/material/snack-bar';
   templateUrl: './film.component.html',
   styleUrls: ['./film.component.css'],
 })
-export class FilmComponent implements OnInit{
+export class FilmComponent implements OnInit {
 
-  @Input() movie: MovieResult;
+  @Input() movie: MovieResponse;
   @Input() fs: FirebaseService;
-  @Output() clickFilm = new EventEmitter<MovieResult>();
+  @Output() clickFilm = new EventEmitter<MovieResponse>();
   isLiked = false;
   allPlaylist;
   private rawPlaylists: JSON;

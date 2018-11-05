@@ -14,9 +14,9 @@ import {isUndefined} from "util";
 export class FilmListComponent implements OnInit {
 
   @Input() fs: FirebaseService;
-  @Input() movies: MovieResult[];
+  @Input() movies: MovieResponse[];
   @Input() numberOfFilmTOShow;
-  slicedMovies: MovieResult[];
+  slicedMovies: MovieResponse[];
   private rawPlaylists: JSON;
   public playlists: MoviesList[] = [];
   filmClicked ;

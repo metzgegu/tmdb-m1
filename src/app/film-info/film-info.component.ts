@@ -10,20 +10,20 @@ import {MovieResponse} from "../tmdb-data/Movie";
 })
 export class FilmInfoComponent implements OnInit {
 
-  @Input() film: MovieResult;
+  @Input() film: MovieResponse;
   @Input() fs;
   @Output() exitEmitter = new EventEmitter<any>();
-  film1: MovieResponse;
 
-  constructor( private tmdb: TmdbService) { }
+  constructor(private tmdb: TmdbService) { }
 
   ngOnInit() {
     setTimeout( () =>
         this.tmdb.init('80d6fe65cffe579d433c3da0f5d11307') // Clef de TMDB
           .getMovie(this.film.id)
-          .then( (m: MovieResponse) => this.film1 = m)
+          .then( (m: MovieResponse) => this.film.genres = m.genres)
           .catch( err => console.error('Error getting movie:', err) ),
       1000 );
+    console.log(this.film.genres);
   }
 
   getPath(path: string): string {
@@ -34,4 +34,17 @@ export class FilmInfoComponent implements OnInit {
     this.exitEmitter.emit();
   }
 
+  isGold(number: number) {
+    return number <= this.film.vote_average / 2;
+  }
 }
+
+/*
+
+setTimeout( () =>
+        this.tmdb.init('80d6fe65cffe579d433c3da0f5d11307') // Clef de TMDB
+          .getMovie(this.film.id)
+          .then( (m: MovieResponse) => this.film1 = m)
+          .catch( err => console.error('Error getting movie:', err) ),
+      1000 );
+ */

@@ -1,6 +1,6 @@
-<div *ngIf="film1" class="acteurInfo"   >
+<div *ngIf="film" class="acteurInfo"   >
   <div>
-    <h2 class="mat-h2">{{film1.title}}  <button mat-icon-button>
+    <h2 class="mat-h2">{{film.title}}  <button mat-icon-button>
       <mat-icon aria-label="exit" routerLink="/films" (click)="exit()">clear</mat-icon>
     </button> </h2>
 
@@ -14,21 +14,31 @@
        fxLayoutAlign="flex-start">
     <div class="item item-1" fxFlex="0 1 calc(25% - 16px)">
       <mat-card class="acteurInfoCard" id="imagActeurInfo">
-        <img src={{getPath(film1.poster_path)}} alt={{film1.title}} id="acteurImg">
+        <img src={{getPath(film.poster_path)}} alt={{film.title}} id="acteurImg">
       </mat-card>
     </div>
     <div class="item item-2" fxFlex="0 1 calc(50% - 16px)">
       <mat-card class="acteurInfoCard">
         <h3>Description :</h3>
-        <p *ngIf="this.film1.overview!=''">{{film1.overview}}</p>
-        <p *ngIf="this.film1.overview==''">Pas de description disponible ...</p>
+        <p *ngIf="this.film.overview!=''">{{film.overview}}</p>
+        <p *ngIf="this.film.overview==''">Pas de description disponible ...</p>
       </mat-card>
     </div>
     <div class="item item-3" fxFlex="0 1 calc(20% - 16px)">
       <mat-card class="acteurInfoCard">
         <h3>Fiche technique :</h3>
-        <div>Genre : <div *ngFor="let genre of film1.genres">{{genre.name}}</div></div><br/>
-        <p>Date de sortie : {{film1.release_date}}</p>
+        <div>Genre : <div *ngFor="let genre of film.genres">{{genre.name}}</div></div><br/>
+        <p>Date de sortie : {{film.release_date}}</p>
+      </mat-card>
+    </div>
+    <div class="item item-4" fxFlex="0 1 calc(100% - 16px)">
+      <mat-card class="acteurInfoCard">
+        <h3>Critiques </h3>
+        <i class="material-icons critique" [class.gold]="isGold(1)">star</i>
+        <i class="material-icons critique" [class.gold]="isGold(2)">star</i>
+        <i class="material-icons critique" [class.gold]="isGold(3)">star</i>
+        <i class="material-icons critique" [class.gold]="isGold(4)">star</i>
+        <i class="material-icons critique" [class.gold]="isGold(5)">star</i>
       </mat-card>
     </div>
   </div>
