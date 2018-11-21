@@ -9,6 +9,7 @@ import {filter} from 'rxjs/operators';
 import {PersonResponse} from './tmdb-data/Person';
 import {SearchPeopleResponse} from './tmdb-data/SearchPeople';
 import {FirebaseService} from './firebase.service';
+import {Firebase2Service} from './firebase2.service';
 
 @Component({
   selector: 'app-root',
@@ -23,32 +24,16 @@ export class AppComponent implements OnInit{
   private acteurs;
   fs: FirebaseService;
 
-  constructor(private tmdb: TmdbService, public anAuth: AngularFireAuth, private db: AngularFireDatabase) {
+  constructor(private tmdb: TmdbService, public anAuth: AngularFireAuth, private db: AngularFireDatabase, private fb: Firebase2Service) {
     this.anAuth.user.pipe(filter( u => !!u )).subscribe( u => {
       this._user = u;
       console.log('Firebase uid ' + u.uid);
       this.fs = new FirebaseService(this._user, this.tmdb);
       console.log('app ' + this.fs);
-
+      this.fb.setUser(this.user);
+      this.fb.setTmbd(this.tmdb);
+      this.fb.getPlaylist().then(res => {console.log("Start"); console.log(res.val()); console.log("Stop"); });
     });
-    setTimeout( () =>
-      tmdb.init('80d6fe65cffe579d433c3da0f5d11307') // Clef de TMDB
-          .getMovie(13)
-          .then( (m: MovieResponse) => console.log('Movie 13:', this._movies.push(m)))
-          .catch( err => console.error('Error getting movie:', err) ),
-      1000 );
-    setTimeout( () =>
-        tmdb.init('80d6fe65cffe579d433c3da0f5d11307')
-          .getMovie(272)
-          .then( (m: MovieResponse) => console.log('Movie 13:', this._movies.push(m)))
-          .catch( err => console.error('Error getting movie:', err) ),
-      1000 );
-    setTimeout( () =>
-        tmdb.init('80d6fe65cffe579d433c3da0f5d11307')
-          .getMovie(260513)
-          .then( (m: MovieResponse) => console.log('Movie 13:', this._movies.push(m)))
-          .catch( err => console.error('Error getting movie:', err) ),
-      1000 );
 
     setTimeout( () =>
         this.tmdb.init('80d6fe65cffe579d433c3da0f5d11307') // Clef de TMDB
