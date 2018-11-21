@@ -6,7 +6,7 @@ La base de donnée étant fournie par le site TheMovieDB (https://www.themoviedb
 
 ## L'adresse de notre site
 
-http://localhost:4200/
+https://projetihm-m1.firebaseapp.com/?fbclid=IwAR1fkv82O4yby1Te9EV-f-FMLO13O039pH-A-niRmYmaCVx6q71BV0hewyA
 
 
 ## Fonctionnalités
