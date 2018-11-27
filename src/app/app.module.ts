@@ -32,6 +32,8 @@ import { FilmInfoComponent } from './film-info/film-info.component';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { FilmsPageComponent } from './films-page/films-page.component';
 import { PlaylistPageComponent } from './playlist-page/playlist-page.component';
+import { AjoutFilmDansListeV2Component } from './ajout-film-dans-liste-v2/ajout-film-dans-liste-v2.component';
+import {FormsModule} from '@angular/forms';
 
 const appRoutes: Routes = [
   { path: 'acteur-info', component: ActeurInfoComponent },
@@ -53,7 +55,8 @@ const appRoutes: Routes = [
     PlaylistComponent,
     FilmInfoComponent,
     FilmsPageComponent,
-    PlaylistPageComponent
+    PlaylistPageComponent,
+    AjoutFilmDansListeV2Component
   ],
   imports: [
     BrowserModule,
@@ -70,7 +73,8 @@ const appRoutes: Routes = [
     FlexLayoutModule,
     MatInputModule,
     MatMenuModule,
-    MatDialogModule
+    MatDialogModule,
+    FormsModule
   ],
   providers: [TmdbService],
   bootstrap: [AppComponent]

@@ -1,10 +1,11 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {MovieResult} from '../tmdb-data/searchMovie';
 import {MovieResponse} from '../tmdb-data/Movie';
 import {FirebaseService} from '../firebase.service';
 import {TmdbService} from '../tmdb.service';
 import {MoviesList} from '../playlist/MoviesList';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import {MatMenuTrigger} from '@angular/material';
 
 @Component({
   selector: 'app-film',
@@ -16,10 +17,12 @@ export class FilmComponent implements OnInit {
   @Input() movie: MovieResponse;
   @Input() fs: FirebaseService;
   @Output() clickFilm = new EventEmitter<MovieResponse>();
+  @ViewChild(MatMenuTrigger) private menuTrigger: MatMenuTrigger;
   isLiked = false;
   allPlaylist;
   private rawPlaylists: JSON;
   public playlists: MoviesList[] = [];
+  public searchQuery: string;
 
   constructor(public snackBar: MatSnackBar) {
   }
@@ -63,8 +66,21 @@ export class FilmComponent implements OnInit {
     this.playlists.forEach((p) => p.movies.forEach((m) => {if (m.id === this.movie.id) { alreadyIn = true; }}));
     if (!alreadyIn) {
       this.fs.addFilmToPlaylist(this.movie, playListName);
+      this.openSnackBar('Film ajouté !', '');
+    } else {
+      this.openSnackBar('Film déjà présent dans la playlist !', '');
     }
-    this.openSnackBar('Film ajouté !','');
+  }
+
+  closeMenu() {
+    this.menuTrigger.closeMenu();
+  }
+
+  onSubmit() {
+    console.log(this.searchQuery);
+    this.fs.createPlaylist(this.searchQuery, '');
+    this.addToPlaylist(this.searchQuery);
+    this.closeMenu();
   }
 
   getTitle(): string {
