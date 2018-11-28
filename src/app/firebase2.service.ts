@@ -26,4 +26,8 @@ export class Firebase2Service {
   setUser(user: User) {
     this.user = user;
   }
+
+  createPlaylist(title: string, desc: string): Promise<void> {
+    return firebase.database().ref(`users/${this.user.uid}/playlists/${title}/description`).set(desc);
+  }
 }
