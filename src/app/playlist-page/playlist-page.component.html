@@ -2,9 +2,9 @@
   <form id="playlist-form">
     <input class="inputPlaylist" placeholder="Titre" [value]="title" (input)="title = $event.target.value">
     <input class="inputPlaylist" placeholder="Description" [value]="desc" (input)="desc = $event.target.value">
-    <button mat-icon-button>
-      <mat-icon  aria-label="searchActor" (click)="createPlaylist()" >add</mat-icon>
-    </button>
+
+    <button mat-icon-button type="button" (click)="createPlaylist()"><mat-icon aria-label="newPlaylist" >add</mat-icon></button>
+    
   </form>
   <div id="filmGrid" >
     <div class="container"
