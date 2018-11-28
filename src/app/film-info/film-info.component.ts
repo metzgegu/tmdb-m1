@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {TmdbService} from "../tmdb.service";
 import {MovieResult} from "../tmdb-data/searchMovie";
 import {MovieResponse} from "../tmdb-data/Movie";
+import {FirebaseService} from '../firebase.service';
 
 @Component({
   selector: 'app-film-info',
@@ -11,11 +12,10 @@ import {MovieResponse} from "../tmdb-data/Movie";
 export class FilmInfoComponent implements OnInit {
 
   @Input() film: MovieResponse;
-  @Input() fs;
   @Output() exitEmitter = new EventEmitter<any>();
   public loading = true;
 
-  constructor(private tmdb: TmdbService) { }
+  constructor(private tmdb: TmdbService, private fs: FirebaseService) { }
 
   ngOnInit() {
     setTimeout( () =>

@@ -3,6 +3,7 @@ import {PersonResponse} from '../tmdb-data/Person';
 import { PlatformLocation } from '@angular/common'
 import {TmdbService} from '../tmdb.service';
 import {SearchMovieCastResponse} from "../tmdb-data/SearchPeople";
+import {FirebaseService} from '../firebase.service';
 
 @Component({
   selector: 'app-acteur-info',
@@ -11,13 +12,12 @@ import {SearchMovieCastResponse} from "../tmdb-data/SearchPeople";
 })
 export class ActeurInfoComponent implements OnInit {
   @Input() actor;
-  @Input() fs;
   @Output() exitEmitter = new EventEmitter<any>();
   actor1: PersonResponse;
   movies = [];
 
 
-  constructor(location: PlatformLocation, private tmdb: TmdbService) {
+  constructor(location: PlatformLocation, private tmdb: TmdbService, private fs: FirebaseService) {
     // window.onhashchange = this.exit;
 
     setTimeout( () =>

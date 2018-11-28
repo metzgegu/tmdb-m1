@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import {FirebaseService} from '../firebase.service';
 import {MoviesList} from './MoviesList';
 import {MovieResponse} from '../tmdb-data/Movie';
+import {TmdbService} from '../tmdb.service';
 
 @Component({
   selector: 'app-playlist',
@@ -10,10 +11,9 @@ import {MovieResponse} from '../tmdb-data/Movie';
 })
 export class PlaylistComponent implements OnInit {
 
-  @Input() fs: FirebaseService;
   @Input() playlist: MoviesList;
   @Input() title: String;
-  constructor() {
+  constructor(private fs: FirebaseService) {
   }
 
   ngOnInit() {

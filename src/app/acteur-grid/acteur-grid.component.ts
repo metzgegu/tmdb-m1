@@ -15,22 +15,25 @@ export class ActeurGridComponent implements OnInit {
   public clickActeur: boolean;
   private col;
   private row;
-  @Input() fs: FirebaseService;
-  @Input() acteurs;
+  private acteurs;
   searchValue;
 
   private filterActeur;
 
 
-  constructor(private tmdb: TmdbService) {
-
+  constructor(private tmdb: TmdbService, private fs: FirebaseService) {
+    setTimeout( () =>
+        this.tmdb.init('80d6fe65cffe579d433c3da0f5d11307') // Clef de TMDB
+          .getTrendingPerson()
+          .then( (a: SearchPeopleResponse) => this.filterActeur = a.results)
+          .catch( err => console.error('Error getting actor:', err) ),
+      1000 );
   }
 
   ngOnInit() {
     console.log('Acteur' + this.fs);
     this.col = 1;
     this.row = 1;
-    this.filterActeur = this.acteurs;
     this.searchValue = '';
     this.clickActeur = false;
   }

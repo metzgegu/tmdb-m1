@@ -2,15 +2,15 @@
 <table style="width:100%">
   <tr>
     <th><p class="mat-h2">Viblioteque</p></th>
-    <th><button mat-icon-button id="btnHome" (click)="changeToHome()"><i class="material-icons md-light">home</i></button></th>
-    <th><button mat-icon-button id="btnFilms" (click)="changeToFilms()"><i class="material-icons md-light">tv</i></button></th>
-    <th><button mat-icon-button id="btnActor" (click)="changeToActor()"><i class="material-icons md-light">perm_identity</i></button></th>
-    <th><button mat-icon-button id="btnPlaylist" (click)="changeToPlaylist()"><i class="material-icons md-light">playlist_play</i></button></th>
+    <th><button mat-icon-button routerLink="/home" routerLinkActive="active" id="btnHome" (click)="changeToHome()"><i class="material-icons md-light">home</i></button></th>
+    <th><button mat-icon-button routerLink="/films" routerLinkActive="active" id="btnFilms" (click)="changeToFilms()"><i class="material-icons md-light">tv</i></button></th>
+    <th><button mat-icon-button routerLink="/actors" routerLinkActive="active" id="btnActor" (click)="changeToActor()"><i class="material-icons md-light">perm_identity</i></button></th>
+    <th><button mat-icon-button routerLink="/playlist" routerLinkActive="active" id="btnPlaylist" (click)="changeToPlaylist()"><i class="material-icons md-light">playlist_play</i></button></th>
     <th>
       <nav *ngIf="_user">
         <button mat-button [matMenuTriggerFor]="menu"><img height="42" width="42" [src]="_user.photoURL" /></button>
         <mat-menu #menu="matMenu">
-          <button (click)="changeToAccount()" mat-menu-item>Profil</button>
+          <button routerLink="/crisis-center" routerLinkActive="active" (click)="changeToAccount()" mat-menu-item>Profil</button>
           <button (click)="logout()" mat-menu-item>Déconnexion</button>
         </mat-menu>
       </nav>
@@ -21,8 +21,9 @@
     </th>
   </tr>
 </table>
-<div *ngIf="cursor==='actor'">
-
+<div>
+  <router-outlet></router-outlet>
 </div>
+
 
 

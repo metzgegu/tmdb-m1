@@ -4,6 +4,7 @@ import {MovieResponse} from '../tmdb-data/Movie';
 import {FirebaseService} from '../firebase.service';
 import {MoviesList} from '../playlist/MoviesList';
 import {isUndefined} from 'util';
+import {TmdbService} from '../tmdb.service';
 
 
 @Component({
@@ -13,7 +14,6 @@ import {isUndefined} from 'util';
 })
 export class FilmListComponent implements OnInit {
 
-  @Input() fs: FirebaseService;
   @Input() movies: MovieResponse[];
   @Input() numberOfFilmTOShow;
   slicedMovies: MovieResponse[];
@@ -25,7 +25,7 @@ export class FilmListComponent implements OnInit {
   expansed = false;
   cursor;
 
-  constructor() {
+  constructor(private fs: FirebaseService) {
     //console.log(this.movies);
 
   }

@@ -34,9 +34,13 @@ import { FilmsPageComponent } from './films-page/films-page.component';
 import { PlaylistPageComponent } from './playlist-page/playlist-page.component';
 
 const appRoutes: Routes = [
-  { path: 'acteur-info', component: ActeurInfoComponent },
-  { path: 'acteurs', component: ActeurGridComponent },
+  { path: 'home', component: HomePageComponent },
+  { path: 'films', component: FilmsPageComponent },
+  { path: 'actors', component: ActeurGridComponent },
+  { path: 'playlist', component: PlaylistPageComponent },
+  { path: 'account', component: ProfilComponent },
   { path: '',  redirectTo: '/', pathMatch: 'full' },
+
 ];
 
 @NgModule({
@@ -70,7 +74,11 @@ const appRoutes: Routes = [
     FlexLayoutModule,
     MatInputModule,
     MatMenuModule,
-    MatDialogModule
+    MatDialogModule,
+    RouterModule.forRoot(
+      appRoutes,
+      { enableTracing: true } // <-- debugging purposes only
+    )
   ],
   providers: [TmdbService],
   bootstrap: [AppComponent]

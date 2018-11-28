@@ -14,14 +14,13 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 export class FilmComponent implements OnInit {
 
   @Input() movie: MovieResponse;
-  @Input() fs: FirebaseService;
   @Output() clickFilm = new EventEmitter<MovieResponse>();
   isLiked = false;
   allPlaylist;
   private rawPlaylists: JSON;
   public playlists: MoviesList[] = [];
 
-  constructor(public snackBar: MatSnackBar) {
+  constructor(public snackBar: MatSnackBar, private fs: FirebaseService) {
   }
 
   ngOnInit() {

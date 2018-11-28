@@ -11,12 +11,9 @@ import {PersonResponse} from '../tmdb-data/Person';
 export class ActeurComponent implements OnInit {
   @Input() actor: PersonResponse ;
   @Output() clickSurActeur = new EventEmitter<PersonResponse>();
-  @Input() fs: FirebaseService;
   public favori: boolean ;
 
-
-
-  constructor() {
+  constructor(private fs: FirebaseService) {
 
   }
 
@@ -26,11 +23,13 @@ export class ActeurComponent implements OnInit {
 
   ngOnInit() {
     this.favori = false;
-    const result = this.fs.isFavorite(this.actor.id);
-    if (result !== undefined) {
-      this.favori = true;
-    } else {
-      this.favori = false;
+    if (this.fs.isConnected()) {
+      const result = this.fs.isFavorite(this.actor.id);
+      if (result !== undefined) {
+        this.favori = true;
+      } else {
+        this.favori = false;
+      }
     }
   }
 
