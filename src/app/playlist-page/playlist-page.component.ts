@@ -3,6 +3,7 @@ import {FirebaseService} from '../firebase.service';
 import {MovieResponse} from '../tmdb-data/Movie';
 import {MoviesList} from '../playlist/MoviesList';
 import {MatSnackBar} from '@angular/material';
+import {Firebase2Service} from '../firebase2.service';
 
 @Component({
   selector: 'app-playlist-page',
@@ -23,12 +24,12 @@ export class PlaylistPageComponent implements OnInit {
   playlistClicked;
   playlistIsClicked = false;
 
-  constructor(public snackBar: MatSnackBar) {
+  constructor(public snackBar: MatSnackBar, private fb: Firebase2Service) {
   }
 
   ngOnInit() {
     console.log('Playlist ' + this.fs);
-    this.fs.getAllPlaylist().then(val => {
+    this.fb.getPlaylist().then(val => {
       this.rawPlaylists = val.val();
       const lists = Object.keys( this.rawPlaylists);
       for (const l of lists) {
@@ -60,12 +61,12 @@ export class PlaylistPageComponent implements OnInit {
   }
 
   public createPlaylist() {
+    console.log("Create Playlist");
     const play: MoviesList = { name : this.title};
     this.playlists.push(play);
-    this.fs.createPlaylist( this.title,  this.desc);
+    this.fb.createPlaylist( this.title,  this.desc).then(() => this.openSnackBar('Playlist ajouté !',''));
     this.desc = ' ';
     this.title = ' ';
-    this.openSnackBar('Playlist ajouté !','');
   }
 
   roll() {
