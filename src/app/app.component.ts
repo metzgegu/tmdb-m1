@@ -30,7 +30,7 @@ export class AppComponent implements OnInit{
       console.log('Firebase uid ' + u.uid);
       this.fs = new FirebaseService(this._user, this.tmdb);
       console.log('app ' + this.fs);
-      this.fb.setUser(this.user);
+      this.fb.setUser(this._user);
       this.fb.setTmbd(this.tmdb);
       this.fb.getPlaylist().then(res => {console.log("Start"); console.log(res.val()); console.log("Stop"); });
     });
