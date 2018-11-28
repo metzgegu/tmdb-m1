@@ -6,14 +6,17 @@
   <div class="film-buttons">
     <i class="material-icons like" [class.liked]="isLiked" (click)="like()">star</i>
     <i class="material-icons add" [matMenuTriggerFor]="menu">add_circle</i>
-    <mat-menu #menu="matMenu" >
-      <form id="addNewPlaylist" (ngSubmit)="onSubmit()" (click)="onSubmit()">
-          <input
-            name="addToNewPlaylist"
-            [(ngModel)]="this.searchQuery"
-            mat-menu-item
-            type="text"
-            placeholder="nouvelle liste"/>
+    <mat-menu #menu="matMenu">
+      <form id="addNewPlaylist">
+        <input
+          id="test"
+          name="addToNewPlaylist"
+          [(ngModel)]="this.searchQuery"
+          mat-menu-item
+          type="text"
+          placeholder="nouvelle liste"
+          [matMenuTriggerFor]="menu"/>
+        <i class="material-icons add" [matMenuTriggerFor]="menu">add</i>
       </form>
       <div *ngFor="let play of playlists">
         <button mat-menu-item (click)="addToPlaylist(play.name)">{{play.name}}</button>
