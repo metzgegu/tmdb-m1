@@ -39,6 +39,7 @@ const appRoutes: Routes = [
   { path: 'actors', component: ActeurGridComponent },
   { path: 'playlist', component: PlaylistPageComponent },
   { path: 'account', component: ProfilComponent },
+  { path: 'acteurs/:id', component: ActeurInfoComponent },
   { path: 'films/:id', component: FilmInfoComponent },
   { path: '',  redirectTo: '/home', pathMatch: 'full' },
 
