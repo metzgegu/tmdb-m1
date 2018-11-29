@@ -1,7 +1,7 @@
 <div *ngIf="!filmIsCLicked">
   <div id="filmGrid" >
     <div class="container"
-       fxLayout="row wrap"
+        fxLayout="row wrap"
 
        fxLayoutGap="16px"
 
@@ -11,7 +11,7 @@
              fxFlex.lt-md="0 1 calc(20% - 16px)"
              fxFlex.lt-sm="0 1 calc(25% - 16px)"
              *ngFor="let movie of movies">
-              <app-film [movie]="movie" (clickFilm)="clickOnFilm($event)"></app-film>
+              <app-film [movie]="movie"></app-film>
         </div>
 
 
@@ -26,12 +26,12 @@
            fxFlex.lt-md="0 1 calc(20% - 16px)"
            fxFlex.lt-sm="0 1 calc(25% - 16px)"
            *ngFor="let movie of slicedMovies">
-        <app-film [movie]="movie"  (clickFilm)="clickOnFilm($event)"></app-film>
+        <app-film [movie]="movie"></app-film>
       </div>
       <div><button id="expanseBtn" (click)="expanse()">...</button></div>
     </div>
   </div>
 </div>
-<div *ngIf="filmIsCLicked">
+<!--<div *ngIf="filmIsCLicked">
   <app-film-info [film]="filmClicked" (exitEmitter)="exitInfo()"></app-film-info>
-</div>
+</div>-->

@@ -14,7 +14,7 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 export class FilmComponent implements OnInit {
 
   @Input() movie: MovieResponse;
-  @Output() clickFilm = new EventEmitter<MovieResponse>();
+  // @Output() clickFilm = new EventEmitter<MovieResponse>();
   isLiked = false;
   allPlaylist;
   private rawPlaylists: JSON;
@@ -86,6 +86,6 @@ export class FilmComponent implements OnInit {
 
   clickOnFilm() {
     console.log('guillaume');
-    this.clickFilm.emit(this.movie);
+    // this.clickFilm.emit(this.movie);
   }
 }
