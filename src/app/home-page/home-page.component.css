@@ -1,4 +1,9 @@
+h1 {
+  color: #1F1F1F;
+  font-weight: 500;
+  margin-left: 30px;
+  margin-top: 80px;
+}
 * {
   background-color: #FFFFFF;
-  color: white;
 }

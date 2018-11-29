@@ -1,3 +1,10 @@
+#table {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1050;
+}
 
 #btnHome, #btnFilms, #btnActor, #btnPlaylist{
   color: #FFFFFF;
@@ -17,7 +24,7 @@
 
 
 *{
-  background-color: #1F1F1F;
+  background-color: #333333;
   color: #FFFFFF;
 }
 
