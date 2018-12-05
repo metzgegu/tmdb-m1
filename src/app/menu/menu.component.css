@@ -38,7 +38,8 @@ p {
   Font-Weight: Bold;
 }
 
-.label { font-size: 1em; }
+.label { font-size: 1em;
+  color: white;}
 
 .label { display:none; }
 
