@@ -5,6 +5,7 @@ import {FirebaseService} from '../firebase.service';
 import {TmdbService} from '../tmdb.service';
 import {MoviesList} from '../playlist/MoviesList';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import {Firebase2Service} from '../firebase2.service';
 
 @Component({
   selector: 'app-film',
@@ -14,19 +15,17 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 export class FilmComponent implements OnInit {
 
   @Input() movie: MovieResponse;
-  @Input() fs: FirebaseService;
   @Output() clickFilm = new EventEmitter<MovieResponse>();
   isLiked = false;
   allPlaylist;
   private rawPlaylists: JSON;
   public playlists: MoviesList[] = [];
 
-  constructor(public snackBar: MatSnackBar) {
+  constructor(public snackBar: MatSnackBar, private fb: Firebase2Service) {
   }
 
   ngOnInit() {
-    // console.log('Film ' + this.fs);
-    this.fs.getAllPlaylist().then(val => {
+    this.fb.getPlaylist().then(val => {
       this.rawPlaylists = val.val();
       const lists = Object.keys( this.rawPlaylists);
       for (const l of lists) {
@@ -51,9 +50,9 @@ export class FilmComponent implements OnInit {
   like() {
     this.isLiked = !this.isLiked;
     if (this.isLiked) {
-      this.fs.addFilmToFavourite(this.movie.id);
+      this.fb.addFilmToFavourite(this.movie.id);
     } else {
-      this.fs.deleteFilmFromFavourite(this.movie.id);
+      this.fb.deleteFilmFromFavourite(this.movie.id);
     }
   }
 
@@ -62,7 +61,7 @@ export class FilmComponent implements OnInit {
     let alreadyIn = false;
     this.playlists.forEach((p) => p.movies.forEach((m) => {if (m.id === this.movie.id) { alreadyIn = true; }}));
     if (!alreadyIn) {
-      this.fs.addFilmToPlaylist(this.movie, playListName);
+      this.fb.addFilmToPlaylist(this.movie, playListName);
     }
     this.openSnackBar('Film ajouté !','');
   }

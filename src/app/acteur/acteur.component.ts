@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FirebaseService} from '../firebase.service';
 import {TmdbService} from '../tmdb.service';
 import {PersonResponse} from '../tmdb-data/Person';
+import {Firebase2Service} from '../firebase2.service';
 
 @Component({
   selector: 'app-acteur',
@@ -11,12 +12,11 @@ import {PersonResponse} from '../tmdb-data/Person';
 export class ActeurComponent implements OnInit {
   @Input() actor: PersonResponse ;
   @Output() clickSurActeur = new EventEmitter<PersonResponse>();
-  @Input() fs: FirebaseService;
   public favori: boolean ;
 
 
 
-  constructor() {
+  constructor(private fb: Firebase2Service) {
 
   }
 
@@ -26,7 +26,7 @@ export class ActeurComponent implements OnInit {
 
   ngOnInit() {
     this.favori = false;
-    const result = this.fs.isFavorite(this.actor.id);
+    const result = this.fb.isFavorite(this.actor.id);
     if (result !== undefined) {
       this.favori = true;
     } else {
@@ -41,10 +41,10 @@ export class ActeurComponent implements OnInit {
   switchFavori() {
     this.favori = !this.favori;
     if (this.favori) {
-      this.fs.addActorToFavourite(this.actor.id);
+      this.fb.addActorToFavourite(this.actor.id);
       console.log('add');
     } else {
-      this.fs.deleteActorFromFavourite(this.actor.id);
+      this.fb.deleteActorFromFavourite(this.actor.id);
       console.log('remove');
     }
   }

@@ -19,13 +19,13 @@
            fxFlex.lt-md="0 1 calc(20% - 16px)"
            fxFlex.lt-sm="0 1 calc(25% - 16px)"
            *ngFor="let acteur of filterActeur">
-        <app-acteur [actor]="acteur" [fs]="fs" (clickSurActeur)="clickSurActeurCard($event)"></app-acteur>
+        <app-acteur [actor]="acteur" (clickSurActeur)="clickSurActeurCard($event)"></app-acteur>
       </div>
     </div>
   </div>
 
   <div *ngIf="clickActeur">
-    <app-acteur-info [fs]="fs" [actor]="acteurSelectionner" (exitEmitter)="exitInfoActeur($event)"></app-acteur-info>
+    <app-acteur-info [actor]="acteurSelectionner" (exitEmitter)="exitInfoActeur($event)"></app-acteur-info>
   </div>
 </div>
 <!--

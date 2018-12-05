@@ -11,7 +11,6 @@ import {MovieResponse} from "../tmdb-data/Movie";
 export class FilmInfoComponent implements OnInit {
 
   @Input() film: MovieResponse;
-  @Input() fs;
   @Output() exitEmitter = new EventEmitter<any>();
   public loading = true;
 

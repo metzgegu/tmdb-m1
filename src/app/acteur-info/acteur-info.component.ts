@@ -11,7 +11,6 @@ import {SearchMovieCastResponse} from "../tmdb-data/SearchPeople";
 })
 export class ActeurInfoComponent implements OnInit {
   @Input() actor;
-  @Input() fs;
   @Output() exitEmitter = new EventEmitter<any>();
   actor1: PersonResponse;
   movies = [];

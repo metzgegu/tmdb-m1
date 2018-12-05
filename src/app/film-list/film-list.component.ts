@@ -3,7 +3,6 @@ import {MovieResult} from '../tmdb-data/searchMovie';
 import {MovieResponse} from '../tmdb-data/Movie';
 import {FirebaseService} from '../firebase.service';
 import {MoviesList} from '../playlist/MoviesList';
-import {isUndefined} from 'util';
 
 
 @Component({

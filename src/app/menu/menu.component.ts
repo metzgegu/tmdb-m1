@@ -56,7 +56,6 @@ export class MenuComponent implements OnInit {
 
   login() {
     this.anAuth.auth.signInWithPopup(new auth.GoogleAuthProvider());
-
   }
 
   logout() {
