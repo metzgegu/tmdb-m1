@@ -23,3 +23,13 @@
 mat-card-header{
   height: 55px;
 }
+
+label {
+  position : relative;
+}
+
+#new {
+  position: absolute;
+  height: 0;
+  right: 0;
+}

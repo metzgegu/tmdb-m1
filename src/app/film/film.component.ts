@@ -63,18 +63,25 @@ export class FilmComponent implements OnInit {
 
   addToPlaylist(playListName) {
     console.log(playListName);
-    let alreadyIn;
-    const myCurrentPlaylist = this.playlists.filter(p => p.name === this.searchQuery);
-    myCurrentPlaylist.forEach(p => p.movies.forEach(m => m.id === this.movie.id ? alreadyIn = true : alreadyIn = false));
+    // let alreadyIn;
+    const myCurrentPlaylist = this.playlists.find(p => p.name === playListName);
+    myCurrentPlaylist.movies.forEach(m => console.log(m.title));
+    /*myCurrentPlaylist.forEach(p => p.movies.forEach(m => m.id === this.movie.id ? alreadyIn = true : alreadyIn = false));
     if (!alreadyIn) {
       this.fs.addFilmToPlaylist(this.movie, playListName);
       this.openSnackBar('Film ajouté !', '');
     } else {
       this.openSnackBar('Film déjà présent dans la playlist !', '');
-    }
+    }*/
   }
 
-  closeMenu() {
+  addToNewPlaylist() {
+    // console.log(this.searchQuery);
+    this.fs.createPlaylist(this.searchQuery, '');
+    this.addToPlaylist(this.searchQuery);
+  }
+
+  /* closeMenu() {
     this.menuTrigger.closeMenu();
   }
 
@@ -83,7 +90,7 @@ export class FilmComponent implements OnInit {
     this.fs.createPlaylist(this.searchQuery, '');
     this.addToPlaylist(this.searchQuery);
     // this.closeMenu();
-  }
+  } */
 
   getTitle(): string {
     return this.movie.title;
