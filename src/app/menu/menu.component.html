@@ -1,11 +1,11 @@
 
-<table style="width:100%">
+<table id="table" style="width:100%">
   <tr>
-    <th><p class="mat-h2">Viblioteque</p></th>
-    <th><button mat-icon-button id="btnHome" (click)="changeToHome()"><i class="material-icons md-light">home</i></button></th>
-    <th><button mat-icon-button id="btnFilms" (click)="changeToFilms()"><i class="material-icons md-light">tv</i></button></th>
-    <th><button mat-icon-button id="btnActor" (click)="changeToActor()"><i class="material-icons md-light">perm_identity</i></button></th>
-    <th><button mat-icon-button id="btnPlaylist" (click)="changeToPlaylist()"><i class="material-icons md-light">playlist_play</i></button></th>
+    <th><p class="mat-h2">VIDéOTHèQUE</p></th>
+    <th><button mat-icon-button id="btnHome" (click)="changeToHome()"><i class="material-icons md-light">home</i>Accueil</button></th>
+    <th><button mat-icon-button id="btnFilms" (click)="changeToFilms()"><i class="material-icons md-light">local_movies</i>Films</button></th>
+    <th><button mat-icon-button id="btnActor" (click)="changeToActor()"><i class="material-icons md-light">people</i>Acteurs</button></th>
+    <th><button mat-icon-button id="btnPlaylist" (click)="changeToPlaylist()"><i class="material-icons md-light">playlist_play</i>Mes Listes</button></th>
     <th>
       <nav *ngIf="_user">
         <button mat-button [matMenuTriggerFor]="menu"><img height="42" width="42" [src]="_user.photoURL" /></button>
@@ -15,7 +15,7 @@
         </mat-menu>
       </nav>
       <nav *ngIf="!_user">
-        <button mat-button (click)="login()">Connection via Google</button>
+        <button mat-icon-button id="btnConnexion" (click)="login()"><i id="btnConnexion2" class="material-icons md-light">power_settings_new</i></button>
       </nav>
 
     </th>

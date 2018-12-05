@@ -3,6 +3,7 @@ import {TmdbService} from '../tmdb.service';
 import {MovieResponse} from '../tmdb-data/Movie';
 import {SearchMovieResponse} from '../tmdb-data/searchMovie';
 
+
 @Component({
   selector: 'app-films-page',
   templateUrl: './films-page.component.html',

@@ -18,6 +18,7 @@ export class MenuComponent implements OnInit {
   @Output() changeMenu = new EventEmitter<String>();
   @Output() userLogin = new EventEmitter<User>();
 
+
   constructor(public anAuth: AngularFireAuth, private db: AngularFireDatabase) {
     this.cursor = 'home';
     this.anAuth.user.pipe(filter( u => !!u )).subscribe( u => {
