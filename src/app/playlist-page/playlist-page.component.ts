@@ -3,6 +3,7 @@ import {FirebaseService} from '../firebase.service';
 import {MovieResponse} from '../tmdb-data/Movie';
 import {MoviesList} from '../playlist/MoviesList';
 import {MatSnackBar} from '@angular/material';
+import {TmdbService} from '../tmdb.service';
 
 @Component({
   selector: 'app-playlist-page',
@@ -11,7 +12,6 @@ import {MatSnackBar} from '@angular/material';
 })
 export class PlaylistPageComponent implements OnInit {
 
-  @Input() fs: FirebaseService;
   private rawPlaylists: JSON;
   public playlists: MoviesList[] = [];
   slicedPlaylists: MoviesList[] = [];
@@ -23,7 +23,7 @@ export class PlaylistPageComponent implements OnInit {
   playlistClicked;
   playlistIsClicked = false;
 
-  constructor(public snackBar: MatSnackBar) {
+  constructor(public snackBar: MatSnackBar, private fs: FirebaseService) {
   }
 
   ngOnInit() {

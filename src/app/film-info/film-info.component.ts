@@ -2,6 +2,8 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {TmdbService} from "../tmdb.service";
 import {MovieResult} from "../tmdb-data/searchMovie";
 import {MovieResponse} from "../tmdb-data/Movie";
+import {FirebaseService} from '../firebase.service';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-film-info',
@@ -10,19 +12,18 @@ import {MovieResponse} from "../tmdb-data/Movie";
 })
 export class FilmInfoComponent implements OnInit {
 
-  @Input() film: MovieResponse;
-  @Input() fs;
-  @Output() exitEmitter = new EventEmitter<any>();
   public loading = true;
 
-  constructor(private tmdb: TmdbService) { }
+  film: MovieResponse;
+  constructor(private tmdb: TmdbService, private fs: FirebaseService, private route: ActivatedRoute) { }
 
   ngOnInit() {
+    const id = +this.route.snapshot.paramMap.get('id');
     setTimeout( () =>
         this.tmdb.init('80d6fe65cffe579d433c3da0f5d11307') // Clef de TMDB
-          .getMovie(this.film.id)
+          .getMovie(id)
           .then( (m: MovieResponse) => {
-            this.film.genres = m.genres;
+            this.film = m;
             this.loading = false;
           })
           .catch( err => console.error('Error getting movie:', err) ),
@@ -31,10 +32,6 @@ export class FilmInfoComponent implements OnInit {
 
   getPath(path: string): string {
     return `https://image.tmdb.org/t/p/w500${path}`;
-  }
-
-  exit() {
-    this.exitEmitter.emit();
   }
 
   isGold(number: number) {

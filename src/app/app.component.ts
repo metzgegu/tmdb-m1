@@ -20,41 +20,12 @@ export class AppComponent implements OnInit{
    _user: User;
   private dbData: Observable<any>;
    cursor: String;
-  private acteurs;
-  fs: FirebaseService;
 
-  constructor(private tmdb: TmdbService, public anAuth: AngularFireAuth, private db: AngularFireDatabase) {
-    this.anAuth.user.pipe(filter( u => !!u )).subscribe( u => {
-      this._user = u;
-      console.log('Firebase uid ' + u.uid);
-      this.fs = new FirebaseService(this._user, this.tmdb);
-      console.log('app ' + this.fs);
-
-    });
+  constructor(private tmdb: TmdbService, private db: AngularFireDatabase, private fs: FirebaseService) {
     setTimeout( () =>
       tmdb.init('80d6fe65cffe579d433c3da0f5d11307') // Clef de TMDB
-          .getMovie(13)
-          .then( (m: MovieResponse) => console.log('Movie 13:', this._movies.push(m)))
-          .catch( err => console.error('Error getting movie:', err) ),
-      1000 );
-    setTimeout( () =>
-        tmdb.init('80d6fe65cffe579d433c3da0f5d11307')
-          .getMovie(272)
-          .then( (m: MovieResponse) => console.log('Movie 13:', this._movies.push(m)))
-          .catch( err => console.error('Error getting movie:', err) ),
-      1000 );
-    setTimeout( () =>
-        tmdb.init('80d6fe65cffe579d433c3da0f5d11307')
-          .getMovie(260513)
-          .then( (m: MovieResponse) => console.log('Movie 13:', this._movies.push(m)))
-          .catch( err => console.error('Error getting movie:', err) ),
-      1000 );
-
-    setTimeout( () =>
-        this.tmdb.init('80d6fe65cffe579d433c3da0f5d11307') // Clef de TMDB
-          .getTrendingPerson()
-          .then( (a: SearchPeopleResponse) => this.acteurs = a.results)
-          .catch( err => console.error('Error getting actor:', err) ),
+        .getMovie(13)
+        .catch( err => console.error('Error getting movie:', err) ),
       1000 );
     this.cursor = 'home';
   }
@@ -87,12 +58,12 @@ export class AppComponent implements OnInit{
   changeUser(e) {
     // this._user = e;
     this._user = undefined;
-    this.fs = new FirebaseService(this._user, this.tmdb);
+    // this.fs = new FirebaseService(this._user, this.tmdb);
     location.reload();
   }
 
   ngOnInit() {
-    this.fs = new FirebaseService(this._user, this.tmdb);
+    // this.fs = new FirebaseService(this._user, this.tmdb);
   }
 
 

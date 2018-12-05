@@ -1,5 +1,5 @@
 <mat-card class="film-card">
-  <img mat-card-image [src]="getImgSource()" alt="getTitle()" (click)="clickOnFilm()">
+  <img mat-card-image [src]="getImgSource()" alt="getTitle()" routerLink="/films/{{movie.id}}" routerLinkActive="active">
   <mat-card-header>
     <mat-card-title>{{getTitle()}}</mat-card-title>
   </mat-card-header>
