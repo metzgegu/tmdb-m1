@@ -1,9 +1,10 @@
+<div id="title">MES LISTES</div>
 <div *ngIf="!playlistIsClicked">
-  <form id="playlist-form">
+  <form id="playlist-form">Créer une liste :
     <input class="inputPlaylist" placeholder="Titre" [value]="title" (input)="title = $event.target.value">
     <input class="inputPlaylist" placeholder="Description" [value]="desc" (input)="desc = $event.target.value">
     <button mat-icon-button>
-      <mat-icon  aria-label="searchActor" (click)="createPlaylist()" >add</mat-icon>
+      <mat-icon  aria-label="searchActor" (click)="createPlaylist()" >add_circle_outline</mat-icon>
     </button>
   </form>
   <div id="filmGrid" >
@@ -18,14 +19,16 @@
            fxFlex.lt-md="0 1 calc(20% - 16px)"
            fxFlex.lt-sm="0 1 calc(25% - 16px)"
            *ngFor="let playlist of slicedPlaylists">
-        <h2>
-          <i class="material-icons md-36" style="font-size: 36px">arrow_right</i>
+        <h2 id="title_liste">
           {{playlist.name}}
         </h2>
-          <ul>
-            <li *ngFor="let movie of playlist.movies"><i class="material-icons md-36" style="font-size: 26px">arrow_right</i> {{movie.title}}</li>
-            <li><div><button class="expanseBtn" (click)="clickOnPlaylist(playlist)">...</button></div></li>
-          </ul>
+
+          <app-film-list [movies]="playlist.movies" [fs]="fs"></app-film-list>
+
+        <!--<ul>-->
+            <!--<li *ngFor="let movie of playlist.movies"><i class="material-icons md-36" style="font-size: 26px">arrow_right</i> {{movie.title}}</li>-->
+            <!--<li><div><button class="expanseBtn" (click)="clickOnPlaylist(playlist)">...</button></div></li>-->
+          <!--</ul>-->
       </div>
       <div><button class="expanseBtn" (click)="roll()">...</button></div>
     </div>

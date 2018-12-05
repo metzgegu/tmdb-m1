@@ -1,5 +1,34 @@
+#title {
+  display: block;
+  background-color: lightgrey;
+  color: #1F1F1F;
+  width: 100%;
+  margin-top: 50px;
+  height: 150px;
+  line-height: 150px;
+  text-align: center;
+  Font-Weight: normal;
+  letter-spacing: .2rem;
+}
+
+#playlist-form {
+  margin: 30px;
+  font-weight: bold;
+}
+
+.material-icons {
+  color: #80ffe5;
+  margin-left: 10px;
+  font-size: 42px;
+  text-align: center;
+}
+
+#title_liste {
+  margin: 30px;
+}
+
 * {
-  color: white;
+  color: #1F1F1F;
 }
 ul {
   position: relative;
@@ -16,7 +45,7 @@ ul li:before {
   font-size: 8em;
   bottom: 40%;
   border: none;
-  color: white;
+  color: #1F1F1F;
   background-color: transparent;
   cursor: pointer;
 }
@@ -26,5 +55,5 @@ li .expanseBtn {
 }
 
 .inputPlaylist {
-  color: #1F1F1F;
+  color:  #1F1F1F;
 }

@@ -26,7 +26,7 @@ export class FilmListComponent implements OnInit {
   cursor;
 
   constructor() {
-    //console.log(this.movies);
+    // console.log(this.movies);
 
   }
 
