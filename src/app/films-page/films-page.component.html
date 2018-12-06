@@ -1,13 +1,16 @@
 <div id="title">FILMS
   <div class="searchFilm">
-    <input placeholder="Recherche" [value]="searchValue" (input)="searchValue = $event.target.value">
-    <button mat-icon-button>
-      <mat-icon  id="search" aria-label="searchActor" (click)="onSearchChange()" >search</mat-icon>
-    </button>
+    <div class="sf">
+      <input placeholder="Recherche" [value]="searchValue" (input)="searchValue = $event.target.value">
+      <button mat-icon-button>
+        <mat-icon  id="search" aria-label="searchActor" (click)="onSearchChange()" >search</mat-icon>
+      </button>
+    </div>
   </div>
-  <div>
-    <ng-container *ngIf="films">
-      <app-film-list  [movies]="films"></app-film-list>
-    </ng-container>
-  </div>
+
+</div>
+<div id="films">
+  <ng-container *ngIf="films">
+    <app-film-list  [movies]="films"></app-film-list>
+  </ng-container>
 </div>

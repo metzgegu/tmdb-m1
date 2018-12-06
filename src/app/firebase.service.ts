@@ -101,4 +101,5 @@ export class FirebaseService {
   public deleteFilmFromFavourite(id) {
     firebase.database().ref(`users/${this.user.uid}/playlists/favouriteFilms/${id}`).remove();
   }
+
 }
