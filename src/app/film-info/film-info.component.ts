@@ -37,6 +37,12 @@ export class FilmInfoComponent implements OnInit {
   isGold(number: number) {
     return number <= this.film.vote_average / 2;
   }
+
+  getGenre(): string {
+    let res = '';
+    this.film.genres.forEach((g) => res += g.name + ' ');
+    return res;
+  }
 }
 
 /*

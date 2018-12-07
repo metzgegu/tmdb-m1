@@ -32,7 +32,7 @@
 
       <mat-card class="acteurInfoCard">
         <h3>Fiche technique :</h3>
-        <div>Genre : <div class="loading" *ngIf="loading"></div><div *ngFor="let genre of film.genres">{{genre.name}}</div></div><br/>
+        <div>Genre : {{getGenre()}}</div><br/>
         <p>Date de sortie : {{film.release_date}}</p>
       </mat-card>
     </div>
