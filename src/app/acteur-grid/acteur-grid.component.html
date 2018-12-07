@@ -1,12 +1,22 @@
 <div>
-  <div id="acteurGrid" *ngIf="!clickActeur">
-
-      <div class="searchActor">
+  <div id="title">ACTEURS
+    <div class="searchActor">
+      <div class="sf">
         <input placeholder="Recherche" [value]="searchValue" (input)="searchValue = $event.target.value">
         <button mat-icon-button>
           <mat-icon  id="search" aria-label="searchActor" (click)="onSearchChange()" >search</mat-icon>
         </button>
       </div>
+    </div>
+  </div>
+  <div id="acteurGrid" *ngIf="!clickActeur">
+
+      <!--<div class="searchActor">
+        <input placeholder="Recherche" [value]="searchValue" (input)="searchValue = $event.target.value">
+        <button mat-icon-button>
+          <mat-icon  id="search" aria-label="searchActor" (click)="onSearchChange()" >search</mat-icon>
+        </button>
+      </div>-->
 
 
     <div class="container"
