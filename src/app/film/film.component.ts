@@ -30,18 +30,18 @@ export class FilmComponent implements OnInit {
     // console.log('Film ' + this.fs);
     this.fs.getAllPlaylist().then(val => {
       this.rawPlaylists = val.val();
-      if (val.val() === undefined) {
-        const lists = Object.keys(this.rawPlaylists);
+      if (this.rawPlaylists !== null) {
+        const lists = Object.keys( this.rawPlaylists);
         for (const l of lists) {
           const playlist: MoviesList = {
-            name: l,
-            description: this.rawPlaylists[l]['description'],
+            name : l,
+            description : this.rawPlaylists[l]['description'],
             movies: []
           };
           console.log(playlist);
           console.log(this.rawPlaylists[l].films);
           for (const f in this.rawPlaylists[l].films) {
-            const m: MovieResponse = <MovieResponse>this.rawPlaylists[l].films[f];
+            const m: MovieResponse = <MovieResponse> this.rawPlaylists[l].films[f];
             playlist.movies.push(m);
           }
 
@@ -76,9 +76,10 @@ export class FilmComponent implements OnInit {
   }
 
   addToNewPlaylist() {
-    // console.log(this.searchQuery);
-    this.fs.createPlaylist(this.searchQuery, '');
-    this.addToPlaylist(this.searchQuery);
+    if (this.searchQuery !== undefined){
+      this.fs.createPlaylist(this.searchQuery, '');
+      this.addToPlaylist(this.searchQuery);
+    }
   }
 
   /* closeMenu() {

@@ -24,12 +24,13 @@ mat-card-header{
   height: 55px;
 }
 
-label {
-  position : relative;
+input, label {
+  position : static;
 }
 
 #new {
   position: absolute;
-  height: 0;
-  right: 0;
+  left: 150px;
+  bottom: auto;
+  top: 18px;
 }
