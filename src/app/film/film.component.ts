@@ -38,8 +38,8 @@ export class FilmComponent implements OnInit {
             description : this.rawPlaylists[l]['description'],
             movies: []
           };
-          console.log(playlist);
-          console.log(this.rawPlaylists[l].films);
+          // console.log(playlist);
+          // console.log(this.rawPlaylists[l].films);
           for (const f in this.rawPlaylists[l].films) {
             const m: MovieResponse = <MovieResponse> this.rawPlaylists[l].films[f];
             playlist.movies.push(m);
@@ -62,22 +62,27 @@ export class FilmComponent implements OnInit {
   }
 
   addToPlaylist(playListName) {
-    console.log(playListName);
-    // let alreadyIn;
+    let alreadyIn;
     const myCurrentPlaylist = this.playlists.find(p => p.name === playListName);
-    myCurrentPlaylist.movies.forEach(m => console.log(m.title));
-    /*myCurrentPlaylist.forEach(p => p.movies.forEach(m => m.id === this.movie.id ? alreadyIn = true : alreadyIn = false));
+    myCurrentPlaylist.movies.forEach(m => m.id === this.movie.id ? alreadyIn = true : alreadyIn = false);
     if (!alreadyIn) {
       this.fs.addFilmToPlaylist(this.movie, playListName);
       this.openSnackBar('Film ajouté !', '');
     } else {
-      this.openSnackBar('Film déjà présent dans la playlist !', '');
-    }*/
+      this.openSnackBar('Film déjà présent dans la liste !', '');
+    }
   }
 
   addToNewPlaylist() {
-    if (this.searchQuery !== undefined){
+    console.log(this.rawPlaylists)
+    if (this.searchQuery !== undefined) {
       this.fs.createPlaylist(this.searchQuery, '');
+      const newPlaylist: MoviesList = {
+        name : this.searchQuery,
+        description : '',
+        movies: []
+      };
+      this.playlists.push(newPlaylist);
       this.addToPlaylist(this.searchQuery);
     }
   }
