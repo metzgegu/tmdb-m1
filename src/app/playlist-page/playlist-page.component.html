@@ -13,11 +13,13 @@
 
       <div class="item item-1" *ngFor="let playlist of playlists">
         <div id ="enTeteListe">
-          <h2 id="title_liste" (click)="clickOnPlaylist(playlist)">{{playlist.name}}
-          <button mat-icon-button>
+          <h2 id="title_liste" ><b (click)="clickOnPlaylist(playlist)">{{playlist.name}}</b>
+          <button mat-icon-button (click)="openDialog(playlist)">
             <mat-icon  id="person_add" >person_add</mat-icon> <!-- AJOUTER L'ACTION DU BOUTON : PARTAGE : (click)="" -->
           </button>
-            <i class="material-icons add" (click)="delete(playlist.id)">delete_outline</i>
+            <button mat-icon-button (click)="delete(playlist.id)">
+              <mat-icon id="deletePlaylist" >delete_outline</mat-icon> <!-- AJOUTER L'ACTION DU BOUTON : PARTAGE : (click)="" -->
+            </button>
           </h2>
         </div>
 
