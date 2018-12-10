@@ -67,11 +67,10 @@ export class PlaylistPageComponent implements OnInit {
     this.fs.createPlaylist( this.title,  this.desc);
     this.desc = ' ';
     this.title = ' ';
-    this.openSnackBar('Playlist ajouté !','');
+    this.openSnackBar('Playlist ajouté !', '');
   }
 
   public delete() {
-
   }
 
   roll() {
