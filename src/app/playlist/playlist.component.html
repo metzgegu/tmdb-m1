@@ -1,4 +1,41 @@
-<h1>{{title}}</h1>
-<ng-container *ngIf="playlist">
-  <app-film-list [movies]="playlist" [numberOfFilmTOShow]="5"></app-film-list>
-</ng-container>
+<div class="cont">
+  <div *ngIf="playlist" class="listeInfo">
+
+    <div class="container"
+         fxLayout="row wrap"
+
+         fxLayoutGap="16px"
+
+         fxLayoutAlign="flex-start">
+
+      <div class="item item-2" fxFlex="0 1 calc(50%)">
+        <div id="en_tete">
+          <mat-card id="listeTitle">
+            <h1>{{title}} </h1>
+          </mat-card>
+          <button mat-icon-button> <!-- TODO : mettre bouton de partage à coté de l'encadrement du nom de la liste -->
+            <mat-icon  id="person_add" >person_add</mat-icon> <!-- TODO : AJOUTER L'ACTION DU BOUTON : PARTAGE : (click)="" -->
+          </button>
+        </div>
+        <mat-card class="listeInfoCard">
+          <h3>Description :</h3>
+          <!-- TODO : Afficher correctement la description -->
+          <!--<p *ngIf="this.film.overview!=''">
+            {{description}}
+          </p>
+          <p *ngIf="this.film.overview==''">Pas de description disponible...</p>-->
+        </mat-card>
+
+        <mat-card class="listeInfoCard">
+          <h3>Date de création :</h3>
+          <!-- TODO : ajouter la date de création-->
+        </mat-card>
+
+      </div>
+    </div>
+    <div>
+      <app-film-list [movies]="playlist"></app-film-list>
+    </div>
+
+  </div>
+</div>

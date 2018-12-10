@@ -13,7 +13,7 @@
 
       <div class="item item-1" *ngFor="let playlist of playlists">
         <div id ="enTeteListe">
-          <h2 id="title_liste">{{playlist.name}}
+          <h2 id="title_liste" (click)="clickOnPlaylist(playlist)">{{playlist.name}}
           <button mat-icon-button>
             <mat-icon  id="person_add" >person_add</mat-icon> <!-- AJOUTER L'ACTION DU BOUTON : PARTAGE : (click)="" -->
           </button>
@@ -21,8 +21,8 @@
           </h2>
         </div>
 
-        <div *ngIf="playlist.movies.length == 0">
-          <h3>Cette playlist ne comporte aucun film</h3>
+        <div id = "aucun_film" *ngIf="playlist.movies.length == 0">
+          Aucun film à afficher...
         </div>
 
         <div *ngIf="playlist.movies.length > 0">
