@@ -5,7 +5,7 @@
   </mat-card-header>
   <div class="film-buttons">
     <i class="material-icons like" [class.liked]="isLiked" (click)="like()">star</i>
-    <i class="material-icons add" [matMenuTriggerFor]="menu">add_circle</i>
+    <i id="add" class="material-icons add" [matMenuTriggerFor]="menu">add_circle_outline</i>
     <mat-menu #menu="matMenu">
       <label>
         <input [(ngModel)]="this.searchQuery" mat-menu-item type="text" placeholder="nouvelle liste"/>
