@@ -3,8 +3,8 @@
   <form id="playlist-form">Créer une liste :
     <input class="inputPlaylist" placeholder="Titre" [value]="title" (input)="title = $event.target.value">
     <input class="inputPlaylist" placeholder="Description" [value]="desc" (input)="desc = $event.target.value">
-    <button mat-icon-button>
-      <mat-icon  aria-label="searchActor" (click)="createPlaylist()" >add_circle_outline</mat-icon>
+    <button mat-icon-button (click)="createPlaylist()">
+      <mat-icon  aria-label="searchActor" >add_circle_outline</mat-icon>
     </button>
   </form>
   <div id="filmGrid" >

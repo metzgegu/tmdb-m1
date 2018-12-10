@@ -12,7 +12,7 @@
         <i id="new" class="material-icons add" (click)="addToNewPlaylist()">add</i>
       </label>
       <div *ngFor="let play of playlists">
-        <button mat-menu-item (click)="addToPlaylist(play.name)">{{play.name}}</button>
+        <button mat-menu-item (click)="addToPlaylist(play.id)">{{play.name}}</button>
       </div>
     </mat-menu>
   </div>

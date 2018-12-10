@@ -3,6 +3,9 @@ import {FirebaseService} from '../firebase.service';
 import {MovieResponse} from '../tmdb-data/Movie';
 import {MoviesList} from '../playlist/MoviesList';
 import {MatSnackBar} from '@angular/material';
+import {Firebase2Service} from '../firebase2.service';
+import DataSnapshot = firebase.database.DataSnapshot;
+import {Log} from '@angular/core/testing/src/logger';
 
 @Component({
   selector: 'app-playlist-page',
@@ -22,32 +25,23 @@ export class PlaylistPageComponent implements OnInit {
   playlistClicked;
   playlistIsClicked = false;
 
-  constructor(public snackBar: MatSnackBar, public fs: FirebaseService) {
+  constructor(public snackBar: MatSnackBar, private fb: Firebase2Service) {
   }
 
   ngOnInit() {
-    this.fs.getAllPlaylist().then(val => {
-      this.rawPlaylists = val.val();
-      if (this.rawPlaylists !== null) {
-        const lists = Object.keys(this.rawPlaylists);
-        for (const l of lists) {
-          const playlist: MoviesList = {
-            name: l,
-            description: this.rawPlaylists[l]['description'],
-            movies: []
-          };
-          console.log(playlist);
-          console.log(this.rawPlaylists[l].films);
-          for (const f in this.rawPlaylists[l].films) {
-            const m: MovieResponse = <MovieResponse>this.rawPlaylists[l].films[f];
-            playlist.movies.push(m);
-          }
-          this.playlists.push(playlist);
-        }
+    this.updatePlaylist();
+  }
+
+  updatePlaylist() {
+    this.fb.getObjectPlaylist().then(val => {
+      this.playlists = val;
+      if (this.playlists != null) {
+        this.slicedPlaylists = this.playlists.slice(0, this.numberOfFilmTOShow);
+        this.cursor = 0;
+
       }
     });
   }
-
   openSnackBar(message: string, action: string) {
     this.snackBar.open(message, action, {
       duration: 2000,
@@ -55,18 +49,17 @@ export class PlaylistPageComponent implements OnInit {
   }
 
   public createPlaylist() {
-    if (this.title !== '') {
-      const play: MoviesList = {name: this.title, description: this.desc};
-      this.playlists.push(play);
-      this.fs.createPlaylist(this.title, this.desc);
-      this.desc = '';
-      this.title = '';
-      this.openSnackBar('Playlist ajoutée!', '');
-    }
+    console.log("Create Playlist");
+    this.fb.createPlaylist( this.title,  this.desc).then(() => {
+        this.openSnackBar('Playlist ajouté !','');
+        this.updatePlaylist();
+     });
+    this.desc = ' ';
+    this.title = ' ';
   }
 
   public delete(playListName: string) {
-    this.fs.removePlaylist(playListName);
+    this.fb.removePlaylist(playListName);
     this.openSnackBar('Playlist supprimée!', '');
     // TODO - re charger le front pour que la playlist supprimée disparaisse
   }
