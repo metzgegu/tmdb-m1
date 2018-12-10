@@ -12,10 +12,16 @@
 
 #expanseBtn {
   font-size: 4em;
-  bottom: 40%;
+  position: relative;
+  top: 40%;
   border: none;
   color: #333333;
   background-color: transparent;
   cursor: pointer;
-  place-content: center;
+
+}
+
+#arrowDiv:hover {
+  background-color: aliceblue;
+  cursor: pointer;
 }
