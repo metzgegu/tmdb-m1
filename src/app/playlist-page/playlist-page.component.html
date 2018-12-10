@@ -11,7 +11,7 @@
     <div class="container"
          *ngIf="!canBeMore">
 
-      <div class="item item-1" *ngFor="let playlist of slicedPlaylists">
+      <div class="item item-1" *ngFor="let playlist of playlists">
         <div id ="enTeteListe">
           <h2 id="title_liste">{{playlist.name}}
           <button mat-icon-button>
