@@ -1,0 +1,11 @@
+<h1 mat-dialog-title>Partager</h1>
+<div mat-dialog-content>
+  <p>Email de l'utilisateur</p>
+  <mat-form-field>
+    <input matInput [(ngModel)]="laPlaylist">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Annuler</button>
+  <button mat-button (click)="submit()" cdkFocusInitial>Partager</button>
+</div>

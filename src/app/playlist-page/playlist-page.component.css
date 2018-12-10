@@ -16,6 +16,10 @@
   letter-spacing: .2rem;
 }
 
+#deletePlaylist {
+  margin-left:40px;
+}
+
 #playlist-form {
   margin: 30px;
   font-weight: bold;
