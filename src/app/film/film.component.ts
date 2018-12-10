@@ -25,26 +25,9 @@ export class FilmComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.fb.getPlaylist().then(val => {
-      this.rawPlaylists = val.val();
-      const lists = Object.keys( this.rawPlaylists);
-      for (const l of lists) {
-        const playlist: MoviesList = {
-          name : l,
-          description : this.rawPlaylists[l]['description'],
-          movies: []
-        };
-        console.log(playlist);
-        console.log(this.rawPlaylists[l].films);
-        for (const f in this.rawPlaylists[l].films) {
-          const m: MovieResponse = <MovieResponse> this.rawPlaylists[l].films[f];
-          playlist.movies.push(m);
-        }
-
-        this.playlists.push(playlist);
-      }
+    this.fb.getObjectPlaylist().then(val => {
+      this.playlists = val;
     });
-     console.log(this.playlists);
   }
 
   like() {
@@ -56,14 +39,25 @@ export class FilmComponent implements OnInit {
     }
   }
 
-  addToPlaylist(playListName) {
-    console.log(playListName);
+  addToPlaylist(playListId) {
+    console.log(playListId);
     let alreadyIn = false;
-    this.playlists.forEach((p) => p.movies.forEach((m) => {if (m.id === this.movie.id) { alreadyIn = true; }}));
-    if (!alreadyIn) {
-      this.fb.addFilmToPlaylist(this.movie, playListName);
+    const thePlaylist = this.playlists.find((p) => p.id === playListId);
+    if (thePlaylist.movies !== undefined && thePlaylist.movies !== []) {
+      console.log(thePlaylist.movies);
+      const existingMovie = thePlaylist.movies.find((m) => m.id === this.movie.id);
+      if (existingMovie !== undefined) { alreadyIn = true; }
     }
-    this.openSnackBar('Film ajouté !','');
+    if (alreadyIn === false) {
+      this.fb.addFilmToPlaylist(this.movie, playListId).then(() => {
+        this.openSnackBar('Film ajouté !','');
+        this.fb.getObjectPlaylist().then(val => {
+          this.playlists = val;
+        });
+      });
+    } else {
+      this.openSnackBar('Oups ce film est déjà présent dans la playlist!','');
+    }
   }
 
   getTitle(): string {
