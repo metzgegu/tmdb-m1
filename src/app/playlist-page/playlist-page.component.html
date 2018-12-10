@@ -25,6 +25,7 @@
           <ul>
             <li *ngFor="let movie of playlist.movies"><i class="material-icons md-36" style="font-size: 26px">arrow_right</i> {{movie.title}}</li>
             <li><div><button class="expanseBtn" (click)="clickOnPlaylist(playlist)">...</button></div></li>
+            <li><i class="material-icons add" (click)="delete(playlist.name)">delete_outline</i></li>
           </ul>
       </div>
       <div><button class="expanseBtn" (click)="roll()">...</button></div>

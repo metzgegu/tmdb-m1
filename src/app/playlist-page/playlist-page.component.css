@@ -1,5 +1,5 @@
 * {
-  color: white;
+  color: black;
 }
 ul {
   position: relative;
@@ -27,4 +27,8 @@ li .expanseBtn {
 
 .inputPlaylist {
   color: #1F1F1F;
+}
+
+i {
+  cursor: pointer;
 }

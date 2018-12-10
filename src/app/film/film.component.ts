@@ -43,7 +43,7 @@ export class FilmComponent implements OnInit {
         }
       }
     });
-    console.log(this.playlists);
+    // console.log(this.playlists);
   }
 
   like() {
@@ -68,7 +68,7 @@ export class FilmComponent implements OnInit {
   }
 
   addToNewPlaylist() {
-    console.log(this.rawPlaylists)
+    // console.log(this.rawPlaylists)
     if (this.searchQuery !== undefined) {
       this.fs.createPlaylist(this.searchQuery, '');
       const newPlaylist: MoviesList = {
@@ -108,10 +108,5 @@ export class FilmComponent implements OnInit {
     this.snackBar.open(message, action, {
       duration: 2000,
     });
-  }
-
-  clickOnFilm() {
-    console.log('guillaume');
-    // this.clickFilm.emit(this.movie);
   }
 }

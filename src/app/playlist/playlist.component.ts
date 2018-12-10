@@ -17,7 +17,7 @@ export class PlaylistComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.playlist);
+    // console.log(this.playlist);
   }
 
 }
