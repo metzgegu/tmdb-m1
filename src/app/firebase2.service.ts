@@ -124,8 +124,18 @@ export class Firebase2Service {
     return this.user !== undefined;
   }
 
-  // TODO
-  removePlaylist(playListName) {
-    return true;
+  removePlaylist(playListId) {
+    console.log(playListId);
+    if (this.user !== undefined) {
+      return firebase.database().ref(`users/${this.user.uid}/playlists/`).once('value', val => {
+        val.forEach(function (childSnapshot: DataSnapshot) {
+            const playlist = childSnapshot.val();
+            if (playlist === playListId) {
+              childSnapshot.ref.remove();
+            }
+          }
+        );
+      });
+    }
   }
 }

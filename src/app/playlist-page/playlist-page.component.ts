@@ -57,10 +57,11 @@ export class PlaylistPageComponent implements OnInit {
     this.title = ' ';
   }
 
-  public delete(playListName: string) {
-    this.fb.removePlaylist(playListName);
-    this.openSnackBar('Playlist supprimée!', '');
-    // TODO - re charger le front pour que la playlist supprimée disparaisse
+  public delete(playlistId: string) {
+    this.fb.removePlaylist(playlistId).then(() => {
+      this.openSnackBar('Playlist supprimée!', '');
+      this.updatePlaylist();
+    });
   }
 
   roll() {
