@@ -3,7 +3,6 @@ import {MovieResult} from '../tmdb-data/searchMovie';
 import {MovieResponse} from '../tmdb-data/Movie';
 import {FirebaseService} from '../firebase.service';
 import {MoviesList} from '../playlist/MoviesList';
-import {TmdbService} from '../tmdb.service';
 import {isUndefined} from 'util';
 
 
@@ -14,6 +13,7 @@ import {isUndefined} from 'util';
 })
 export class FilmListComponent implements OnInit {
 
+  @Input() fs: FirebaseService;
   @Input() movies: MovieResponse[];
   @Input() numberOfFilmTOShow;
   slicedMovies: MovieResponse[];
@@ -25,8 +25,8 @@ export class FilmListComponent implements OnInit {
   expansed = false;
   cursor;
 
-  constructor(private fs: FirebaseService) {
-    //console.log(this.movies);
+  constructor() {
+    // console.log(this.movies);
 
   }
 
