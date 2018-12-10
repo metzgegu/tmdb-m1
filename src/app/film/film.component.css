@@ -36,8 +36,7 @@ input, label {
 }
 
 #new {
-  position: absolute;
+  position: relative;
   left: 150px;
-  bottom: auto;
-  top: 18px;
+  bottom: 35px;
 }
