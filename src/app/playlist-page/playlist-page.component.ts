@@ -23,7 +23,7 @@ export class PlaylistPageComponent implements OnInit {
   playlistClicked;
   playlistIsClicked = false;
 
-  constructor(public snackBar: MatSnackBar, private fs: FirebaseService) {
+  constructor(public snackBar: MatSnackBar, public fs: FirebaseService) {
   }
 
   ngOnInit() {
