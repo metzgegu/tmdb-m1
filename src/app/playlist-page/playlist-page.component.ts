@@ -67,10 +67,13 @@ export class PlaylistPageComponent implements OnInit {
     this.fs.createPlaylist( this.title,  this.desc);
     this.desc = ' ';
     this.title = ' ';
-    this.openSnackBar('Playlist ajouté !', '');
+    this.openSnackBar('Playlist ajoutée!', '');
   }
 
-  public delete() {
+  public delete(playListName: string) {
+    this.fs.removePlaylist(playListName);
+    this.openSnackBar('Playlist supprimée!', '');
+    // TODO - re charger le front pour que la playlist supprimée disparaisse
   }
 
   roll() {
