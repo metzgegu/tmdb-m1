@@ -1,8 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import {FirebaseService} from '../firebase.service';
 import {MoviesList} from './MoviesList';
-import {TmdbService} from '../tmdb.service';
-import {MovieResponse} from '../tmdb-data/Movie';
 
 @Component({
   selector: 'app-playlist',
@@ -12,7 +10,6 @@ import {MovieResponse} from '../tmdb-data/Movie';
 export class PlaylistComponent implements OnInit {
 
   @Input() playlist: MoviesList;
-  @Input() title: String;
   constructor(private fs: FirebaseService) {
   }
 
@@ -20,4 +17,6 @@ export class PlaylistComponent implements OnInit {
     // console.log(this.playlist);
   }
 
+  sharePlaylist() {
+  }
 }
