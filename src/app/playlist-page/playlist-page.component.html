@@ -9,28 +9,21 @@
   </form>
   <div id="filmGrid" >
     <div class="container"
-         fxLayout="row wrap"
+         *ngIf="!canBeMore">
 
-         fxLayoutGap="16px"
+      <div class="item item-1" *ngFor="let playlist of slicedPlaylists">
+        <div id ="enTeteListe">
+          <h2 id="title_liste">{{playlist.name}}
+          <button mat-icon-button>
+            <mat-icon  id="person_add" >person_add</mat-icon> <!-- AJOUTER L'ACTION DU BOUTON : PARTAGE : (click)="" -->
+          </button>
+          </h2>
+        </div>
 
-         fxLayoutAlign="flex-start" *ngIf="!canBeMore">
-
-      <div class="item item-1" fxFlex="0 1 calc(16.66% - 16px)"
-           fxFlex.lt-md="0 1 calc(20% - 16px)"
-           fxFlex.lt-sm="0 1 calc(25% - 16px)"
-           *ngFor="let playlist of slicedPlaylists">
-        <h2 id="title_liste">
-          {{playlist.name}}
-        </h2>
-
-          <app-film-list [movies]="playlist.movies" [fs]="fs"></app-film-list>
-
-        <!--<ul>-->
-            <!--<li *ngFor="let movie of playlist.movies"><i class="material-icons md-36" style="font-size: 26px">arrow_right</i> {{movie.title}}</li>-->
-            <!--<li><div><button class="expanseBtn" (click)="clickOnPlaylist(playlist)">...</button></div></li>-->
-          <!--</ul>-->
+          <!--<div *ngIf="">  Ajouter la condition si il n'y a pas de film dans la liste alors écrire "Aucun film à afficher..."-->
+            <app-film-list [movies]="playlist.movies" [fs]="fs"></app-film-list>
+          <!--</div>-->
       </div>
-      <div><button class="expanseBtn" (click)="roll()">...</button></div>
     </div>
   </div>
 </div>

@@ -1,3 +1,7 @@
+#enTeteListe {
+  display: inline-block;
+}
+
 #title {
   display: block;
   background-color: lightgrey;
@@ -24,34 +28,18 @@
 }
 
 #title_liste {
-  margin: 30px;
+  margin-left: 30px;
+}
+
+#person_add {
+  color: #1F1F1F;
+  border: 2px solid #80ffe5;
+  padding: 8px;
+  padding-right: 20px;
 }
 
 * {
   color: #1F1F1F;
-}
-ul {
-  position: relative;
-  list-style: none;
-  margin-left: 0;
-}
-ul li:before {
-  content: "";
-  position: absolute;
-  left: 0;
-}
-
-.expanseBtn {
-  font-size: 8em;
-  bottom: 40%;
-  border: none;
-  color: #1F1F1F;
-  background-color: transparent;
-  cursor: pointer;
-}
-
-li .expanseBtn {
-  font-size: 3em;
 }
 
 .inputPlaylist {
