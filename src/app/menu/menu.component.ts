@@ -1,9 +1,10 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {AngularFireAuth} from '@angular/fire/auth';
 import {filter} from 'rxjs/operators';
 import {AngularFireDatabase} from '@angular/fire/database';
 import {auth, User} from 'firebase';
 import {Observable} from 'rxjs';
+import {TmdbService} from '../tmdb.service';
 import {FirebaseService} from '../firebase.service';
 
 @Component({
@@ -18,7 +19,8 @@ export class MenuComponent implements OnInit {
   @Output() changeMenu = new EventEmitter<String>();
   @Output() userLogin = new EventEmitter<User>();
 
-  constructor(public anAuth: AngularFireAuth, private db: AngularFireDatabase) {
+
+  constructor(public anAuth: AngularFireAuth, private db: AngularFireDatabase, private fs: FirebaseService) {
     this.cursor = 'home';
     this.anAuth.user.pipe(filter( u => !!u )).subscribe( u => {
       this._user = u;

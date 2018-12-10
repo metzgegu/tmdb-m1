@@ -1,12 +1,22 @@
 <div>
-  <div id="acteurGrid" *ngIf="!clickActeur">
-
-      <div class="searchActor">
+  <div id="title">ACTEURS
+    <div class="searchActor">
+      <div class="sf">
         <input placeholder="Recherche" [value]="searchValue" (input)="searchValue = $event.target.value">
         <button mat-icon-button>
           <mat-icon  id="search" aria-label="searchActor" (click)="onSearchChange()" >search</mat-icon>
         </button>
       </div>
+    </div>
+  </div>
+  <div id="acteurGrid" *ngIf="!clickActeur">
+
+      <!--<div class="searchActor">
+        <input placeholder="Recherche" [value]="searchValue" (input)="searchValue = $event.target.value">
+        <button mat-icon-button>
+          <mat-icon  id="search" aria-label="searchActor" (click)="onSearchChange()" >search</mat-icon>
+        </button>
+      </div>-->
 
 
     <div class="container"
@@ -19,13 +29,13 @@
            fxFlex.lt-md="0 1 calc(20% - 16px)"
            fxFlex.lt-sm="0 1 calc(25% - 16px)"
            *ngFor="let acteur of filterActeur">
-        <app-acteur [actor]="acteur" [fs]="fs" (clickSurActeur)="clickSurActeurCard($event)"></app-acteur>
+        <app-acteur [actor]="acteur" (clickSurActeur)="clickSurActeurCard($event)"></app-acteur>
       </div>
     </div>
   </div>
 
   <div *ngIf="clickActeur">
-    <app-acteur-info [fs]="fs" [actor]="acteurSelectionner" (exitEmitter)="exitInfoActeur($event)"></app-acteur-info>
+    <app-acteur-info (exitEmitter)="exitInfoActeur($event)"></app-acteur-info>
   </div>
 </div>
 <!--

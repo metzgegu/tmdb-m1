@@ -1,40 +1,35 @@
 <div *ngIf="actor1" class="acteurInfo"   >
-  <div>
-    <h2 class="mat-h2">{{actor.name}}  <button mat-icon-button>
-      <mat-icon aria-label="exit" routerLink="/acteurs" (click)="exit()">clear</mat-icon>
-    </button> </h2>
-
-  </div>
-
   <div class="container"
        fxLayout="row wrap"
 
        fxLayoutGap="16px"
 
        fxLayoutAlign="flex-start">
-    <div class="item item-1" fxFlex="0 1 calc(25% - 16px)">
+    <div class="item item-1" fxFlex="0 1 calc(30% - 16px)">
       <mat-card class="acteurInfoCard" id="imagActeurInfo">
         <img src={{getPath(actor1.profile_path)}} alt={{actor1.name}} id="acteurImg">
       </mat-card>
     </div>
-    <div class="item item-2" fxFlex="0 1 calc(50% - 16px)">
+    <div class="item item-2" fxFlex="0 1 calc(30% - 16px)">
+      <mat-card id="acteurTitle">
+        <h2 class="mat-h2">{{actor1.name}} </h2>
+      </mat-card>
       <mat-card class="acteurInfoCard">
         <h3>Description :</h3>
         <p *ngIf="this.actor1.biography!=''">{{actor1.biography}}</p>
         <p *ngIf="this.actor1.biography==''">Pas de description disponible ...</p>
       </mat-card>
-    </div>
-    <div class="item item-3" fxFlex="0 1 calc(20% - 16px)">
-      <mat-card class="acteurInfoCard">
+      <!--<mat-card class="acteurInfoCard">
         <h3>Fiche technique :</h3>
         <p>Genre : {{actor1.gender}}</p><br/>
         <p>Aussi connu : {{actor1.also_known_as}}</p>
         <p>Date de naissance : {{actor1.birthday}}</p>
-      </mat-card>
+      </mat-card>-->
     </div>
+
   </div>
   <div><h2 class="mat-h2">Videographie</h2></div>
   <div *ngIf="movies.length>0">
-    <app-film-list [fs]="fs" [numberOfFilmTOShow]="5" [movies]="movies"></app-film-list>
+    <app-film-list [numberOfFilmTOShow]="5" [movies]="movies"></app-film-list>
   </div>
 </div>
