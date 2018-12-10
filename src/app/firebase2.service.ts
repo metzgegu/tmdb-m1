@@ -140,6 +140,6 @@ export class Firebase2Service {
   }
 
   setMail(email: string) {
-    firebase.database().ref(`users/${this.user.uid}/`).set({mail: `${email}`});
+    firebase.database().ref(`users/${this.user.uid}/`).update({mail: `${email}`});
   }
 }
