@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import {FirebaseService} from '../firebase.service';
 import {MoviesList} from './MoviesList';
+import {TmdbService} from '../tmdb.service';
 import {MovieResponse} from '../tmdb-data/Movie';
 
 @Component({
@@ -10,14 +11,13 @@ import {MovieResponse} from '../tmdb-data/Movie';
 })
 export class PlaylistComponent implements OnInit {
 
-  @Input() fs: FirebaseService;
   @Input() playlist: MoviesList;
   @Input() title: String;
-  constructor() {
+  constructor(private fs: FirebaseService) {
   }
 
   ngOnInit() {
-    console.log(this.playlist);
+    // console.log(this.playlist);
   }
 
 }

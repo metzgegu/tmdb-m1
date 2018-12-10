@@ -1,12 +1,14 @@
 .searchFilm {
-  color: white;
+
   display: inline-block;
-  text-align: right;
+  position: absolute;
+  right: 0;
+  top: 0;
 }
 
 #title {
   display: block;
-  background-color: lightgrey;
+  background-color: #dbe7f9;
   color: #1F1F1F;
   width: 100%;
   margin-top: 50px;
@@ -16,8 +18,9 @@
   Font-Weight: normal;
   letter-spacing: .2rem;
 }
-
-
+#films {
+  background-color: #FFFFFF;
+}
 
 
 

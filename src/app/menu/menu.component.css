@@ -4,6 +4,7 @@
   left: 0;
   width: 100%;
   z-index: 1050;
+  background-color: #333333;
 }
 
 #btnHome, #btnFilms, #btnActor, #btnPlaylist{
@@ -24,7 +25,7 @@
 
 
 *{
-  background-color: #333333;
+
   color: #FFFFFF;
 }
 
@@ -32,10 +33,21 @@ p {
   text-align: left;
   margin-left: 30px;
   color: #80ffe5;
-  font-size: 2em;
+  font-size:2em;
   margin-bottom: 0px;
   margin-top: 0px;
   Font-Weight: Bold;
+}
+
+.label { font-size: 1em;
+  color: white;}
+
+.label { display:none; }
+
+/* Desktop*/
+
+@media screen and (min-width: 1300px) {
+  .label  { display: inline; }
 }
 
 

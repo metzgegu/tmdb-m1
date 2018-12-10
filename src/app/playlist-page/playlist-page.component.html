@@ -17,12 +17,14 @@
           <button mat-icon-button>
             <mat-icon  id="person_add" >person_add</mat-icon> <!-- AJOUTER L'ACTION DU BOUTON : PARTAGE : (click)="" -->
           </button>
+            <i class="material-icons add" (click)="delete(playlist.name)">delete_outline</i>
           </h2>
         </div>
 
           <!--<div *ngIf="">  Ajouter la condition si il n'y a pas de film dans la liste alors écrire "Aucun film à afficher..."-->
             <app-film-list [movies]="playlist.movies" [fs]="fs"></app-film-list>
           <!--</div>-->
+
       </div>
     </div>
   </div>
@@ -31,5 +33,5 @@
   <button mat-icon-button (click)="exitInfo()">
     <mat-icon aria-label="exit">clear</mat-icon>
   </button>
-  <app-playlist [fs]="fs" [title]="playlistClicked.name" [playlist]="playlistClicked.movies"></app-playlist>
+  <app-playlist  [title]="playlistClicked.name" [playlist]="playlistClicked.movies"></app-playlist>
 </div>

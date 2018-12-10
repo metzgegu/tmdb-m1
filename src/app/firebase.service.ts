@@ -6,6 +6,8 @@ import * as firebase from 'firebase';
 import {User} from 'firebase';
 import DataSnapshot = firebase.database.DataSnapshot;
 import {TmdbService} from './tmdb.service';
+import {AngularFireAuth} from '@angular/fire/auth';
+import {filter} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +15,19 @@ import {TmdbService} from './tmdb.service';
 
 export class FirebaseService {
 
-  constructor(private user: User, private tmdb: TmdbService) {
+  private user;
+  constructor(public anAuth: AngularFireAuth, private tmdb: TmdbService) {
+    this.anAuth.user.pipe(filter( u => !!u )).subscribe( u => {
+      this.user = u;
+      console.log('Firebase uid ' + u.uid);
+    });
+  }
+  public isConnected() {
+    if (this.user === undefined) {
+      return false;
+    } else {
+      return true;
+    }
   }
 
   public createPlaylist(listName: string, listDesc: string) {
@@ -31,7 +45,7 @@ export class FirebaseService {
           playLists = [];
         }
         return playLists;
-      })
+      });
     return playLists;
   }
 
@@ -87,4 +101,5 @@ export class FirebaseService {
   public deleteFilmFromFavourite(id) {
     firebase.database().ref(`users/${this.user.uid}/playlists/favouriteFilms/${id}`).remove();
   }
+
 }

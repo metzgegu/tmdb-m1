@@ -32,11 +32,20 @@ import { FilmInfoComponent } from './film-info/film-info.component';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { FilmsPageComponent } from './films-page/films-page.component';
 import { PlaylistPageComponent } from './playlist-page/playlist-page.component';
+import { AjoutFilmDansListeV2Component } from './ajout-film-dans-liste-v2/ajout-film-dans-liste-v2.component';
+import {FormsModule} from '@angular/forms';
 
 const appRoutes: Routes = [
   { path: 'acteur-info', component: ActeurInfoComponent },
   { path: 'acteurs', component: ActeurGridComponent },
-  { path: '',  redirectTo: '/', pathMatch: 'full' },
+  { path: 'home', component: HomePageComponent },
+  { path: 'films', component: FilmsPageComponent },
+  { path: 'actors', component: ActeurGridComponent },
+  { path: 'playlist', component: PlaylistPageComponent },
+  { path: 'account', component: ProfilComponent },
+  { path: 'acteurs/:id', component: ActeurInfoComponent },
+  { path: 'films/:id', component: FilmInfoComponent },
+  { path: '',  redirectTo: '/home', pathMatch: 'full' },
 ];
 
 @NgModule({
@@ -53,7 +62,8 @@ const appRoutes: Routes = [
     PlaylistComponent,
     FilmInfoComponent,
     FilmsPageComponent,
-    PlaylistPageComponent
+    PlaylistPageComponent,
+    AjoutFilmDansListeV2Component
   ],
   imports: [
     BrowserModule,
@@ -70,7 +80,12 @@ const appRoutes: Routes = [
     FlexLayoutModule,
     MatInputModule,
     MatMenuModule,
-    MatDialogModule
+    MatDialogModule,
+    FormsModule,
+    RouterModule.forRoot(
+      appRoutes,
+      { enableTracing: true } // <-- debugging purposes only
+    )
   ],
   providers: [TmdbService],
   bootstrap: [AppComponent]

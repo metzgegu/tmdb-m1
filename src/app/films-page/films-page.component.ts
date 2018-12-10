@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {TmdbService} from '../tmdb.service';
 import {MovieResponse} from '../tmdb-data/Movie';
 import {SearchMovieResponse} from '../tmdb-data/searchMovie';
+import {FirebaseService} from '../firebase.service';
 
 
 @Component({
@@ -11,7 +12,6 @@ import {SearchMovieResponse} from '../tmdb-data/searchMovie';
 })
 export class FilmsPageComponent implements OnInit {
 
-  @Input() fs;
   films = [];
   searchValue;
 
@@ -19,7 +19,7 @@ export class FilmsPageComponent implements OnInit {
     return Math.floor(Math.random() * Math.floor(max));
   }
 
-  constructor(private tmdb: TmdbService) {
+  constructor(private tmdb: TmdbService, private fs: FirebaseService) {
     this.searchValue = '';
   }
 
