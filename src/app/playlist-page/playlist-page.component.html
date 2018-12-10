@@ -21,9 +21,13 @@
           </h2>
         </div>
 
-          <!--<div *ngIf="">  Ajouter la condition si il n'y a pas de film dans la liste alors écrire "Aucun film à afficher..."-->
-            <app-film-list [movies]="playlist.movies" [fs]="fs"></app-film-list>
-          <!--</div>-->
+        <div *ngIf="playlist.movies.length == 0">
+          <h3>Cette playlist ne comporte aucun film</h3>
+        </div>
+
+        <div *ngIf="playlist.movies.length > 0">
+          <app-film-list [movies]="playlist.movies" [fs]="fs"></app-film-list>
+        </div>
 
       </div>
     </div>

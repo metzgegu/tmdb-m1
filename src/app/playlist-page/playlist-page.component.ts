@@ -1,9 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {FirebaseService} from '../firebase.service';
 import {MovieResponse} from '../tmdb-data/Movie';
 import {MoviesList} from '../playlist/MoviesList';
 import {MatSnackBar} from '@angular/material';
-import {TmdbService} from '../tmdb.service';
 
 @Component({
   selector: 'app-playlist-page',
@@ -15,8 +14,8 @@ export class PlaylistPageComponent implements OnInit {
   private rawPlaylists: JSON;
   public playlists: MoviesList[] = [];
   slicedPlaylists: MoviesList[] = [];
-  desc = null;
-  title = null;
+  desc = '';
+  title = '';
   canBeMore;
   cursor;
   numberOfFilmTOShow = 5;
@@ -62,12 +61,14 @@ export class PlaylistPageComponent implements OnInit {
   }
 
   public createPlaylist() {
-    const play: MoviesList = { name : this.title};
-    this.playlists.push(play);
-    this.fs.createPlaylist( this.title,  this.desc);
-    this.desc = ' ';
-    this.title = ' ';
-    this.openSnackBar('Playlist ajoutée!', '');
+    if (this.title !== '') {
+      const play: MoviesList = {name: this.title, description: this.desc};
+      this.playlists.push(play);
+      this.fs.createPlaylist(this.title, this.desc);
+      this.desc = '';
+      this.title = '';
+      this.openSnackBar('Playlist ajoutée!', '');
+    }
   }
 
   public delete(playListName: string) {
