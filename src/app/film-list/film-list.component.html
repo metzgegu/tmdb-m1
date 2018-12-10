@@ -28,7 +28,7 @@
            *ngFor="let movie of slicedMovies">
         <app-film [movie]="movie"></app-film>
       </div>
-      <div><button id="expanseBtn" class="material-icons" (click)="expanse()">play_arrow</button></div>
+      <div id="arrowDiv" (click)="expanse()"><button id="expanseBtn" class="material-icons" >play_arrow</button></div>
     </div>
   </div>
 </div>
