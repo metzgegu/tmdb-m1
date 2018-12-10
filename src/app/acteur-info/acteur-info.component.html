@@ -6,6 +6,9 @@
 
        fxLayoutAlign="flex-start">
     <div class="item item-1" fxFlex="0 1 calc(30% - 16px)">
+      <i id="backButton" routerLink="/acteurs" routerLinkActive="active" class="material-icons">
+        reply
+      </i>
       <mat-card class="acteurInfoCard" id="imagActeurInfo">
         <img src={{getPath(actor1.profile_path)}} alt={{actor1.name}} id="acteurImg">
       </mat-card>

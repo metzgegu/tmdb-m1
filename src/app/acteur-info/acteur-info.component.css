@@ -1,3 +1,12 @@
+#backButton {
+  font-size: 42px;
+  position: relative;
+  right: 40%;
+}
+
+i {
+  cursor: pointer;
+}
 
 
 .acteurInfoCard {
