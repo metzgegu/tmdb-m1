@@ -45,7 +45,7 @@ export class FirebaseService {
           playLists = [];
         }
         return playLists;
-      })
+      });
     return playLists;
   }
 

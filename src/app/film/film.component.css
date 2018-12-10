@@ -30,3 +30,14 @@ mat-card-header{
   cursor: pointer;
   color: #1F1F1F;
 }
+
+input, label {
+  position : static;
+}
+
+#new {
+  position: absolute;
+  left: 150px;
+  bottom: auto;
+  top: 18px;
+}
