@@ -32,7 +32,6 @@ export class AppComponent implements OnInit{
       console.log('app ' + this.fs);
       this.fb.setUser(this._user);
       this.fb.setTmbd(this.tmdb);
-      this.fb.getPlaylist().then(res => {console.log("Start"); console.log(res.val()); console.log("Stop"); });
     });
 
     setTimeout( () =>
