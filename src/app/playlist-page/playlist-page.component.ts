@@ -38,6 +38,7 @@ export class PlaylistPageComponent implements OnInit {
       if (this.playlists != null) {
         this.slicedPlaylists = this.playlists.slice(0, this.numberOfFilmTOShow);
         this.cursor = 0;
+
       }
     });
   }
