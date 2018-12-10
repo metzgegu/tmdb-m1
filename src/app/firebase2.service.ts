@@ -6,6 +6,7 @@ import {TmdbService} from './tmdb.service';
 import {MoviesList} from './playlist/MoviesList';
 import { Observable, of } from 'rxjs';
 import {MovieResponse} from './tmdb-data/Movie';
+import Reference = firebase.storage.Reference;
 
 @Injectable({
   providedIn: 'root'
@@ -16,8 +17,42 @@ export class Firebase2Service {
 
   constructor() { }
 
-  getPlaylist(): Promise<DataSnapshot> {
-    return firebase.database().ref(`users/${this.user.uid}/playlists`).once('value');
+  getPlaylistId(uid): Promise<DataSnapshot> {
+    return firebase.database().ref(`users/${uid}`).child(`/playlists`).once('value');
+  }
+
+  getPlaylist(uid): Promise<any[]> {
+    return firebase.database().ref(`users/${uid}`).child(`/playlists`).once('value').then(function(snapshot) {
+      const movies = [];
+      snapshot.forEach(function(childSnapshot: DataSnapshot) {
+        const playlistId = childSnapshot.val();
+        const promise =  firebase.database().ref(`lists/`).child(playlistId).once('value').then(function(snap) {
+          const dummy: any = snap.val();
+          if (dummy !== null) {dummy.id = playlistId};
+          return dummy;
+        });
+        movies.push(promise);
+      });
+      return Promise.all(movies);
+    });
+  }
+
+  getObjectPlaylist(): Promise<MoviesList[]> {
+    if ( this.user !== undefined) {
+      return this.getPlaylist(this.user.uid).then(val => {
+        return val.filter(list => list !== null ).map(list => {
+          const MovieList: MoviesList = {
+            name: list.title,
+            description: list.desc,
+            movies: (list.films !== undefined) ? Object.values(list.films) : [],
+            id: list.id
+          };
+          return MovieList;
+        });
+      });
+    } else {
+      return new Promise((resolve) => { resolve(null); });
+    }
   }
 
   setTmbd(tmdb: TmdbService) {
@@ -28,15 +63,18 @@ export class Firebase2Service {
     this.user = user;
   }
 
-  createPlaylist(title: string, desc: string): Promise<void> {
+  createPlaylist(title: string, desc: string) {
     const id = firebase.database().ref(`lists/`).push({
       author: this.user.uid,
       title: title,
       desc: desc
-    });
-    return firebase.database().ref(`users/${this.user.uid}/playlists`).set({
-      id : id
-    });
+    }).key;
+    console.log('Playlist pushed at Id' + id);
+    return this.addUserToPlaylist(this.user.uid, id);
+  }
+
+  addUserToPlaylist(idUser: string, idPlaylist: string) {
+    return firebase.database().ref(`users/${idUser}/playlists`).push(idPlaylist);
   }
 
   //NOT TESTED
@@ -58,8 +96,8 @@ export class Firebase2Service {
   }
 
   //NOT TESTED
-  public addFilmToPlaylist(movie: MovieResponse, listName: string) {
-    firebase.database().ref(`users/${this.user.uid}/playlists/${listName}/films`).push(
+  public addFilmToPlaylist(movie: MovieResponse, listId: string) {
+    return firebase.database().ref(`lists/${listId}/films`).push(
       movie
     );
   }
