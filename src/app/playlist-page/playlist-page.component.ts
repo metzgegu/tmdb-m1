@@ -5,6 +5,7 @@ import {MovieResponse} from '../tmdb-data/Movie';
 import {MoviesList} from '../playlist/MoviesList';
 import {MatSnackBar} from '@angular/material';
 import {Firebase2Service} from '../firebase2.service';
+import { Router } from '@angular/router';
 import DataSnapshot = firebase.database.DataSnapshot;
 import {Log} from '@angular/core/testing/src/logger';
 
@@ -30,10 +31,13 @@ export class PlaylistPageComponent implements OnInit {
   playlistClicked;
   playlistIsClicked = false;
 
-  constructor(public snackBar: MatSnackBar, private fb: Firebase2Service, public dialog: MatDialog) {
+  constructor(public snackBar: MatSnackBar, private fb: Firebase2Service, public dialog: MatDialog,private router: Router) {
   }
 
   ngOnInit() {
+    if (!this.fb.isConnected()) {
+      this.router.navigate(['/home']);
+    }
     this.updatePlaylist();
   }
 
