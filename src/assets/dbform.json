@@ -1,0 +1,56 @@
+{
+  "lists" : {
+    "DLkioLNeGaV2gelfYZUjnpMGqVi1" : {
+      "name": "Horreur",
+      "desc": "Mes films d'horreurs préférés de 2001 à 2013",
+      "author": "ChHqsgA800R25p1AW7QhBwDNmBM2",
+      "films": {
+        "-LQXqs3bmqUJC5xNKeM9": {
+          "adult": false,
+          "backdrop_path": "/5DUqFLgkLsJxyqPCAcgTivZy2SX.jpg",
+          "genre_ids": [
+            28,
+            12,
+            878
+          ],
+          "id": 348350,
+          "original_language": "en",
+          "original_title": "Solo: A Star Wars Story",
+          "overview": "Through a series of daring escapades deep within a dark and dangerous criminal underworld, Han Solo meets his mighty future copilot Chewbacca and encounters the notorious gambler Lando Calrissian.",
+          "popularity": 59.537,
+          "poster_path": "/3IGbjc5ZC5yxim5W0sFING2kdcz.jpg",
+          "release_date": "2018-05-15",
+          "title": "Solo: A Star Wars Story",
+          "video": false,
+          "vote_average": 6.7,
+          "vote_count": 2386
+        },
+        "-LQXsic-0s920TNJyGjg": {
+          "adult": false,
+          "backdrop_path": "/rH79sB6Nkx4cMW3JzsUy7wK0rhX.jpg",
+          "genre_ids": [
+            28,
+            878,
+            53
+          ],
+          "id": 345940,
+          "original_language": "en",
+          "original_title": "The Meg",
+          "overview": "A deep sea submersible pilot revisits his past fears in the Mariana Trench, and accidentally unleashes the seventy foot ancestor of the Great White Shark believed to be extinct.",
+          "popularity": 123.386,
+          "poster_path": "/eyWICPcxOuTcDDDbTMOZawoOn8d.jpg",
+          "release_date": "2018-08-09",
+          "title": "The Meg",
+          "video": false,
+          "vote_average": 6,
+          "vote_count": 1419
+        }
+      }
+    }
+  },
+  "users" : {
+    "ChHqsgA800R25p1AW7QhBwDNmBM2" : {
+      "playlists" : {"id" : "DLkioLNeGaV2gelfYZUjnpMGqVi1", "id" : "DLkioLNeezrezelfYZUjnpMGqVi1"}
+    }
+  }
+}

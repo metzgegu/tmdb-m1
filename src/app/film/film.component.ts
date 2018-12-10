@@ -3,6 +3,7 @@ import {MovieResponse} from '../tmdb-data/Movie';
 import {FirebaseService} from '../firebase.service';
 import {MoviesList} from '../playlist/MoviesList';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import {Firebase2Service} from '../firebase2.service';
 
 @Component({
   selector: 'app-film',
@@ -17,67 +18,53 @@ export class FilmComponent implements OnInit {
   public playlists: MoviesList[] = [];
   public searchQuery: string;
 
-  constructor(public snackBar: MatSnackBar, private fs: FirebaseService) {
+  constructor(public snackBar: MatSnackBar, private fb: Firebase2Service) {
   }
 
   ngOnInit() {
-    // console.log('Film ' + this.fs);
-    this.fs.getAllPlaylist().then(val => {
-      this.rawPlaylists = val.val();
-      if (this.rawPlaylists !== null) {
-        const lists = Object.keys( this.rawPlaylists);
-        for (const l of lists) {
-          const playlist: MoviesList = {
-            name : l,
-            description : this.rawPlaylists[l]['description'],
-            movies: []
-          };
-          // console.log(playlist);
-          // console.log(this.rawPlaylists[l].films);
-          for (const f in this.rawPlaylists[l].films) {
-            const m: MovieResponse = <MovieResponse> this.rawPlaylists[l].films[f];
-            playlist.movies.push(m);
-          }
-
-          this.playlists.push(playlist);
-        }
-      }
+    this.fb.getObjectPlaylist().then(val => {
+      this.playlists = val;
     });
-    // console.log(this.playlists);
   }
 
   like() {
     this.isLiked = !this.isLiked;
     if (this.isLiked) {
-      this.fs.addFilmToFavourite(this.movie.id);
+      this.fb.addFilmToFavourite(this.movie.id);
     } else {
-      this.fs.deleteFilmFromFavourite(this.movie.id);
+      this.fb.deleteFilmFromFavourite(this.movie.id);
     }
   }
 
-  addToPlaylist(playListName) {
-    let alreadyIn;
-    const myCurrentPlaylist = this.playlists.find(p => p.name === playListName);
-    myCurrentPlaylist.movies.forEach(m => m.id === this.movie.id ? alreadyIn = true : alreadyIn = false);
-    if (!alreadyIn) {
-      this.fs.addFilmToPlaylist(this.movie, playListName);
-      this.openSnackBar('Film ajouté !', '');
+  addToPlaylist(playListId) {
+    console.log(playListId);
+    let alreadyIn = false;
+    const thePlaylist = this.playlists.find((p) => p.id === playListId);
+    if (thePlaylist.movies !== undefined && thePlaylist.movies !== []) {
+      console.log(thePlaylist.movies);
+      const existingMovie = thePlaylist.movies.find((m) => m.id === this.movie.id);
+      if (existingMovie !== undefined) { alreadyIn = true; }
+    }
+    if (alreadyIn === false) {
+      this.fb.addFilmToPlaylist(this.movie, playListId).then(() => {
+        this.openSnackBar('Film ajouté !','');
+        this.fb.getObjectPlaylist().then(val => {
+          this.playlists = val;
+        });
+      });
     } else {
-      this.openSnackBar('Film déjà présent dans la liste !', '');
+      this.openSnackBar('Oups ce film est déjà présent dans la playlist!','');
     }
   }
 
   addToNewPlaylist() {
     // console.log(this.rawPlaylists)
     if (this.searchQuery !== undefined) {
-      this.fs.createPlaylist(this.searchQuery, '');
-      const newPlaylist: MoviesList = {
-        name : this.searchQuery,
-        description : '',
-        movies: []
-      };
-      this.playlists.push(newPlaylist);
+      this.fb.createPlaylist(this.searchQuery, '');
       this.addToPlaylist(this.searchQuery);
+      this.fb.getObjectPlaylist().then(val => {
+        this.playlists = val;
+      });
     }
   }
 

@@ -9,6 +9,7 @@ import {filter} from 'rxjs/operators';
 import {PersonResponse} from './tmdb-data/Person';
 import {SearchPeopleResponse} from './tmdb-data/SearchPeople';
 import {FirebaseService} from './firebase.service';
+import {Firebase2Service} from './firebase2.service';
 
 @Component({
   selector: 'app-root',
@@ -21,12 +22,13 @@ export class AppComponent implements OnInit{
   private dbData: Observable<any>;
    cursor: String;
 
-  constructor(private tmdb: TmdbService, private db: AngularFireDatabase, private fs: FirebaseService) {
-    setTimeout( () =>
-      tmdb.init('80d6fe65cffe579d433c3da0f5d11307') // Clef de TMDB
-        .getMovie(13)
-        .catch( err => console.error('Error getting movie:', err) ),
-      1000 );
+  constructor(private tmdb: TmdbService, public anAuth: AngularFireAuth, private db: AngularFireDatabase, private fb: Firebase2Service) {
+    this.anAuth.user.pipe(filter( u => !!u )).subscribe( u => {
+      this._user = u;
+      console.log('Firebase uid ' + u.uid);
+      this.fb.setUser(this._user);
+      this.fb.setTmbd(this.tmdb);
+    });
     this.cursor = 'home';
   }
 

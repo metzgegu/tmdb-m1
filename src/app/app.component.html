@@ -16,14 +16,14 @@
   <app-home-page [fs]= "fs"></app-home-page>
 </div>
 <div *ngIf="cursor === 'films'">
-  <app-films-page [fs]="fs"></app-films-page>
+  <app-films-page></app-films-page>
 </div>
 <div *ngIf="cursor === 'actor'" >
-  <app-acteur-grid [fs]= "fs" [acteurs]="acteurs" ></app-acteur-grid>
+  <app-acteur-grid [acteurs]="acteurs" ></app-acteur-grid>
 
 </div>
 <div *ngIf="cursor === 'playlist'">
-  <app-playlist-page [fs]="fs"></app-playlist-page>
+  <app-playlist-page></app-playlist-page>
 </div>
 <div *ngIf="cursor === 'account'">
   <app-profil [user]="_user"></app-profil>

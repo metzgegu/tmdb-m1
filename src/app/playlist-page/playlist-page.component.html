@@ -3,15 +3,15 @@
   <form id="playlist-form">Créer une liste :
     <input class="inputPlaylist" placeholder="Titre" [value]="title" (input)="title = $event.target.value">
     <input class="inputPlaylist" placeholder="Description" [value]="desc" (input)="desc = $event.target.value">
-    <button mat-icon-button>
-      <mat-icon  aria-label="searchActor" (click)="createPlaylist()" >add_circle_outline</mat-icon>
+    <button mat-icon-button (click)="createPlaylist()">
+      <mat-icon  aria-label="searchActor" >add_circle_outline</mat-icon>
     </button>
   </form>
   <div id="filmGrid" >
     <div class="container"
          *ngIf="!canBeMore">
 
-      <div class="item item-1" *ngFor="let playlist of slicedPlaylists">
+      <div class="item item-1" *ngFor="let playlist of playlists">
         <div id ="enTeteListe">
           <h2 id="title_liste" (click)="clickOnPlaylist(playlist)">{{playlist.name}}
           <button mat-icon-button>
@@ -26,7 +26,7 @@
         </div>
 
         <div *ngIf="playlist.movies.length > 0">
-          <app-film-list [movies]="playlist.movies" [fs]="fs"></app-film-list>
+          <app-film-list [movies]="playlist.movies" [numberOfFilmTOShow]="5"></app-film-list>
         </div>
 
       </div>

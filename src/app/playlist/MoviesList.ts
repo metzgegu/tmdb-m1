@@ -4,4 +4,5 @@ export interface MoviesList {
   name?: string;
   description?: string;
   movies?: MovieResponse[];
+  id: string;
 }
