@@ -26,7 +26,6 @@ export class PlaylistPageComponent implements OnInit {
   }
 
   ngOnInit() {
-    // console.log('Playlist ' + this.fs);
     this.fs.getAllPlaylist().then(val => {
       this.rawPlaylists = val.val();
       if (this.rawPlaylists !== null) {
@@ -43,13 +42,8 @@ export class PlaylistPageComponent implements OnInit {
             const m: MovieResponse = <MovieResponse>this.rawPlaylists[l].films[f];
             playlist.movies.push(m);
           }
-          /*for (const m of moviesLists) {
-            playlist.movies.push(<MovieResponse> m);
-          }*/
           this.playlists.push(playlist);
         }
-        this.slicedPlaylists = this.playlists.slice(0, this.numberOfFilmTOShow);
-        this.cursor = 0;
       }
     });
   }
