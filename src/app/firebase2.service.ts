@@ -38,7 +38,7 @@ export class Firebase2Service {
   }
 
   getObjectPlaylist(): Promise<MoviesList[]> {
-    if ( this.user !== undefined) {
+    if ( this.isConnected()) {
       return this.getPlaylist(this.user.uid).then(val => {
         return val.filter(list => list !== null ).map(list => {
           const MovieList: MoviesList = {
@@ -126,7 +126,7 @@ export class Firebase2Service {
 
   removePlaylist(playListId) {
     console.log(playListId);
-    if (this.user !== undefined) {
+    if (this.isConnected()) {
       return firebase.database().ref(`users/${this.user.uid}/playlists/`).once('value', val => {
         val.forEach(function (childSnapshot: DataSnapshot) {
             const playlist = childSnapshot.val();
