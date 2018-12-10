@@ -28,6 +28,7 @@ export class AppComponent implements OnInit{
       console.log('Firebase uid ' + u.uid);
       this.fb.setUser(this._user);
       this.fb.setTmbd(this.tmdb);
+      this.fb.setMail(this.user.email);
     });
     this.cursor = 'home';
   }

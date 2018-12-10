@@ -40,10 +40,14 @@ export class FilmComponent implements OnInit {
     console.log(playListId);
     let alreadyIn = false;
     const thePlaylist = this.playlists.find((p) => p.id === playListId);
-    if (thePlaylist.movies !== undefined && thePlaylist.movies !== []) {
-      console.log(thePlaylist.movies);
-      const existingMovie = thePlaylist.movies.find((m) => m.id === this.movie.id);
-      if (existingMovie !== undefined) { alreadyIn = true; }
+    if (thePlaylist !== undefined) {
+      if (thePlaylist.movies !== undefined && thePlaylist.movies !== []) {
+        console.log(thePlaylist.movies);
+        const existingMovie = thePlaylist.movies.find((m) => m.id === this.movie.id);
+        if (existingMovie !== undefined) {
+          alreadyIn = true;
+        }
+      }
     }
     if (alreadyIn === false) {
       this.fb.addFilmToPlaylist(this.movie, playListId).then(() => {
@@ -60,24 +64,15 @@ export class FilmComponent implements OnInit {
   addToNewPlaylist() {
     // console.log(this.rawPlaylists)
     if (this.searchQuery !== undefined) {
-      this.fb.createPlaylist(this.searchQuery, '');
-      this.addToPlaylist(this.searchQuery);
-      this.fb.getObjectPlaylist().then(val => {
-        this.playlists = val;
+      console.log("addToNewPlaylist");
+      this.fb.createPlaylist(this.searchQuery, '').then(playlistUid => {
+        this.addToPlaylist(playlistUid);
+        this.fb.getObjectPlaylist().then(val => {
+          this.playlists = val;
+        }); 
       });
     }
   }
-
-  /* closeMenu() {
-    this.menuTrigger.closeMenu();
-  }
-
-  onSubmit() {
-    console.log(this.searchQuery);
-    this.fs.createPlaylist(this.searchQuery, '');
-    this.addToPlaylist(this.searchQuery);
-    // this.closeMenu();
-  } */
 
   getTitle(): string {
     return this.movie.title;

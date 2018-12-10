@@ -18,6 +18,7 @@ import { ActeurComponent } from './acteur/acteur.component';
 import { ActeurGridComponent } from './acteur-grid/acteur-grid.component';
 import { ActeurInfoComponent } from './acteur-info/acteur-info.component';
 import { MenuComponent } from './menu/menu.component';
+import {MatSelectModule} from '@angular/material/select';
 
 import {MatButtonModule} from '@angular/material/button';
 import {MatGridListModule} from '@angular/material/grid-list';
@@ -31,7 +32,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { FilmInfoComponent } from './film-info/film-info.component';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { FilmsPageComponent } from './films-page/films-page.component';
-import { PlaylistPageComponent } from './playlist-page/playlist-page.component';
+import {DialogComponent, PlaylistPageComponent} from './playlist-page/playlist-page.component';
 import { AjoutFilmDansListeV2Component } from './ajout-film-dans-liste-v2/ajout-film-dans-liste-v2.component';
 import {FormsModule} from '@angular/forms';
 
@@ -62,6 +63,7 @@ const appRoutes: Routes = [
     PlaylistComponent,
     FilmInfoComponent,
     FilmsPageComponent,
+    DialogComponent,
     PlaylistPageComponent,
     AjoutFilmDansListeV2Component
   ],
@@ -74,11 +76,13 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     MatCardModule,
     MatIconModule,
+    MatSelectModule,
     MatSnackBarModule,
     MatButtonModule,
     MatGridListModule,
     FlexLayoutModule,
     MatInputModule,
+
     MatMenuModule,
     MatDialogModule,
     FormsModule,
@@ -87,6 +91,7 @@ const appRoutes: Routes = [
       { enableTracing: true } // <-- debugging purposes only
     )
   ],
+  entryComponents: [DialogComponent],
   providers: [TmdbService],
   bootstrap: [AppComponent]
 })

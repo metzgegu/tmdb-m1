@@ -1,11 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit , Inject} from '@angular/core';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import {FirebaseService} from '../firebase.service';
 import {MovieResponse} from '../tmdb-data/Movie';
 import {MoviesList} from '../playlist/MoviesList';
 import {MatSnackBar} from '@angular/material';
 import {Firebase2Service} from '../firebase2.service';
+import { Router } from '@angular/router';
 import DataSnapshot = firebase.database.DataSnapshot;
 import {Log} from '@angular/core/testing/src/logger';
+
+export interface DialogData {
+  playlist: MoviesList[];
+}
 
 @Component({
   selector: 'app-playlist-page',
@@ -25,10 +31,13 @@ export class PlaylistPageComponent implements OnInit {
   playlistClicked;
   playlistIsClicked = false;
 
-  constructor(public snackBar: MatSnackBar, private fb: Firebase2Service) {
+  constructor(public snackBar: MatSnackBar, private fb: Firebase2Service, public dialog: MatDialog,private router: Router) {
   }
 
   ngOnInit() {
+    if (!this.fb.isConnected()) {
+      this.router.navigate(['/home']);
+    }
     this.updatePlaylist();
   }
 
@@ -74,6 +83,17 @@ export class PlaylistPageComponent implements OnInit {
     }
   }
 
+  openDialog(_playlist): void {
+    const dialogRef = this.dialog.open(DialogComponent, {
+      width: '250px',
+      data: { playlist: _playlist }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+  }
+
   clickOnPlaylist(e) {
     this.playlistClicked = e;
     this.playlistIsClicked = true;
@@ -83,4 +103,29 @@ export class PlaylistPageComponent implements OnInit {
     this.playlistIsClicked = false;
     console.log('exit');
   }
+}
+
+@Component({
+  selector: 'app-dialog',
+  templateUrl: './dialog.html',
+})
+export class DialogComponent {
+
+  email;
+
+  constructor(
+    public dialogRef: MatDialogRef<DialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData) {
+    console.log(data.playlist);
+  }
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+
+  submit(): void {
+    // envoyer laPlaylist a email
+    this.dialogRef.close();
+  }
+
 }

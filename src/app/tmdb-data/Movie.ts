@@ -7,6 +7,10 @@ export interface MovieGenre {
   name?: string;
 }
 
+export interface GenreResponse {
+  genres?: MovieGenre[];
+}
+
 export interface ProductionCompany {
   name?: string;
   id?: number;

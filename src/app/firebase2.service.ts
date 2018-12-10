@@ -38,7 +38,7 @@ export class Firebase2Service {
   }
 
   getObjectPlaylist(): Promise<MoviesList[]> {
-    if ( this.user !== undefined) {
+    if ( this.isConnected()) {
       return this.getPlaylist(this.user.uid).then(val => {
         return val.filter(list => list !== null ).map(list => {
           const MovieList: MoviesList = {
@@ -70,7 +70,7 @@ export class Firebase2Service {
       desc: desc
     }).key;
     console.log('Playlist pushed at Id' + id);
-    return this.addUserToPlaylist(this.user.uid, id);
+    return this.addUserToPlaylist(this.user.uid, id).then(() => id);
   }
 
   addUserToPlaylist(idUser: string, idPlaylist: string) {
@@ -126,7 +126,7 @@ export class Firebase2Service {
 
   removePlaylist(playListId) {
     console.log(playListId);
-    if (this.user !== undefined) {
+    if (this.isConnected()) {
       return firebase.database().ref(`users/${this.user.uid}/playlists/`).once('value', val => {
         val.forEach(function (childSnapshot: DataSnapshot) {
             const playlist = childSnapshot.val();
@@ -137,5 +137,9 @@ export class Firebase2Service {
         );
       });
     }
+  }
+
+  setMail(email: string) {
+    firebase.database().ref(`users/${this.user.uid}/`).update({mail: `${email}`});
   }
 }

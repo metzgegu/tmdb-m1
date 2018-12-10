@@ -6,6 +6,16 @@
   top: 0;
 }
 
+p {
+  color: black;
+
+}
+
+#selectGenre {
+  padding-left: 0.5%;
+}
+
+
 #title {
   display: block;
   background-color: lightgrey;

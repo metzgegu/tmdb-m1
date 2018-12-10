@@ -11,7 +11,7 @@ import {FirebaseService} from '../firebase.service';
   styleUrls: ['./films-page.component.css']
 })
 export class FilmsPageComponent implements OnInit {
-
+  genres = [];
   films = [];
   searchValue;
 
@@ -47,6 +47,28 @@ export class FilmsPageComponent implements OnInit {
           } )
           .catch( err => console.error('Error getting movie:', err) ),
       1000 );
+
+    setTimeout( () =>
+        this.tmdb.init('80d6fe65cffe579d433c3da0f5d11307') // Clef de TMDB
+          .getGenreList()
+          .then( (g) => {
+            g.genres.forEach((genre) => this.genres.push(genre));
+            // console.log(g);
+          })
+          .catch( err => console.error('Error getting genres:', err) ),
+      1000 );
   }
 
+  selectChange(e: any) {
+    console.log(e);
+    setTimeout( () =>
+        this.tmdb.init('80d6fe65cffe579d433c3da0f5d11307') // Clef de TMDB
+          .searchMovieByGenre(e.source.value)
+          .then( (m) => {
+            this.films = m.results;
+          } )
+          .catch( err => console.error('Error getting movie:', err) ),
+      1000 );
+
+  }
 }
