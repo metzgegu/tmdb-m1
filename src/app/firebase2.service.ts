@@ -70,7 +70,7 @@ export class Firebase2Service {
       desc: desc
     }).key;
     console.log('Playlist pushed at Id' + id);
-    return this.addUserToPlaylist(this.user.uid, id);
+    return this.addUserToPlaylist(this.user.uid, id).then(() => id);
   }
 
   addUserToPlaylist(idUser: string, idPlaylist: string) {
