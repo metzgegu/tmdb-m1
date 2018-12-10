@@ -1,3 +1,13 @@
+#en_tete {
+}
+
+#person_add {
+  color: #1F1F1F;
+  border: 2px solid #80ffe5;
+  padding: 8px;
+  padding-right: 20px;
+}
+
 .listeInfoCard {
   background-color: white;
   color: #333333;
