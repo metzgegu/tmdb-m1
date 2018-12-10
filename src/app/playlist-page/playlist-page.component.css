@@ -28,3 +28,7 @@ li .expanseBtn {
 .inputPlaylist {
   color: #1F1F1F;
 }
+
+i {
+  cursor: pointer;
+}
