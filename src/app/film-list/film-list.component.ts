@@ -12,7 +12,6 @@ import {MoviesList} from '../playlist/MoviesList';
 })
 export class FilmListComponent implements OnInit {
 
-  @Input() fs: FirebaseService;
   @Input() movies: MovieResponse[];
   @Input() numberOfFilmTOShow;
   slicedMovies: MovieResponse[];
@@ -24,8 +23,8 @@ export class FilmListComponent implements OnInit {
   expansed = false;
   cursor;
 
-  constructor() {
-    //console.log(this.movies);
+  constructor(private  fs: FirebaseService) {
+    // console.log(this.movies);
 
   }
 
@@ -33,9 +32,12 @@ export class FilmListComponent implements OnInit {
     this.canBeMore = false;
     // console.log('Film-list ' + this.fs);
     if (this.numberOfFilmTOShow !== undefined) {
-      this.slicedMovies = this.movies.slice(0, this.numberOfFilmTOShow);
-      this.cursor = 0;
-      this.canBeMore = true;
+      if (this.numberOfFilmTOShow < this.movies.length) {
+        this.slicedMovies = this.movies.slice(0, this.numberOfFilmTOShow);
+        this.cursor = 0;
+        this.canBeMore = true;
+      }
+
     }
     console.log(this.numberOfFilmTOShow);
   }

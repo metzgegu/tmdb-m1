@@ -1,18 +1,53 @@
-.material-icons.md-light {
-  color: rgba(255, 255, 255, 1);
+#table {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1050;
+  background-color: #333333;
 }
+
+#btnHome, #btnFilms, #btnActor, #btnPlaylist{
+  color: #FFFFFF;
+}
+
+#btnConnexion2 {
+  color: #FFFFFF;
+}
+
+.material-icons {
+  color: #80ffe5;
+  margin-right: 10px;
+  font-size: 42px;
+  text-align: center;
+}
+
+
+
 *{
-  background-color: black;
-  color: white;
+
+  color: #FFFFFF;
 }
+
 p {
-  color: #FF2600;
-  font-size: 2em;
+  text-align: left;
+  margin-left: 30px;
+  color: #80ffe5;
+  font-size:2em;
   margin-bottom: 0px;
   margin-top: 0px;
   Font-Weight: Bold;
 }
 
-#btnHome {
+.label { font-size: 1em;
+  color: white;}
 
+.label { display:none; }
+
+/* Desktop*/
+
+@media screen and (min-width: 1300px) {
+  .label  { display: inline; }
 }
+
+

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {FirebaseService} from '../firebase.service';
 import {MovieResponse} from '../tmdb-data/Movie';
 import {MoviesList} from '../playlist/MoviesList';
@@ -14,12 +14,11 @@ import {Log} from '@angular/core/testing/src/logger';
 })
 export class PlaylistPageComponent implements OnInit {
 
-  @Input() fs: FirebaseService;
   private rawPlaylists: JSON;
   public playlists: MoviesList[] = [];
   slicedPlaylists: MoviesList[] = [];
-  desc = null;
-  title = null;
+  desc = '';
+  title = '';
   canBeMore;
   cursor;
   numberOfFilmTOShow = 5;
@@ -30,7 +29,6 @@ export class PlaylistPageComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log('Playlist ' + this.fs);
     this.updatePlaylist();
   }
 
@@ -59,6 +57,12 @@ export class PlaylistPageComponent implements OnInit {
     this.title = ' ';
   }
 
+  public delete(playListName: string) {
+    this.fb.removePlaylist(playListName);
+    this.openSnackBar('Playlist supprimée!', '');
+    // TODO - re charger le front pour que la playlist supprimée disparaisse
+  }
+
   roll() {
     this.slicedPlaylists = this.playlists.slice(this.cursor, this.cursor + this.numberOfFilmTOShow);
     if (this.cursor + this.numberOfFilmTOShow > this.playlists.length - 1) {
@@ -75,6 +79,6 @@ export class PlaylistPageComponent implements OnInit {
 
   exitInfo() {
     this.playlistIsClicked = false;
-    console.log("exit");
+    console.log('exit');
   }
 }

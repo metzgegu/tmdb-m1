@@ -21,25 +21,14 @@ export class AppComponent implements OnInit{
    _user: User;
   private dbData: Observable<any>;
    cursor: String;
-  private acteurs;
-  fs: FirebaseService;
 
   constructor(private tmdb: TmdbService, public anAuth: AngularFireAuth, private db: AngularFireDatabase, private fb: Firebase2Service) {
     this.anAuth.user.pipe(filter( u => !!u )).subscribe( u => {
       this._user = u;
       console.log('Firebase uid ' + u.uid);
-      this.fs = new FirebaseService(this._user, this.tmdb);
-      console.log('app ' + this.fs);
       this.fb.setUser(this._user);
       this.fb.setTmbd(this.tmdb);
     });
-
-    setTimeout( () =>
-        this.tmdb.init('80d6fe65cffe579d433c3da0f5d11307') // Clef de TMDB
-          .getTrendingPerson()
-          .then( (a: SearchPeopleResponse) => this.acteurs = a.results)
-          .catch( err => console.error('Error getting actor:', err) ),
-      1000 );
     this.cursor = 'home';
   }
 
@@ -71,12 +60,12 @@ export class AppComponent implements OnInit{
   changeUser(e) {
     // this._user = e;
     this._user = undefined;
-    this.fs = new FirebaseService(this._user, this.tmdb);
+    // this.fs = new FirebaseService(this._user, this.tmdb);
     location.reload();
   }
 
   ngOnInit() {
-    this.fs = new FirebaseService(this._user, this.tmdb);
+    // this.fs = new FirebaseService(this._user, this.tmdb);
   }
 
 

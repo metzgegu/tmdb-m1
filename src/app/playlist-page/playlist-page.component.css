@@ -1,30 +1,48 @@
+
+#enTeteListe {
+  display: inline-block;
+}
+
+#title {
+  display: block;
+  background-color: lightgrey;
+  color: #1F1F1F;
+  width: 100%;
+  margin-top: 50px;
+  height: 150px;
+  line-height: 150px;
+  text-align: center;
+  Font-Weight: normal;
+  letter-spacing: .2rem;
+}
+
+#playlist-form {
+  margin: 30px;
+  font-weight: bold;
+}
+
+.material-icons {
+  color: #80ffe5;
+  margin-left: 10px;
+  font-size: 42px;
+  text-align: center;
+}
+
+#title_liste {
+  margin-left: 30px;
+}
+
+#person_add {
+  color: #1F1F1F;
+  border: 2px solid #80ffe5;
+  padding: 8px;
+  padding-right: 20px;
+}
+
 * {
-  color: white;
-}
-ul {
-  position: relative;
-  list-style: none;
-  margin-left: 0;
-}
-ul li:before {
-  content: "";
-  position: absolute;
-  left: 0;
-}
-
-.expanseBtn {
-  font-size: 8em;
-  bottom: 40%;
-  border: none;
-  color: white;
-  background-color: transparent;
-  cursor: pointer;
-}
-
-li .expanseBtn {
-  font-size: 3em;
+  color: #1F1F1F;
 }
 
 .inputPlaylist {
-  color: #1F1F1F;
+  color:  #1F1F1F;
 }

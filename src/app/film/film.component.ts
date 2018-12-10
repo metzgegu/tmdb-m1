@@ -1,8 +1,6 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {MovieResult} from '../tmdb-data/searchMovie';
+import {Component, Input, OnInit} from '@angular/core';
 import {MovieResponse} from '../tmdb-data/Movie';
 import {FirebaseService} from '../firebase.service';
-import {TmdbService} from '../tmdb.service';
 import {MoviesList} from '../playlist/MoviesList';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {Firebase2Service} from '../firebase2.service';
@@ -15,11 +13,10 @@ import {Firebase2Service} from '../firebase2.service';
 export class FilmComponent implements OnInit {
 
   @Input() movie: MovieResponse;
-  @Output() clickFilm = new EventEmitter<MovieResponse>();
   isLiked = false;
-  allPlaylist;
   private rawPlaylists: JSON;
   public playlists: MoviesList[] = [];
+  public searchQuery: string;
 
   constructor(public snackBar: MatSnackBar, private fb: Firebase2Service) {
   }
@@ -60,6 +57,28 @@ export class FilmComponent implements OnInit {
     }
   }
 
+  addToNewPlaylist() {
+    // console.log(this.rawPlaylists)
+    if (this.searchQuery !== undefined) {
+      this.fb.createPlaylist(this.searchQuery, '');
+      this.addToPlaylist(this.searchQuery);
+      this.fb.getObjectPlaylist().then(val => {
+        this.playlists = val;
+      });
+    }
+  }
+
+  /* closeMenu() {
+    this.menuTrigger.closeMenu();
+  }
+
+  onSubmit() {
+    console.log(this.searchQuery);
+    this.fs.createPlaylist(this.searchQuery, '');
+    this.addToPlaylist(this.searchQuery);
+    // this.closeMenu();
+  } */
+
   getTitle(): string {
     return this.movie.title;
   }
@@ -76,10 +95,5 @@ export class FilmComponent implements OnInit {
     this.snackBar.open(message, action, {
       duration: 2000,
     });
-  }
-
-  clickOnFilm() {
-    console.log('guillaume');
-    this.clickFilm.emit(this.movie);
   }
 }

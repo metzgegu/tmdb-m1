@@ -28,7 +28,7 @@ export class Firebase2Service {
         const playlistId = childSnapshot.val();
         const promise =  firebase.database().ref(`lists/`).child(playlistId).once('value').then(function(snap) {
           const dummy: any = snap.val();
-          if (dummy !== null) {dummy.id = playlistId};
+          if (dummy !== null) {dummy.id = playlistId;}
           return dummy;
         });
         movies.push(promise);
@@ -77,7 +77,7 @@ export class Firebase2Service {
     return firebase.database().ref(`users/${idUser}/playlists`).push(idPlaylist);
   }
 
-  //NOT TESTED
+  // NOT TESTED
   public addFilmToFavourite(id: number) {
     const filmInfos = this.tmdb.getMovie(id, undefined);
     firebase.database().ref(`users/${this.user.uid}/playlists`).push({
@@ -85,24 +85,24 @@ export class Firebase2Service {
     });
   }
 
-  //NOT TESTED
+  // NOT TESTED
   public getFavouriteFilms() {
     firebase.database().ref(`users/${this.user.uid}/favoriteFilms`).on('value', (data: DataSnapshot) => data.val());
   }
 
-  //NOT TESTED
+  // NOT TESTED
   public deleteFilmFromFavourite(id) {
     firebase.database().ref(`users/${this.user.uid}/playlists/favouriteFilms/${id}`).remove();
   }
 
-  //NOT TESTED
+  // NOT TESTED
   public addFilmToPlaylist(movie: MovieResponse, listId: string) {
     return firebase.database().ref(`lists/${listId}/films`).push(
       movie
     );
   }
 
-  //NOT TESTED
+  // NOT TESTED
   public addActorToFavourite(id: number) {
     const actorInfos = this.tmdb.getPerson(id, undefined);
     firebase.database().ref(`users/${this.user.uid}`).push({
@@ -110,13 +110,22 @@ export class Firebase2Service {
     });
   }
 
-  //NOT TESTED
+  // NOT TESTED
   public deleteActorFromFavourite(id) {
     firebase.database().ref(`users/${this.user.uid}/favouriteActors/${id}`).remove();
   }
 
-  //NOT TESTED
+  // NOT TESTED
   public isFavorite(id: number) {
     firebase.database().ref(`users/${this.user.uid}/favoriteActors/${id}`).on('value', (data: DataSnapshot) => data.val());
+  }
+
+  isConnected() {
+    return this.user !== undefined;
+  }
+
+  // TODO
+  removePlaylist(playListName) {
+    return true;
   }
 }

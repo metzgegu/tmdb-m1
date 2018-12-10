@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FirebaseService} from '../firebase.service';
 import {TmdbService} from '../tmdb.service';
 import {PersonResponse} from '../tmdb-data/Person';
+import {ActivatedRoute} from '@angular/router';
 import {Firebase2Service} from '../firebase2.service';
 
 @Component({
@@ -11,7 +12,6 @@ import {Firebase2Service} from '../firebase2.service';
 })
 export class ActeurComponent implements OnInit {
   @Input() actor: PersonResponse ;
-  @Output() clickSurActeur = new EventEmitter<PersonResponse>();
   public favori: boolean ;
 
 
@@ -21,16 +21,18 @@ export class ActeurComponent implements OnInit {
   }
 
   functionClickSurActeur() {
-    this.clickSurActeur.emit(this.actor);
+    // this.clickSurActeur.emit(this.actor);
   }
 
   ngOnInit() {
     this.favori = false;
-    const result = this.fb.isFavorite(this.actor.id);
-    if (result !== undefined) {
-      this.favori = true;
-    } else {
-      this.favori = false;
+    if (this.fb.isConnected()) {
+      const result = this.fb.isFavorite(this.actor.id);
+      if (result !== undefined) {
+        this.favori = true;
+      } else {
+        this.favori = false;
+      }
     }
   }
 

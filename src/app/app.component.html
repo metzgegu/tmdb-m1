@@ -12,8 +12,8 @@
   <app-film-list [movies]="movies"></app-film-list>
 </pre>-->
 <app-menu (changeMenu)="changeDisplay($event)" (userLogin)="changeUser($event)"></app-menu>
-<div *ngIf="cursor === 'home'">
-  <app-home-page></app-home-page>
+<!--<div *ngIf="cursor === 'home'">
+  <app-home-page [fs]= "fs"></app-home-page>
 </div>
 <div *ngIf="cursor === 'films'">
   <app-films-page></app-films-page>
@@ -26,5 +26,5 @@
   <app-playlist-page></app-playlist-page>
 </div>
 <div *ngIf="cursor === 'account'">
-  <app-profil></app-profil>
-</div>
+  <app-profil [user]="_user"></app-profil>
+</div>-->

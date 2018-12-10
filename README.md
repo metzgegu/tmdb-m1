@@ -6,16 +6,19 @@ La base de donnée étant fournie par le site TheMovieDB (https://www.themoviedb
 
 ## L'adresse de notre site
 
-http://localhost:4200/
+https://projetihm-m1.firebaseapp.com/?fbclid=IwAR1fkv82O4yby1Te9EV-f-FMLO13O039pH-A-niRmYmaCVx6q71BV0hewyA
 
 
 ## Fonctionnalités
 
 Notre application permet :
 * De faire une recherche par nom de film
-* De faire une recharche par nom d'acteur
+* De faire une recherche par genre de film
+* De faire une recherche par nom d'acteur
+* De voir la description d'un film, d'un acteur ou bien d'une liste
 * De gérer des listes de films (ajout, modification, suppression de film / de liste)
 * De gérer la connexion des utilisateurs (via leur adresse mail)
+* De partager une liste avec un autre utilisateur
 
 
 

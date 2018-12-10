@@ -1,12 +1,16 @@
 <mat-card class="film-card">
-  <img mat-card-image [src]="getImgSource()" alt="getTitle()" (click)="clickOnFilm()">
+  <img mat-card-image [src]="getImgSource()" alt="getTitle()" routerLink="/films/{{movie.id}}" routerLinkActive="active">
   <mat-card-header>
     <mat-card-title>{{getTitle()}}</mat-card-title>
   </mat-card-header>
   <div class="film-buttons">
     <i class="material-icons like" [class.liked]="isLiked" (click)="like()">star</i>
-    <i class="material-icons add" [matMenuTriggerFor]="menu">add_circle</i>
-    <mat-menu #menu="matMenu" >
+    <i id="add" class="material-icons add" [matMenuTriggerFor]="menu">add_circle_outline</i>
+    <mat-menu #menu="matMenu">
+      <label>
+        <input [(ngModel)]="this.searchQuery" mat-menu-item type="text" placeholder="nouvelle liste"/>
+        <i id="new" class="material-icons add" (click)="addToNewPlaylist()">add</i>
+      </label>
       <div *ngFor="let play of playlists">
         <button mat-menu-item (click)="addToPlaylist(play.id)">{{play.name}}</button>
       </div>
