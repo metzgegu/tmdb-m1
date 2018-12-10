@@ -1,6 +1,11 @@
+#add{
+  float: right;
+  margin-right: 10px;
+}
+
 .film-card {
-  background-color: #1F1F1F;
-  color: #ffffff;
+  background-color: transparent;
+  color: white;
   border: 3px solid black;
 }
 
@@ -16,12 +21,14 @@
   color: gold;
 }
 
-.film-buttons i{
-  cursor: pointer;
-}
-
 mat-card-header{
   height: 55px;
+  color: #1F1F1F;
+}
+
+.film-buttons i{
+  cursor: pointer;
+  color: #1F1F1F;
 }
 
 input, label {

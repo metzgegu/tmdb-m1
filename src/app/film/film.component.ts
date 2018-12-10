@@ -1,11 +1,8 @@
-import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
-import {MovieResult} from '../tmdb-data/searchMovie';
+import {Component, Input, OnInit} from '@angular/core';
 import {MovieResponse} from '../tmdb-data/Movie';
 import {FirebaseService} from '../firebase.service';
-import {TmdbService} from '../tmdb.service';
 import {MoviesList} from '../playlist/MoviesList';
 import {MatSnackBar} from '@angular/material/snack-bar';
-import {MatMenuTrigger} from '@angular/material';
 
 @Component({
   selector: 'app-film',
@@ -15,15 +12,12 @@ import {MatMenuTrigger} from '@angular/material';
 export class FilmComponent implements OnInit {
 
   @Input() movie: MovieResponse;
-  @Input() fs: FirebaseService;
-  @Output() clickFilm = new EventEmitter<MovieResponse>();
-  @ViewChild(MatMenuTrigger) private menuTrigger: MatMenuTrigger;
   isLiked = false;
   private rawPlaylists: JSON;
   public playlists: MoviesList[] = [];
   public searchQuery: string;
 
-  constructor(public snackBar: MatSnackBar) {
+  constructor(public snackBar: MatSnackBar, private fs: FirebaseService) {
   }
 
   ngOnInit() {
@@ -118,6 +112,6 @@ export class FilmComponent implements OnInit {
 
   clickOnFilm() {
     console.log('guillaume');
-    this.clickFilm.emit(this.movie);
+    // this.clickFilm.emit(this.movie);
   }
 }

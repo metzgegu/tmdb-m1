@@ -1,7 +1,7 @@
 
 
 <mat-card class="acteur-card"  >
-  <img mat-card-image src={{getPath(actor.profile_path)}} alt={{actor.name}} id="acteurImg" routerLink="/acteur-info" (click)="functionClickSurActeur()">
+  <img mat-card-image src={{getPath(actor.profile_path)}} alt={{actor.name}} id="acteurImg" routerLink="/acteurs/{{actor.id}}" (click)="functionClickSurActeur()">
   <mat-card-actions id="acteurAction">
     <p class="acteurName" id="acteurNameText" *ngIf="favori" >
     {{actor.name}}
