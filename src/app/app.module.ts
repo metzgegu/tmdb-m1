@@ -18,6 +18,7 @@ import { ActeurComponent } from './acteur/acteur.component';
 import { ActeurGridComponent } from './acteur-grid/acteur-grid.component';
 import { ActeurInfoComponent } from './acteur-info/acteur-info.component';
 import { MenuComponent } from './menu/menu.component';
+import {MatSelectModule} from '@angular/material/select';
 
 import {MatButtonModule} from '@angular/material/button';
 import {MatGridListModule} from '@angular/material/grid-list';
@@ -74,6 +75,7 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     MatCardModule,
     MatIconModule,
+    MatSelectModule,
     MatSnackBarModule,
     MatButtonModule,
     MatGridListModule,

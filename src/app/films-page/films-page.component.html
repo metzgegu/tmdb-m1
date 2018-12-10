@@ -9,6 +9,17 @@
   </div>
 
 </div>
+
+<p>Filtrer par genre :
+  <mat-form-field id="selectGenre">
+    <mat-select placeholder="Genre">
+      <mat-option *ngFor="let genre of genres" [value]="genre.id" (onSelectionChange)="selectChange($event)">
+        {{genre.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field></p>
+
+
 <div id="films">
   <ng-container *ngIf="films">
     <app-film-list  [movies]="films"></app-film-list>
