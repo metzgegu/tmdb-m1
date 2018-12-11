@@ -1,15 +1,16 @@
-import { Component, OnInit , Inject} from '@angular/core';
+import {Component, OnInit, Inject} from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import {FirebaseService} from '../firebase.service';
 import {MovieResponse} from '../tmdb-data/Movie';
 import {MoviesList} from '../playlist/MoviesList';
 import {MatSnackBar} from '@angular/material';
 import {Firebase2Service} from '../firebase2.service';
-import { Router } from '@angular/router';
+import {Router} from '@angular/router';
 import DataSnapshot = firebase.database.DataSnapshot;
 import {Log} from '@angular/core/testing/src/logger';
 
 export interface DialogData {
+  mail: any;
   playlist: MoviesList[];
 }
 
@@ -19,6 +20,9 @@ export interface DialogData {
   styleUrls: ['./playlist-page.component.css']
 })
 export class PlaylistPageComponent implements OnInit {
+
+  constructor(public snackBar: MatSnackBar, private fb: Firebase2Service, public dialog: MatDialog, private router: Router) {
+  }
 
   private rawPlaylists: JSON;
   public playlists: MoviesList[] = [];
@@ -31,8 +35,7 @@ export class PlaylistPageComponent implements OnInit {
   playlistClicked;
   playlistIsClicked = false;
 
-  constructor(public snackBar: MatSnackBar, private fb: Firebase2Service, public dialog: MatDialog,private router: Router) {
-  }
+  mail: string;
 
   ngOnInit() {
     if (!this.fb.isConnected()) {
@@ -51,6 +54,7 @@ export class PlaylistPageComponent implements OnInit {
       }
     });
   }
+
   openSnackBar(message: string, action: string) {
     this.snackBar.open(message, action, {
       duration: 2000,
@@ -58,11 +62,11 @@ export class PlaylistPageComponent implements OnInit {
   }
 
   public createPlaylist() {
-    console.log("Create Playlist");
-    this.fb.createPlaylist( this.title,  this.desc).then(() => {
-        this.openSnackBar('Playlist ajouté !','');
-        this.updatePlaylist();
-     });
+    console.log('Create Playlist');
+    this.fb.createPlaylist(this.title, this.desc).then(() => {
+      this.openSnackBar('Playlist ajouté !', '');
+      this.updatePlaylist();
+    });
     this.desc = ' ';
     this.title = ' ';
   }
@@ -86,11 +90,13 @@ export class PlaylistPageComponent implements OnInit {
   openDialog(_playlist): void {
     const dialogRef = this.dialog.open(DialogComponent, {
       width: '250px',
-      data: { playlist: _playlist }
+      data: {playlist: _playlist, mail: this.mail}
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+      if (result !== undefined && result.mail !== undefined) {
+        this.fb.shareListTo(result.playlist.id, result.mail).then(() => this.openSnackBar('L\'uttilisateur ' + result.mail + ' a dorénavant accès à la liste!', ''));
+      }
     });
   }
 
@@ -111,21 +117,12 @@ export class PlaylistPageComponent implements OnInit {
 })
 export class DialogComponent {
 
-  email;
-
   constructor(
     public dialogRef: MatDialogRef<DialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData) {
-    console.log(data.playlist);
   }
 
   onNoClick(): void {
     this.dialogRef.close();
   }
-
-  submit(): void {
-    // envoyer laPlaylist a email
-    this.dialogRef.close();
-  }
-
 }

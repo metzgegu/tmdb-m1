@@ -4,10 +4,7 @@ import {User} from 'firebase';
 import DataSnapshot = firebase.database.DataSnapshot;
 import {TmdbService} from './tmdb.service';
 import {MoviesList} from './playlist/MoviesList';
-import { Observable, of } from 'rxjs';
 import {MovieResponse} from './tmdb-data/Movie';
-import Reference = firebase.storage.Reference;
-
 @Injectable({
   providedIn: 'root'
 })
@@ -69,7 +66,6 @@ export class Firebase2Service {
       title: title,
       desc: desc
     }).key;
-    console.log('Playlist pushed at Id' + id);
     return this.addUserToPlaylist(this.user.uid, id).then(() => id);
   }
 
@@ -125,7 +121,6 @@ export class Firebase2Service {
   }
 
   removePlaylist(playListId) {
-    console.log(playListId);
     if (this.isConnected()) {
       return firebase.database().ref(`users/${this.user.uid}/playlists/`).once('value', val => {
         val.forEach(function (childSnapshot: DataSnapshot) {
@@ -142,4 +137,20 @@ export class Firebase2Service {
   setMail(email: string) {
     firebase.database().ref(`users/${this.user.uid}/`).update({mail: `${email}`});
   }
+
+  shareListTo(playListId, userMail) {
+    if (this.isConnected()) {
+      return firebase.database().ref(`users/`).once('value', val => {
+        let key;
+        val.forEach((childSnapshot: DataSnapshot) => {
+            const user = childSnapshot.val();
+            if (user.mail === userMail) {
+              key = childSnapshot.key;
+            }
+          });
+          return (key === undefined ) ? null : this.addUserToPlaylist(key, playListId);
+      });
+    }
+  }
+
 }
