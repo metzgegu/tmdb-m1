@@ -4,7 +4,7 @@
       <div class="sf">
         <input placeholder="Recherche" [value]="searchValue" (input)="searchValue = $event.target.value">
         <button mat-icon-button>
-          <mat-icon  id="search" aria-label="searchActor" (click)="onSearchChange()" >search</mat-icon>
+          <mat-icon  id="search" aria-label="searchActor" (click)="onSearchChange('')" >search</mat-icon>
         </button>
       </div>
     </div>
