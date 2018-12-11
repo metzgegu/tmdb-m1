@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import {FirebaseService} from '../firebase.service';
 import {MoviesList} from './MoviesList';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-playlist',
@@ -10,7 +11,7 @@ import {MoviesList} from './MoviesList';
 export class PlaylistComponent implements OnInit {
 
   @Input() playlist: MoviesList;
-  constructor(private fs: FirebaseService) {
+  constructor(private fs: FirebaseService, private route: ActivatedRoute) {
   }
 
   ngOnInit() {
